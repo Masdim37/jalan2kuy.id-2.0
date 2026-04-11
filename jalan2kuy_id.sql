@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Des 2025 pada 06.31
+-- Waktu pembuatan: 11 Apr 2026 pada 13.36
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `adminID` varchar(6) NOT NULL,
   `name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(100) NOT NULL,
   `gender` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -42,7 +42,10 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`adminID`, `name`, `username`, `password`, `email`, `gender`) VALUES
 ('adm001', 'Dhimas HP', 'dhimas123', '$2y$12$GkZE8QL3APnlT13COURgfe72lHnD1qhhNTasDL6X3tV7mstcp0bDe', 'dhimas.hfzh375@gmail.com', 0),
-('adm002', 'dhimas', 'Dhimas', '$2y$12$mxO7zz9xsoyqgrVnmENFs.nUrUMnOWlBUWltvpLlWcciFP69oEdG6', 'dhimas@gmail.com', 1);
+('adm002', 'dhimas', 'Dhimas', '$2y$12$eovFinhAqMCph2BCZNFiGOU75Q2QQ/atJm2kbFEwKGPqPKbM.Fetm', 'dhimas@gmail.com', 1),
+('adm003', 'nizal', 'nizal123', '$2y$12$bVwSLd19nxhKnCapNUSh3OQdBKMI/6Ti5Y.0yhiNA0kDJidbrUH7S', 'nizal@gmail.com', 1),
+('adm004', 'nizal', 'nizal', '$2y$12$r7KYPiB/VjV2p7B2KklRne7vzP93swydYETfkIhm7Ru6dkPedIDVK', 'balala@gmail.com', 1),
+('adm005', 'daffa', 'daffa', '$2y$12$yceDkhSlJKi/W59HpOqby.j.K5fzCLEKx3lgE61PL122DGyOi7nHK', 'daffa@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -171,6 +174,32 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `order`
+--
+
+CREATE TABLE `order` (
+  `orderID` varchar(6) NOT NULL,
+  `orderDate` date NOT NULL,
+  `userID` varchar(6) NOT NULL,
+  `totalPrice` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `payment`
+--
+
+CREATE TABLE `payment` (
+  `paymentID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `paymentDate` date NOT NULL,
+  `paymentStatus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `orderID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `sessions`
 --
 
@@ -188,7 +217,39 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('B8TJ3jeG574IZuyxt46fCEl4ixDd7d4TlaTEJIQ2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoic3VuQ0lSYVZVV1JJUGRFYkVPTENURmNDcGxFVjVOUWllUmhiSGRpayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1766295070);
+('6iDG5BT6Fs1zE3PEu59RQMqySfyDpl0sI59gvczP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzdmbUhZN0pmdDlVdlhYdDlWQnFxVEtMNG5pd3l1VEw0NW03aHYwdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDIiO3M6MTA6ImFkbWluX25hbWUiO3M6NjoiZGhpbWFzIjt9', 1775895121),
+('n99UOSYuIOsu7VCOSwyuPl3z5Cd6hqWkrNmbsgYT', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiRHJ3eWlpVUFlRVpvaTZPVEJKaTJjVFF4MWFna2dCYUJHUDJGQTA2YSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9BY2NvdW50IjtzOjU6InJvdXRlIjtOO31zOjg6ImFkbWluX2lkIjtzOjY6ImFkbTAwNSI7czoxMDoiYWRtaW5fbmFtZSI7czo1OiJkYWZmYSI7fQ==', 1772442587);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tiket`
+--
+
+CREATE TABLE `tiket` (
+  `tiketID` varchar(6) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `tiketStatus` tinyint(1) NOT NULL,
+  `eventID` varchar(6) NOT NULL,
+  `orderID` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE `user` (
+  `userID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nameUser` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `gender` tinyint(1) NOT NULL,
+  `birthDate` date NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Indexes for dumped tables
@@ -229,12 +290,40 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`orderID`),
+  ADD KEY `userID` (`userID`);
+
+--
+-- Indeks untuk tabel `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`paymentID`),
+  ADD KEY `userID` (`orderID`);
+
+--
 -- Indeks untuk tabel `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indeks untuk tabel `tiket`
+--
+ALTER TABLE `tiket`
+  ADD PRIMARY KEY (`tiketID`),
+  ADD KEY `eventID` (`eventID`,`orderID`),
+  ADD KEY `orderID` (`orderID`);
+
+--
+-- Indeks untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -263,6 +352,25 @@ ALTER TABLE `destination`
 ALTER TABLE `event`
   ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`adminID`) REFERENCES `admin` (`adminID`),
   ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`destinationID`) REFERENCES `destination` (`destinationID`);
+
+--
+-- Ketidakleluasaan untuk tabel `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
+
+--
+-- Ketidakleluasaan untuk tabel `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `order` (`orderID`);
+
+--
+-- Ketidakleluasaan untuk tabel `tiket`
+--
+ALTER TABLE `tiket`
+  ADD CONSTRAINT `tiket_ibfk_1` FOREIGN KEY (`eventID`) REFERENCES `event` (`eventID`),
+  ADD CONSTRAINT `tiket_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `order` (`orderID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
