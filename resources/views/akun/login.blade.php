@@ -69,7 +69,7 @@
                 <!-- link -->
                 <div class="link-box">
                     <a href="{{ url('/register') }}">Register akun?</a>
-                    <a href="#">Lupa Password?</a>
+                    <a href="{{ url('/lupaPass') }}">Lupa Password?</a>
                 </div>
 
                 <!-- tombol -->
