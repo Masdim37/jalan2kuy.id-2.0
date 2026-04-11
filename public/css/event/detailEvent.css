@@ -170,3 +170,7 @@ body {
     top: -55px;
   }
 }
+.map-container {
+  border-radius: 12px; 
+  overflow: hidden;
+}
