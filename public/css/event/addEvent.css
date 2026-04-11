@@ -1,0 +1,242 @@
+/* global */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/gambar/bgfix2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* pembbungkus konten utama */
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* konten utama */
+.form-container {
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffff;
+    margin-bottom: 25px;
+}
+
+.event-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 90%;
+    max-width: 1000px;
+    align-items: start;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 20px;
+}
+
+/* Basic item style */
+.form-item {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Upload Image */
+.item-image {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border: 2px dashed #ccc; 
+    background-color: #f9f9f9;
+}
+
+.item-image i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+        /* 1. IMAGE UPLOAD (Kiri Atas - Tinggi) */
+        .area-image {
+            grid-column: 1;
+            grid-row: 1 / span 2; /* Memanjang ke bawah 2 baris */
+            height: 100%; /* Agar memenuhi tinggi baris */
+            min-height: 250px;
+        }
+
+                /* 2. JUDUL (Kanan Atas) */
+        .area-judul {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        /* 3. HARGA (Kanan Bawah Judul) */
+        .area-harga {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        /* 4. LOKASI (Kiri Bawah Image) */
+        .area-lokasi {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        /* 5. SOSMED (Kiri Bawah Lokasi) */
+        .area-sosmed {
+            grid-column: 1;
+            grid-row: 4;
+        }
+
+        /* 6. DESKRIPSI (Kanan Panjang ke Bawah) */
+        .area-deskripsi {
+            grid-column: 2;
+            grid-row: 3 / span 3; /* Memanjang dari baris 3 sampai 5 */
+            height: 100%;
+        }
+        .area-deskripsi textarea {
+            height: 85%; /* Agar textarea mengisi kotak */
+        }
+
+        /* 7. WAKTU (Kiri Paling Bawah) */
+        .area-waktu {
+            grid-column: 1;
+            grid-row: 5;
+        }
+
+
+
+/* Short & Full description */
+.item-short textarea,
+.item-full textarea,
+.item-info textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    resize: vertical;
+}
+
+.item-info input {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+/* Submit Button */
+.submit-btn {
+    grid-column: 1 / -1;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #349c8b;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    grid-row: 6;
+}
+
+.submit-btn:hover {
+    background-color: #2d7f6f;
+}
+
+/* RESPONSIVE */
+        @media (max-width: 768px) {
+            .event-form {
+                display: flex;
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            .area-image, .area-deskripsi {
+                height: auto;
+            }
+        }
+
+
+/* Style Tambahan Khusus Edit */
+.split-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+.split-inputs > div {
+    flex: 1;
+}
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* CONTAINER UTAMA (Wajib position: relative) */
+.item-image {
+    position: relative; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Tambahkan tinggi dan lebar pasti agar area klik jelas */
+    min-height: 200px; 
+    border: 2px dashed #ccc; /* Visual bantu batas area */
+        border-radius: 10px;
+}
+
+/* 1. LAYER PALING BELAKANG (Gambar Lama) */
+.image-preview-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.4; /* Transparan biar teks terbaca */
+    z-index: 1;
+}
+
+/* 2. LAYER TENGAH (Teks & Icon) */
+.upload-content {
+    position: relative;
+    z-index: 2; 
+    text-align: center;
+    pointer-events: none; /* PENTING: Agar klik tembus ke input file di belakang/depannya */
+}
+
+/* 3. LAYER PALING DEPAN (Input File - INI KUNCINYA) */
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;   /* Memenuhi lebar kotak */
+    height: 100%;  /* Memenuhi tinggi kotak */
+    opacity: 0;    /* TRANSPARAN (Tak terlihat tapi ada) */
+    z-index: 10;   /* Layer paling atas! */
+     cursor: pointer; /* Ubah kursor jadi telunjuk */
+}
