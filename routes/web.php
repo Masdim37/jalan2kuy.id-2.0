@@ -14,7 +14,7 @@ use App\Http\Controllers\EventController;
 
 //route halaman homepage (Method: GET)
 Route::get('/', function () {
-    return view('homepage');
+    return view('akun.login');
 });
 
 //Alur Login (Start)
