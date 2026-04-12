@@ -26,6 +26,14 @@ Route::get('/login', function () {
 //route proses login (Method: POST)
 Route::post('/login-proses', [AdminController::class, 'login']);
 
+<<<<<<< HEAD
+=======
+Route::get('/lupaPass', [AdminController::class, 'lupapass']);
+
+Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
+
+
+>>>>>>> e9a0a205e92b665c0bcde39229787286dc56f274
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
 

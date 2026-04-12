@@ -137,6 +137,12 @@ class AdminController extends Controller
         return view('akun.lupaPass');
     }
 
+    public function lupapassproses(){
+        return view('akun.lupaPassProses');
+    }
+
+    
+
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
     public function logout()

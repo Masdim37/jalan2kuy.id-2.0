@@ -80,8 +80,7 @@
 
             {{-- KANAN --}}
             <div class="image-box">
-                <img id="img" src="{{ asset('storage/' . $destination->imagePath) }}"
-                    alt="{{ $destination->name }}">
+                <img id="img" src="{{ asset('storage/' . $destination->imagePath) }}" alt="{{ $destination->name }}">
 
                 <p id="loc">
                     <i class="fas fa-map-marker-alt"></i> {{ $destination->location }}
@@ -115,10 +114,10 @@
                     @endif
                 </div>
                 <div class="map-destination">
-    <iframe src="https://maps.google.com/maps?q={{ urlencode($destination->location) }}&output=embed"
-        loading="lazy">
-    </iframe>
-</div>
+                    <iframe src="https://maps.google.com/maps?q={{ urlencode($destination->location) }}&output=embed"
+                        loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>

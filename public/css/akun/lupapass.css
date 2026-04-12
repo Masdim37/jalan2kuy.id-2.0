@@ -78,11 +78,29 @@ form input:focus {
     background-color: #ededed;
 }
 
+/* ================= LINK ================= */
+.link-box{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:25px;
+    margin-bottom:0px;
+    font-size:14px;
+}
+
+.link-box a{
+    text-decoration:none;
+    color:#333;
+}
+
+.link-box a:hover{
+    color:#187b92;
+}
+
 /* ================= BUTTON ================= */
 form button {
     width: 100%;
     padding: 14px;
-    margin-top: 20px;
+    margin-top:0px;
 
     border: none;
     border-radius: 8px;
