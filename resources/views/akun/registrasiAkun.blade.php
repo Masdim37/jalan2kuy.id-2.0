@@ -69,7 +69,7 @@
         @csrf
 
         <!-- input nama lengkap -->
-        <input type="text" name="name" placeholder="Nama Lengkap" required value="{{ old('name') }}">
+        <input type="text" name="nameUser" placeholder="Nama Lengkap" required value="{{ old('name') }}">
         @error('name') <span class="error-msg">{{ $message }}</span> @enderror
 
         <!-- Input email -->
@@ -80,6 +80,13 @@
         <input type="text" name="username" placeholder="Username" required value="{{ old('username') }}">
         @error('username') <span class="error-msg">{{ $message }}</span> @enderror
 
+         <!-- Input password dengan fitur show/hide -->
+        <div class="password-container">
+            <input type="password" name="password" id="password" placeholder="Kata Sandi" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
+        </div>
+        @error('password') <span class="error-msg">{{ $message }}</span> @enderror
+
         <!-- Dropdown untuk memilih jenis kelamin pengguna -->
         <select name="gender" required>
             <option value="" disabled selected>Pilih Jenis Kelamin</option>
@@ -88,12 +95,13 @@
         </select>
         @error('gender') <span class="error-msg">{{ $message }}</span> @enderror
 
-        <!-- Input password dengan fitur show/hide -->
-        <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Kata Sandi" required>
-            <i class="fa fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
-        </div>
-        @error('password') <span class="error-msg">{{ $message }}</span> @enderror
+        <!-- Input Phone Number -->
+        <input type="tel" name="phone" placeholder="Masukkan nomor HP" required value="{{ old('phone') }}">
+        @error('phone') <span class="error-msg">{{ $message }}</span> @enderror
+
+        <!-- Input Tanggal Lahir -->
+        <input type="date" name="birthDate" required value="{{ old('birthDate') }}">
+        @error('birthDate') <span class="error-msg">{{ $message }}</span> @enderror
 
         <!-- Input konfirmasi password dengan toggle -->
         <div class="password-container" style="margin-top: 15px; margin-bottom: 15px;">

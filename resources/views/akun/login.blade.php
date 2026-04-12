@@ -40,7 +40,7 @@
             @endif
 
             <!-- form login -->
-            <form action="{{ url('/login-proses') }}" method="POST">
+            <form action="{{ url('/login') }}" method="POST">
                 @csrf
 
                 <!-- username -->
