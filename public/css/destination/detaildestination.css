@@ -208,6 +208,12 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+.map-destination iframe {
+  width: 100%;
+  height: 250px; 
+  border: none;
+  border-radius: 12px;
+}
 
 /* responsif */
 @media (max-width: 990px) {

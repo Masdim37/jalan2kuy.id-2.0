@@ -14,7 +14,7 @@ use App\Http\Controllers\EventController;
 
 //route halaman homepage (Method: GET)
 Route::get('/', function () {
-    return view('homepage');
+    return view('akun.login');
 });
 
 //Alur Login (Start)
@@ -27,6 +27,8 @@ Route::get('/login', function () {
 Route::post('/login-proses', [AdminController::class, 'login']);
 
 Route::get('/lupaPass', [AdminController::class, 'lupapass']);
+
+Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
 
 
 //route halaman passkey (Method: GET)
