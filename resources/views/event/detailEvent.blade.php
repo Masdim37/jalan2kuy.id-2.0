@@ -30,6 +30,9 @@
                     <div class="event-text">
                         {{-- Menampilkan deskripsi dengan format baris baru --}}
                         <p>{!! nl2br(e($event->description)) !!}</p>
+                        <a href="{{ route('booking.create', $event->id) }}" class="btn-ticket">
+                        Beli Tiket
+                        </a>
                     </div>
 
                     {{-- Bagian Kanan: Gambar, Info Singkat & Map --}}

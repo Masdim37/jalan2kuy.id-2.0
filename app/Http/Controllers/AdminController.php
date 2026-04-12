@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use \App\Models\Event;
 use \App\Models\Destination;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendOtpMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
-    public function login(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+class AdminController extends Controller
+{ //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
+    public function login(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         $usernameInput = $request->input('username'); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         $passwordInput = $request->input('password');
 
@@ -22,7 +26,7 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
             if (Hash::Check($passwordInput, $usernameAdmin->password)) { // Cek Password apakah sama dengan yang disimpan didalam database atau tidak
                 Session::put('temp_admin_id', $usernameAdmin->adminID); //simpan sementara adminID didalam temp_admin_id untuk dipakai pada verifikasi passkey
                 Session::put('temp_admin_name', $usernameAdmin->name); //simpan sementara name didalam temp_admin_name untuk dipakai pada verifikasi passkey
-                
+
                 //Redirect ke URL halaman Passkey (/verifikasi-login)
                 return redirect('/verifikasi-login');
             }
@@ -31,9 +35,10 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return back()->with('error', 'Username atau Password salah!');
     }
 
-    public function showVerifikasiLogin() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function showVerifikasiLogin()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
-        if (!Session::has('temp_admin_id')) { 
+        if (!Session::has('temp_admin_id')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
@@ -41,7 +46,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return view('akun.passkey');
     }
 
-    public function prosesVerifikasiLogin(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function prosesVerifikasiLogin(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         $inputPassKey = $request->input('passkey_code'); //simpan passkey yang diinputkan user kedalam $inputPassKey
         $passKey = '123456'; //PassKey yang valid (dibuat statis)
 
@@ -65,15 +71,16 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         }
     }
 
-    public function register(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function register(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //validasi input
         $request->validate([
             'name' => 'required',
-            'username' => 'required|alpha_num|unique:admin,username', 
+            'username' => 'required|alpha_num|unique:admin,username',
             'email' => 'required|email|unique:admin,email',
             'gender' => 'required',
             'password' => [
-                'required', 
+                'required',
                 'confirmed', //passowrd yang diinputkan harus sesuai dengan yang diinputkan di form input ('password_confirmation')
                 'min:8', //password minimal 8 karakter
                 'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
@@ -107,11 +114,11 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
             $admin = new Admin();
             $admin->adminID = $newAdminID;
             $admin->name = $request->input('name');
-            $admin->username = $request->input('username');      
+            $admin->username = $request->input('username');
             $admin->password = Hash::make($request->input('password')); //password disimpan dalam bentuk hash
             $admin->email = $request->input('email');
             $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
-            $admin->save(); 
+            $admin->save();
 
             //commit transaction ke database
             DB::commit();
@@ -125,7 +132,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         }
     }
 
-    public function lupapass(){
+    public function lupapass()
+    {
         return view('akun.lupaPass');
     }
 
@@ -137,19 +145,21 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
 
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
-    public function logout() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function logout()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         Session::flush(); //Hapus semua data session
-        
+
         //Redirect ke halaman homepage (/)
         return redirect('/')->with('success', 'Berhasil Logout.');
     }
 
-    public function showAccount() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function showAccount()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        
+
         //query
         $adminID = Session::get('admin_id'); //ambil adminID dari session
 
@@ -160,7 +170,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return view('akun.accountAdmin', ['admin' => $admin]);
     }
 
-    public function tampilFormEditProfile() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilFormEditProfile()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -176,7 +187,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return view('akun.editAkun', ['admin' => $admin]);
     }
 
-    public function editProfile(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function editProfile(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -195,7 +207,7 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
             'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
             'gender' => 'required',
             'password' => [
-                'nullable', 
+                'nullable',
                 'min:8', //password minimal 8 karakter
                 'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
                 'regex:/[0-9]/', //password harus ada angka (minimal 1)
@@ -226,7 +238,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return redirect('/admin/Account')->with('success', 'Profil berhasil diperbarui!');
     }
 
-    public function deleteAccount() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function deleteAccount()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -234,14 +247,14 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
 
         //query
         $adminID = Session::get('admin_id'); //ambil adminID dari session
-    
+
         if ($adminID) { //jika adminID ditemukan dari session
             //Memulai Transaction ke database
             DB::beginTransaction();
             try {
                 //ubah foreign key adminID disetiap event menjadi null (query)
                 Event::where('adminID', $adminID)->update(['adminID' => null]);
-                
+
                 //ubah foreign key adminID disetiap destination menjadi null (query)
                 Destination::where('adminID', $adminID)->update(['adminID' => null]);
 
@@ -249,14 +262,13 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
                 Admin::where('adminID', $adminID)->delete();
 
                 //commit transaction
-                DB::commit(); 
+                DB::commit();
 
                 //bersihkan session
                 Session::flush();
 
                 //redirect ke homepage (/)
                 return redirect('/')->with('success', 'Akun berhasil dihapus!');
-
             } catch (\Exception $e) {
                 //Jika ada yang salah, rollback transaction
                 DB::rollBack();
@@ -266,5 +278,70 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         }
         //tampillkan pesan error jika $adminID tidak ditemukan di session
         return back()->with('error', 'Gagal menghapus akun.');
+    }
+
+    // Menampilkan halaman input email
+    public function tampilFormLupaPass()
+    {
+        return view('akun.lupaPass');
+    }
+
+    public function prosesKirimOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $admin = Admin::where('email', $request->email)->first();
+
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Email tidak terdaftar!']);
+        }
+
+        // Generate OTP 6 digit
+        $otp = rand(111111, 999999);
+        Session::put('reset_email', $request->email);
+        Session::put('reset_otp', $otp);
+
+        try {
+            // KIRIM OTP KE EMAIL ASLI USER
+            Mail::to($request->email)->send(new SendOtpMail($otp));
+            
+            return redirect()->route('verifikasi.otp')->with('success', 'Kode OTP telah dikirim ke email Anda.');
+        } catch (\Exception $e) {
+            // Menangkap error jika SMTP gagal atau tidak ada internet
+            return back()->withErrors(['email' => 'Gagal mengirim email OTP. Pastikan koneksi internet dan pengaturan SMTP di .env sudah benar.']);
+        }
+    }
+
+    public function tampilFormOtp()
+    {
+        if (!Session::has('reset_email')) return redirect()->route('lupa.password');
+        return view('akun.lupaPassProses');
+    }
+
+    public function prosesVerifikasiOtp(Request $request)
+    {
+        if ($request->otp_code == Session::get('reset_otp')) {
+            Session::put('otp_verified', true);
+            return redirect()->route('reset.password');
+        }
+        return back()->with('error', 'Kode OTP salah!');
+    }
+
+    public function tampilFormReset()
+    {
+        if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
+        return view('akun.resetPass');
+    }
+
+    public function prosesUpdatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $admin = Admin::where('email', Session::get('reset_email'))->first();
+        $admin->update(['password' => Hash::make($request->password)]);
+
+        Session::forget(['reset_email', 'reset_otp', 'otp_verified']);
+        return redirect('/login')->with('success', 'Password berhasil diubah!');
     }
 }

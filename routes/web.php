@@ -14,84 +14,82 @@ use App\Http\Controllers\UserBiasaController;
 //Method DELETE digunakan untuk menghapus data dari server.
 
 //route halaman homepage (Method: GET)
-Route::get('/', [UserBiasaController::class, 'Showlogin']);
-
-Route::post('/login', [UserBiasaController::class, 'login']);
-
-Route::get('/Homepage', function () {
-    //Cek apakah user sudah melewati tahap login awal atau belum
-    if (!session()->has('user_id')) {
-        return redirect('/login')->with('error', 'Anda harus login dulu!');
-    }
-    return view('homepage');
+Route::get('/', function () {
+    return view('akun.login');
 });
 
-// //route proses login (Method: POST)
-// Route::post('/login-proses', [AdminController::class, 'login']);
+//Alur Login (Start)
+//route halaman login (Method: GET)
+Route::get('/login', function () {
+    return view('akun.login');
+})->name('login');
 
-// Route::get('/lupaPass', [AdminController::class, 'lupapass']);
+//route proses login (Method: POST)
+Route::post('/login-proses', [AdminController::class, 'login']);
 
-// Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
+Route::get('/lupaPass', [AdminController::class, 'lupapass']);
+
+Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
 
 
-// //route halaman passkey (Method: GET)
-// Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
+//route halaman passkey (Method: GET)
+Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
 
-// //route proses verifikasi passkey (Method: POST)
-// Route::post('/verifikasi-login-proses', [AdminController::class, 'prosesVerifikasiLogin']);
-// //Alur Login (End)
+//route proses verifikasi passkey (Method: POST)
+Route::post('/verifikasi-login-proses', [AdminController::class, 'prosesVerifikasiLogin']);
+//Alur Login (End)
 
-// //Alur Register Akun Admin (Start)
-// //route halaman register akun admin (Method: GET)
-// Route::get('/register', function () {
-//     return view('akun.registrasiAkun');
-// });
+//Alur Register Akun Admin (Start)
+//route halaman register akun admin (Method: GET)
+Route::get('/register', function () {
+    return view('akun.registrasiAkun');
+});
 
-// //route proses registrasi akun admin (Method: POST)
-// Route::post('/register-proses', [AdminController::class, 'register']);
-// //Alur Register Akun Admin (End)
+//route proses registrasi akun admin (Method: POST)
+Route::post('/register-proses', [AdminController::class, 'register']);
+//Alur Register Akun Admin (End)
 
-// //Alur Destination (User Biasa) (Start)
-// //route halaman Utama Destination (Method: GET)
-// Route::get('/Destination', [DestCategoryController::class, 'tampilCategory']);
+//Alur Destination (User Biasa) (Start)
+//route halaman Utama Destination (Method: GET)
+Route::get('/Destination', [DestCategoryController::class, 'tampilCategory']);
 
-// //route halaman Kategori Destination (Method: GET)
-// Route::get('/Destination/Category', [DestCategoryController::class, 'category']);
+//route halaman Kategori Destination (Method: GET)
+Route::get('/Destination/Category', [DestCategoryController::class, 'category']);
 
-// //route halaman detail destination (Method: GET)
-// Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestination']);
-// //Alur Destination (User Biasa) (End)
+//route halaman detail destination (Method: GET)
+Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestination']);
+//Alur Destination (User Biasa) (End)
 
-// //Alur Event (User Biasa) (Start)
-// //route halaman Utama Event (Method: GET)
-// Route::get('/Event', [EventController::class, 'tampilEvent']);
+//Alur Event (User Biasa) (Start)
+//route halaman Utama Event (Method: GET)
+Route::get('/Event', [EventController::class, 'tampilEvent']);
 
-// //route halaman detail event (Method: GET)
-// Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
-// //Alur Event (User Biasa) (End)
+//route halaman detail event (Method: GET)
+Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
+//Alur Event (User Biasa) (End)
 
-// //route halaman Utama gallery (Method: GET)
-// Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
+//route halaman Utama gallery (Method: GET)
+Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 
-// //route proses logout (Method: POST)
-// Route::post('/logout', [AdminController::class, 'logout']);
+//route proses logout (Method: POST)
+Route::post('/logout', [AdminController::class, 'logout']);
 
-// ////===ROUTE-ROUTE DIBAWAH INI KHUSUS ADMIN ONLY===
+////===ROUTE-ROUTE DIBAWAH INI KHUSUS ADMIN ONLY===
 
-// //route group admin (Hanya bisa diakses jika sudah login)
-// Route::prefix('admin')->group(function () {
-//     //route halaman homepage admin (Method: GET)
-//     Route::get('/HomepageAdmin', function () {
-//         //Cek apakah user sudah melewati tahap login awal atau belum
-//         if (!session()->has('admin_id')) {
-//             return redirect('/login')->with('error', 'Anda harus login dulu!');
-//         }
-//         return view('admin.homepageAdmin');
-//     });
+//route group admin (Hanya bisa diakses jika sudah login)
+Route::prefix('admin')->group(function () {
+    //route halaman homepage admin (Method: GET)
+    Route::get('/Homepage', function () {
+        //Cek apakah user sudah melewati tahap login awal atau belum
+        if (!session()->has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
+        return view('admin.homepageAdmin');
+    });
 
-//     //Alur Destination (User Admin) (Start)
-//     //route halaman Utama Destination Admin (Method: GET)
-//     Route::get('/Destination', [DestCategoryController::class, 'tampilCategoryAdmin']);
+    //Alur Destination (User Admin) (Start)
+    //route halaman Utama Destination Admin (Method: GET)
+    Route::get('/Destination', [DestCategoryController::class, 'tampilCategoryAdmin']);
 
 //     //route halaman Kategori Destination admin (Method: GET)
 //     Route::get('/Destination/Category', [DestCategoryController::class, 'categoryAdmin']);
@@ -151,7 +149,7 @@ Route::get('/Homepage', function () {
 //     //route untuk proses simpan update account admin (Method: PUT)
 //     Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
     
-//     //route untuk proes delete account admin (Method: DELETE)
-//     Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
-//     //Alur account (User Admin) (End)
-// });
+    //route untuk proes delete account admin (Method: DELETE)
+    Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
+    //Alur account (User Admin) (End)
+});
