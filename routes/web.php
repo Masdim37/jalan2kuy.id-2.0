@@ -13,23 +13,33 @@ use App\Http\Controllers\UserBiasaController;
 //Method PUT atau PATCH digunakan untuk memperbarui (update) data yang sudah ada secara keseluruhan.
 //Method DELETE digunakan untuk menghapus data dari server.
 
-//route halaman homepage (Method: GET)
-Route::get('/', function () {
-    return view('akun.login');
+Route::get('/', [UserBiasaController::class, 'Showlogin']);
+
+Route::post('/login', [UserBiasaController::class, 'login']);
+
+Route::get('/Homepage', function () {
+    //Cek apakah user sudah melewati tahap login awal atau belum
+    if (!session()->has('user_id')) {
+        return redirect('/login')->with('error', 'Anda harus login dulu!');
+    }
+    return view('homepage');
 });
 
-//Alur Login (Start)
-//route halaman login (Method: GET)
-Route::get('/login', function () {
-    return view('akun.login');
-})->name('login');
 
-//route proses login (Method: POST)
-Route::post('/login-proses', [AdminController::class, 'login']);
+Route::get('/register', function () {
+    return view('akun.registrasiAkun');
+});
 
-Route::get('/lupaPass', [AdminController::class, 'lupapass']);
+Route::post('/register-proses', [UserBiasaController::class, 'register']);
 
-Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
+
+
+
+
+
+
+
+
 
 
 //route halaman passkey (Method: GET)
@@ -41,12 +51,9 @@ Route::post('/verifikasi-login-proses', [AdminController::class, 'prosesVerifika
 
 //Alur Register Akun Admin (Start)
 //route halaman register akun admin (Method: GET)
-Route::get('/register', function () {
-    return view('akun.registrasiAkun');
-});
+
 
 //route proses registrasi akun admin (Method: POST)
-Route::post('/register-proses', [AdminController::class, 'register']);
 //Alur Register Akun Admin (End)
 
 //Alur Destination (User Biasa) (Start)
@@ -153,3 +160,14 @@ Route::prefix('admin')->group(function () {
     Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
     //Alur account (User Admin) (End)
 });
+
+// Alur Lupa Password (Start)
+// 1. Halaman input email
+// Lupa Password Routes
+Route::get('/lupaPass', [AdminController::class, 'tampilFormLupaPass'])->name('lupa.password');
+Route::post('/lupaPassProses', [AdminController::class, 'prosesKirimOtp']);
+Route::get('/verifikasi-otp', [AdminController::class, 'tampilFormOtp'])->name('verifikasi.otp');
+Route::post('/verifikasi-otp-proses', [AdminController::class, 'prosesVerifikasiOtp']);
+Route::get('/reset-password', [AdminController::class, 'tampilFormReset'])->name('reset.password');
+Route::post('/reset-password-proses', [AdminController::class, 'prosesUpdatePassword']);
+// Alur Lupa Password (End)

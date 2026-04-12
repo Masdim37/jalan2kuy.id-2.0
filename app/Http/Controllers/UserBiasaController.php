@@ -96,7 +96,7 @@ class UserBiasaController extends Controller
             //commit transaction ke database
             DB::commit();
             //Redirect ke URL login (/login) dengan pesan sukses
-            return redirect('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
+            return redirect('/')->with('success', 'Registrasi Berhasil! Silakan Login.');
         } catch (\Exception $e) {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
