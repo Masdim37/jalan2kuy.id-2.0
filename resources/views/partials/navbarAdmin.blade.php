@@ -47,7 +47,7 @@ body {
 /* ================= NAV LINKS ================= */
 .nav-links {
     display: flex;
-    gap: 45px;
+    gap: 40px;
 }
 
 .nav-links a,
@@ -133,6 +133,7 @@ body {
         <a href="{{ url('/admin/Destination') }}"><i class="destinasi"></i> Destination</a>
         <a href="{{ url('/admin/Event') }}"><i class="event"></i> Event</a>
         <a href="{{ url('/admin/Gallery') }}"><i class="gallery"></i> Gallery</a>
+        <a href="{{ url('/Tiket') }}"><i class="tiket"></i> Tiket</a>
     </div>
 
     <div class="admin">
