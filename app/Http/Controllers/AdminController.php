@@ -133,7 +133,9 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return view('akun.lupaPassProses');
     }
 
-    
+    public function gantipass(){
+        return view('akun.gantiPass');
+    }
 
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
