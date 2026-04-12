@@ -41,6 +41,7 @@ Route::post('/register-proses', [UserBiasaController::class, 'register']);
 
 
 
+Route::post('/gantiPass', [AdminController::class, 'gantipass']);
 
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
