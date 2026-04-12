@@ -129,6 +129,12 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         return view('akun.lupaPass');
     }
 
+    public function lupapassproses(){
+        return view('akun.lupaPassProses');
+    }
+
+    
+
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
     public function logout() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)

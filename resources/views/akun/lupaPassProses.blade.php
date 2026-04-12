@@ -25,13 +25,17 @@
     <div class="form-container">
         <h1>Lupa Password</h1>
         <h4>Masukkan Code Yang Sudah Dikirim Lewat </h4>
-        <!-- Form registrasi akun admin baru -->
-        <form id="registerForm" action="{{ url('/register-proses') }}" method="POST">
+        <form id="registerForm" action="{{ url('/lupaPassHasil') }}" method="POST">
             @csrf
 
-            <!-- Input email -->
-            <input type="email" name="email" placeholder="Masukkan Email" required value="{{ old('email') }}">
-            @error('email') <span class="error-msg">{{ $message }}</span> @enderror
+            <!-- Input kode -->
+            <input type="text" name="code" placeholder="Masukkan Code" required value="{{ old('code') }}">
+            @error('code') <span class="error-msg">{{ $message }}</span> @enderror
+
+            <!-- link -->
+            <div class="link-box">
+                <a href="{{ url('/lupaPassResend') }}">Resend Code?</a>
+            </div>
 
             <!-- Tombol submit registrasi -->
             <button type="submit">Kirim</button>
