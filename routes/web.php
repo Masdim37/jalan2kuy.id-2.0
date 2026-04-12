@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DestCategoryController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserBiasaController;
 
 //Note:
 //Method GET digunakan untuk mengambil atau menampilkan data/halaman. Tidak mengubah data di server.
@@ -12,28 +13,33 @@ use App\Http\Controllers\EventController;
 //Method PUT atau PATCH digunakan untuk memperbarui (update) data yang sudah ada secara keseluruhan.
 //Method DELETE digunakan untuk menghapus data dari server.
 
-//route halaman homepage (Method: GET)
-Route::get('/', function () {
-    return view('akun.login');
+Route::get('/', [UserBiasaController::class, 'Showlogin']);
+
+Route::post('/login', [UserBiasaController::class, 'login']);
+
+Route::get('/Homepage', function () {
+    //Cek apakah user sudah melewati tahap login awal atau belum
+    if (!session()->has('user_id')) {
+        return redirect('/login')->with('error', 'Anda harus login dulu!');
+    }
+    return view('homepage');
 });
 
-//Alur Login (Start)
-//route halaman login (Method: GET)
-Route::get('/login', function () {
-    return view('akun.login');
-})->name('login');
 
-//route proses login (Method: POST)
-Route::post('/login-proses', [AdminController::class, 'login']);
+Route::get('/register', function () {
+    return view('akun.registrasiAkun');
+});
 
-<<<<<<< HEAD
-=======
-Route::get('/lupaPass', [AdminController::class, 'lupapass']);
-
-Route::post('/lupaPassProses', [AdminController::class, 'lupapassproses']);
+Route::post('/register-proses', [UserBiasaController::class, 'register']);
 
 
->>>>>>> e9a0a205e92b665c0bcde39229787286dc56f274
+Route::post('/gantiPass', [AdminController::class, 'gantipass']);
+
+
+
+
+
+
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
 
@@ -43,12 +49,9 @@ Route::post('/verifikasi-login-proses', [AdminController::class, 'prosesVerifika
 
 //Alur Register Akun Admin (Start)
 //route halaman register akun admin (Method: GET)
-Route::get('/register', function () {
-    return view('akun.registrasiAkun');
-});
+
 
 //route proses registrasi akun admin (Method: POST)
-Route::post('/register-proses', [AdminController::class, 'register']);
 //Alur Register Akun Admin (End)
 
 //Alur Destination (User Biasa) (Start)
