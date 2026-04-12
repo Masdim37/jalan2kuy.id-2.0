@@ -96,63 +96,63 @@ Route::prefix('admin')->group(function () {
     //route halaman Utama Destination Admin (Method: GET)
     Route::get('/Destination', [DestCategoryController::class, 'tampilCategoryAdmin']);
 
-//     //route halaman Kategori Destination admin (Method: GET)
-//     Route::get('/Destination/Category', [DestCategoryController::class, 'categoryAdmin']);
+    //route halaman Kategori Destination admin (Method: GET)
+    Route::get('/Destination/Category', [DestCategoryController::class, 'categoryAdmin']);
 
-//     //route halaman detail destination admin (Method: GET)
-//     Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestinationAdmin']);
+    //route halaman detail destination admin (Method: GET)
+    Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestinationAdmin']);
 
-//     //route untuk menampilkan Form addDestination admin (Method: GET)
-//     Route::get('Destination/AddDestination', [DestinationController::class, 'addDestination']);
+    //route untuk menampilkan Form addDestination admin (Method: GET)
+    Route::get('Destination/AddDestination', [DestinationController::class, 'addDestination']);
 
-//     //Route untuk menyimpan Data addDestination ke Database admin (Method: POST)
-//     Route::post('/Destination/Store', [DestinationController::class, 'storeDestinationData']);
+    //Route untuk menyimpan Data addDestination ke Database admin (Method: POST)
+    Route::post('/Destination/Store', [DestinationController::class, 'storeDestinationData']);
 
-//     //route halaman form edit destination admin (Method: GET)
-//     Route::get('/Destination/Edit/{id}', [DestinationController::class, 'tampilFormEditDestination']);
+    //route halaman form edit destination admin (Method: GET)
+    Route::get('/Destination/Edit/{id}', [DestinationController::class, 'tampilFormEditDestination']);
 
-//     //route untuk proses simpan update destination admin (Method: PUT)
-//     Route::put('/Destination/Update/{id}', [DestinationController::class, 'editDestination']);
+    //route untuk proses simpan update destination admin (Method: PUT)
+    Route::put('/Destination/Update/{id}', [DestinationController::class, 'editDestination']);
 
-//     //route untuk proes delete destination admin (Method: DELETE)
-//     Route::delete('/Destination/Delete/{id}', [DestinationController::class, 'deleteDestination']);
-//     //Alur Destination (User Admin) (End)
+    //route untuk proes delete destination admin (Method: DELETE)
+    Route::delete('/Destination/Delete/{id}', [DestinationController::class, 'deleteDestination']);
+    //Alur Destination (User Admin) (End)
 
-//     //Alur Event (User Admin) (Start)
-//     //route halaman Utama Event Admin (Method: GET)
-//     Route::get('/Event', [EventController::class, 'tampilEventAdmin']);
+    //Alur Event (User Admin) (Start)
+    //route halaman Utama Event Admin (Method: GET)
+    Route::get('/Event', [EventController::class, 'tampilEventAdmin']);
 
-//     //route halaman detail event admin (Method: GET)
-//     Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEventAdmin']);
+    //route halaman detail event admin (Method: GET)
+    Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEventAdmin']);
 
-//     //route halaman form add event admin (Method: GET)
-//     Route::get('/event/create', [EventController::class, 'addEvent']);
+    //route halaman form add event admin (Method: GET)
+    Route::get('/event/create', [EventController::class, 'addEvent']);
 
-//     //Route untuk menyimpan Data addEvent ke Database admin (Method: POST)
-//     Route::post('/Event/store', [EventController::class, 'storeEventData']);
+    //Route untuk menyimpan Data addEvent ke Database admin (Method: POST)
+    Route::post('/Event/store', [EventController::class, 'storeEventData']);
 
-//     //route halaman form edit event admin (Method: GET)
-//     Route::get('/Event/Edit/{id}', [EventController::class, 'tampilFormEditEvent']);
+    //route halaman form edit event admin (Method: GET)
+    Route::get('/Event/Edit/{id}', [EventController::class, 'tampilFormEditEvent']);
 
-//     //route untuk proses simpan update event admin (Method: PUT)
-//     Route::put('/Event/Update/{id}', [EventController::class, 'editEvent']);
+    //route untuk proses simpan update event admin (Method: PUT)
+    Route::put('/Event/Update/{id}', [EventController::class, 'editEvent']);
 
-//     //route untuk proes delete event admin (Method: DELETE)
-//     Route::delete('/Event/Delete/{id}', [EventController::class, 'hapusEvent']);
-//     //Alur Event (User Admin) (End)
+    //route untuk proes delete event admin (Method: DELETE)
+    Route::delete('/Event/Delete/{id}', [EventController::class, 'hapusEvent']);
+    //Alur Event (User Admin) (End)
 
-//     //route halaman Utama gallery Admin (Method: GET)
-//     Route::get('/Gallery', [DestinationController::class, 'tampilGaleriAdmin']);
+    //route halaman Utama gallery Admin (Method: GET)
+    Route::get('/Gallery', [DestinationController::class, 'tampilGaleriAdmin']);
 
-//     //Alur account (User Admin) (Start)
-//     //route halaman Utama account Admin (Method: GET)
-//     Route::get('/Account', [AdminController::class, 'showAccount']);
+    //Alur account (User Admin) (Start)
+    //route halaman Utama account Admin (Method: GET)
+    Route::get('/Account', [AdminController::class, 'showAccount']);
 
-//     //route halaman form edit account admin (Method: GET)
-//     Route::get('/Edit-Profile', [AdminController::class, 'tampilFormEditProfile']);
+    //route halaman form edit account admin (Method: GET)
+    Route::get('/Edit-Profile', [AdminController::class, 'tampilFormEditProfile']);
 
-//     //route untuk proses simpan update account admin (Method: PUT)
-//     Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
+    //route untuk proses simpan update account admin (Method: PUT)
+    Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
     
     //route untuk proes delete account admin (Method: DELETE)
     Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
