@@ -25,7 +25,7 @@
     <div class="form-container">
         <h1>Lupa Password</h1>
         <h4>Masukkan Code Yang Sudah Dikirim Lewat </h4>
-        <form id="registerForm" action="{{ url('/lupaPassHasil') }}" method="POST">
+        <form id="registerForm" action="{{ url('/gantiPass') }}" method="POST">
             @csrf
 
             <!-- Input kode -->
