@@ -151,6 +151,30 @@ body {
   cursor: pointer;
 }
 
+.btn-ticket{
+    display: inline-block;
+    margin-top: 35px;
+    padding: 18px 90px;
+    background: #1fc7b6;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-ticket:hover{
+    background: #18b0a1;
+    transform: translateY(-2px);
+}
+
+.btn-ticket:active{
+    transform: scale(0.98);
+}
+
 .yes-btn { background: #c6e149; }
 .no-btn { background: #e02626; }
 

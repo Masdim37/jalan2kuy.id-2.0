@@ -39,6 +39,9 @@
         <div class="event-text">
             {{-- Menampilkan deskripsi dengan format baris baru --}}
             <p>{!! nl2br(e($event->description)) !!}</p>
+            <a href="#" class="btn-ticket">
+            Beli Tiket
+            </a>
         </div>
 
         <!-- Bagian kanan berisi gambar event dan informasi singkat -->
