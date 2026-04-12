@@ -79,7 +79,7 @@
     </div>
 
     <div class="nav-links">
-        <a href="{{ url('/') }}"><i class="home"></i> Home</a>
+        <a href="{{ url('/Homepage') }}"><i class="home"></i> Home</a>
         <a href="{{ url('/Destination') }}"><i class="destinasi"></i> Destination</a>
         <a href="{{ url('/Event') }}"><i class="event"></i> Event</a>
         <a href="{{ url('/Gallery') }}"><i class="gallery"></i> Gallery</a>

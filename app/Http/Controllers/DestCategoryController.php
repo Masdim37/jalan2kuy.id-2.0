@@ -10,6 +10,9 @@ use App\Models\DestCategory;
 class DestCategoryController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
     //Function untuk menampilkan halaman Utama Destinasi User
     public function tampilCategory(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }    
         //logika jika user melakukan searching
         if ($request->has('search')) { //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
             $keyword = $request->search;
@@ -30,6 +33,10 @@ class DestCategoryController extends Controller { //penamaan controller mengguna
 
     //function untuk menampilkan destinasi-destinasi yang ada dalam sebuah kategori
     public function category(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }       
+    
         //ambil parameter ?Category={$destCategoryID} dari URL
         $destCategoryID = $request->query('Category'); 
         

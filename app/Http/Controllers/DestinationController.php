@@ -286,6 +286,10 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
     //function untuk menampilkan detail destination pada halaman destination
     public function tampilkanDetailDestination($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        } 
+
         //ambil data destination dimana destinationID nya sesuai dengan $id (query), simpan kedalam $destination
         $destination = Destination::where('destinationID', $id)->first();
 
@@ -303,6 +307,10 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
     //function untuk menampilkan galeri pada user biasa
     public function tampilGaleri() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        } 
+    
         $destinations = Destination::all(); //Ambil semua data destination dari database, simpan kedalam $destinations
         //redirect ke halaman gallery dengan membawa data $destinations
         return view('gallery.gallery', ['destinations' => $destinations]);

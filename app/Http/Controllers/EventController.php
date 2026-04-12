@@ -11,6 +11,10 @@ use App\Models\Event;
 
 class EventController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
     public function tampilEvent(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        } 
+        
         //mulai query
         $query = Event::query(); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
 
@@ -27,6 +31,10 @@ class EventController extends Controller { //penamaan controller menggunakan hur
     }
 
     public function tampilkanDetailEvent($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        } 
+
         //cari data event yang eventID nya sesuai dengan $id
         $event = Event::where('eventID', $id)->first();
 

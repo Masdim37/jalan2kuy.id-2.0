@@ -114,7 +114,7 @@
                     @endif
                 </div>
                 <div class="map-destination">
-                    <iframe src="https://maps.google.com/maps?q={{ urlencode($destination->location) }}&output=embed"
+                    <iframe src="https://maps.google.com/maps?q={{ urlencode($destination->name) }}&output=embed"
                         loading="lazy">
                     </iframe>
                 </div>
