@@ -87,11 +87,11 @@
 
                         </div>
                         {{-- maps --}}
-                    <div class="map-container">
-                        <iframe src="https://maps.google.com/maps?q={{ urlencode($event->location) }}&output=embed"
-                            loading="lazy">
-                        </iframe>
-                    </div>
+                        <div class="map-container">
+                            <iframe src="https://maps.google.com/maps?q={{ urlencode($event->location) }}&output=embed"
+                                loading="lazy">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </div>
