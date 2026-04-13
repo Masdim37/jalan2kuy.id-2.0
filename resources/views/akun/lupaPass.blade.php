@@ -41,7 +41,7 @@
     <script>
         // Tombol kembali
         document.getElementById('backButton').addEventListener('click', function () {
-            window.location.href = "{{ url('/login') }}";
+            window.location.href = "{{ url('/') }}";
         });
     </script>
 

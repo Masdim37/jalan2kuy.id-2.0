@@ -34,7 +34,7 @@
 
             <!-- link -->
             <div class="link-box">
-                <a href="{{ url('/lupaPassResend') }}">Resend Code?</a>
+                <a href="{{ url('/resend-otp') }}">Resend Code?</a>
             </div>
 
             <!-- Tombol submit registrasi -->

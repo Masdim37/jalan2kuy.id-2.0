@@ -130,6 +130,34 @@ class UserBiasaController extends Controller
         return back()->with('error', 'Kode OTP salah!');
     }
 
+    public function resendOtp()
+    {
+        // 1. Ambil email yang sudah disimpan di session sebelumnya
+        $email = Session::get('reset_email');
+
+        // Jika tiba-tiba session hilang (kedaluwarsa), kembalikan ke halaman awal
+        if (!$email) {
+            return redirect()->route('lupa.password')->with('error', 'Sesi Anda telah berakhir, silakan masukkan email kembali.');
+        }
+
+        // 2. Buat kode OTP baru
+        $newOtp = rand(111111, 999999);
+        
+        // 3. Timpa/Update session OTP lama dengan yang baru
+        Session::put('reset_otp', $newOtp);
+
+        // 4. Kirim ulang ke email
+        try {
+            Mail::to($email)->send(new SendOtpMail($newOtp));
+            
+            // return back() artinya sistem akan mengembalikan user ke halaman saat ini 
+            // (yaitu halaman verifikasi OTP) tanpa harus membuat halaman baru.
+            return back()->with('success', 'Kode OTP yang baru telah berhasil dikirim ke email Anda.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email OTP. Silakan periksa koneksi internet Anda.');
+        }
+    }
+
     public function tampilFormReset()
     {
         if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
@@ -138,7 +166,16 @@ class UserBiasaController extends Controller
 
     public function prosesUpdatePassword(Request $request)
     {
-        $request->validate(['password' => 'required|confirmed|min:8']);
+        $request->validate([
+            'password' => [
+                'required',
+                'confirmed',
+                'min:8',
+                'regex:/[A-Z]/',      // Harus mengandung minimal 1 huruf kapital
+                'regex:/[0-9]/',      // Harus mengandung minimal 1 angka
+                'regex:/[@$!%*#?&]/', // Harus mengandung minimal 1 simbol/karakter khusus
+            ]
+        ]);
         $email = Session::get('reset_email');
 
         if (!$email) {
@@ -151,7 +188,7 @@ class UserBiasaController extends Controller
             $user->save();
         }
 
-        // Perbaikan: Hapus juga otp_verified
+        // buat menghapus bekas buat reset password tadi biar saat ngajuin reset lagi ngulang dari awal lagi
         Session::forget(['reset_email', 'reset_otp', 'otp_verified']);
 
         return redirect('/')->with('success', 'Password berhasil diubah!');
