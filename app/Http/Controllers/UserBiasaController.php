@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserBiasa;
+use App\Models\Event;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -199,8 +200,31 @@ class UserBiasaController extends Controller
         return view('akun.lupaPass');
     }
 
-    public function beliTiket(){
-        return view('booking.create');
+    public function TampilBeliTiket($id){
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }
+        $event = Event::select(
+            'eventID',
+            'name',
+            'startDate',
+            'endDate',
+            'location',
+            'entranceFee',
+            'startTime',
+            'endTime',
+            'socialMedia',
+            'imagePath'
+        )
+        ->where('eventID', $id)
+        ->first();
+
+        if (!$event) { //jika $event tidak ketemu
+            //redirect ke halaman sebelumnya dengan pesan error
+            return redirect()->back()->with('error', 'Event tidak ditemukan.');
+        }
+
+        return view('booking.create', compact('event'));
     }
 
     public function showAccount()

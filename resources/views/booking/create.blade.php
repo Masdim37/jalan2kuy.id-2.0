@@ -18,7 +18,67 @@
     <section class="event-detail">
         <div class="event-box" id="eventBox">
 
+
+            {{-- Judul Event --}}
+            <h2 class="event-title">{{ $event->name }}</h2>
+
+
             <div id="eventDetailContent">
+                <div class="event-content">
+
+                    {{-- Bagian Kiri: Deskripsi Teks --}}
+
+                    {{-- Bagian Kanan: Gambar, Info Singkat & Map --}}
+                    <div class="event-side">
+                        <img src="{{ asset('storage/' . $event->imagePath) }}" alt="{{ $event->name }}">
+
+                        <div class="event-info">
+                            {{-- Lokasi --}}
+                            <p><i class="fa-solid fa-location-dot"></i> {{ $event->location }}</p>
+                            <br>
+                            <ul>
+                                {{-- Media Social --}}
+                                <li>
+                                    <strong>Social Media :</strong>
+                                    <a href="https://www.instagram.com/{{ $event->socialMedia }}" target="_blank"
+                                        style="color: blue; text-decoration: none;">
+                                        {{ '@' . $event->socialMedia }}
+                                    </a>
+                                </li>
+                                {{-- Tanggal --}}
+                                <li>
+                                    <strong>Tanggal :</strong>
+                                    {{ $event->startDate ? \Carbon\Carbon::parse($event->startDate)->format('d M Y') :
+                                    '-' }}
+                                    -
+                                    {{ $event->endDate ? \Carbon\Carbon::parse($event->endDate)->format('d M Y') : '-'
+                                    }}
+                                </li>
+
+                                {{-- Jam --}}
+                                <li>
+                                    <strong>Jam :</strong>
+                                    {{ \Carbon\Carbon::parse($event->startTime)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($event->endTime)->format('H:i') }}
+                                </li>
+
+                                {{-- Harga --}}
+                                <li>
+                                    <strong>Tiket Masuk :</strong> Rp
+                                    {{ number_format($event->entranceFee, 0, ',', '.') }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        {{-- maps--}}
+                        <div class="map-container">
+                            <iframe src="https://maps.google.com/maps?q={{ urlencode($event->location) }}&output=embed"
+                                loading="lazy">
+                            </iframe>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
