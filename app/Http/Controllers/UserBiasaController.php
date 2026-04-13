@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserBiasa;
-use Faker\Provider\PhoneNumber;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendOtpMail;
 use Illuminate\Http\Request;
 
 class UserBiasaController extends Controller
@@ -19,18 +18,17 @@ class UserBiasaController extends Controller
     }
 
     public function login(Request $request)
-    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
-        $usernameInput = $request->input('username'); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    {
+        $usernameInput = $request->input('username');
         $passwordInput = $request->input('password');
 
-        //query
         $user = UserBiasa::where('username', $usernameInput)->first();
 
         if ($user) {
-            if (Hash::Check($passwordInput, $user->password)) { // Cek Password apakah sama dengan yang disimpan didalam database atau tidak
-                Session::put('user_id', $user->userID); //perbarui admin_id pada session menggunakan $adminID
-                Session::put('user_name', $user->nameUser); //perbarui admin_name pada session menggunakan $adminName                
-                //Redirect ke URL halaman Passkey (/verifikasi-login)
+            // Perbaikan: gunakan check (huruf kecil)
+            if (Hash::check($passwordInput, $user->password)) { 
+                Session::put('user_id', $user->userID);
+                Session::put('user_name', $user->nameUser);             
                 return redirect('/Homepage');
             }
         }
@@ -39,69 +37,128 @@ class UserBiasaController extends Controller
     }
 
     public function register(Request $request)
-    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
-        //validasi input
+    {
         $request->validate([
             'nameUser' => 'required',
-            'email' => 'required|email|unique:admin,email',
-            'username' => 'required|alpha_num|unique:admin,username',
+            // Perbaikan: Pastikan unique ke tabel user yang benar (contoh: 'users')
+            'email' => 'required|email|unique:user,email', 
+            'username' => 'required|alpha_num|unique:user,username',
             'password' => [
                 'required',
-                'confirmed', //passowrd yang diinputkan harus sesuai dengan yang diinputkan di form input ('password_confirmation')
-                'min:8', //password minimal 8 karakter
-                'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
-                'regex:/[0-9]/', //password harus ada angka (minimal 1)
-                'regex:/[@$!%*#?&]/', //password harus ada simbol (minimal 1)
+                'confirmed',
+                'min:8',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
             ],
             'gender' => 'required',
             'phone' => 'required|regex:/^08[0-9]{8,11}$/',
             'birthDate' => 'required|date|before:today',
         ], [
-            //Pesan Error Custom
-            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka (tanpa simbol).',
+            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka.',
             'password.min'       => 'Password minimal harus 8 karakter.',
-            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
+            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol.',
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
-            'phone.regex'        => 'Nomor telepon hanya boleh berisi angka.',
+            'phone.regex'        => 'Nomor telepon tidak valid.',
             'birthDate.before'   => 'Tanggal lahir harus sebelum hari ini'
         ]);
 
-        //memulai transaction ke database
         DB::beginTransaction();
-
         try {
-            //generate adminID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
-            $lastUser = UserBiasa::orderBy('userID', 'desc')->lockForUpdate()->first(); //ambil adminID terakhir yang ada pada tabel admin di database
-            $newUserID = 'usr001'; //jika tidak ditemukan adminID terakhir, gunakan $newAdminID
+            $lastUser = UserBiasa::orderBy('userID', 'desc')->lockForUpdate()->first();
+            $newUserID = 'usr001';
 
-            if ($lastUser) { //jika ditemukan adminID terakhir, maka generate adminID baru
+            if ($lastUser) {
                 $lastID = $lastUser->userID;
                 $number = (int) substr($lastID, 3);
                 $number++;
                 $newUserID = 'usr' . sprintf("%03d", $number);
             }
 
-            //buat objek Admin dan simpan datanya ke database
             $user = new UserBiasa();
             $user->userID = $newUserID;
             $user->nameUser = $request->input('nameUser');
             $user->email = $request->input('email');
             $user->username = $request->input('username');
-            $user->password = Hash::make($request->input('password')); //password disimpan dalam bentuk hash
+            $user->password = Hash::make($request->input('password'));
             $user->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
             $user->phone = $request->input('phone');
             $user->birthDate = $request->input('birthDate');
             $user->save();
 
-            //commit transaction ke database
             DB::commit();
-            //Redirect ke URL login (/login) dengan pesan sukses
             return redirect('/')->with('success', 'Registrasi Berhasil! Silakan Login.');
         } catch (\Exception $e) {
-            //Jika ada yang salah, rollback transaction
             DB::rollBack();
-            //jika salah, Kembali ke halaman register dengan pesan error
             return back()->with('error', 'Gagal register : ' . $e->getMessage())->withInput();
         }
+    }
+
+    public function prosesKirimOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $user = UserBiasa::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email tidak terdaftar!']);
+        }
+
+        $otp = rand(111111, 999999);
+        Session::put('reset_email', $request->email);
+        Session::put('reset_otp', $otp);
+
+        try {
+            Mail::to($request->email)->send(new SendOtpMail($otp));
+            return redirect()->route('verifikasi.otp')->with('success', 'Kode OTP telah dikirim.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['email' => 'Gagal mengirim email OTP. Cek koneksi internet.']);
+        }
+    }
+
+    public function tampilFormOtp()
+    {
+        if (!Session::has('reset_email')) return redirect()->route('lupa.password');
+        return view('akun.lupaPassProses');
+    }
+
+    public function prosesVerifikasiOtp(Request $request)
+    {
+        if ($request->otp_code == Session::get('reset_otp')) {
+            Session::put('otp_verified', true);
+            return redirect()->route('reset.password');
+        }
+        return back()->with('error', 'Kode OTP salah!');
+    }
+
+    public function tampilFormReset()
+    {
+        if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
+        return view('akun.resetPass');
+    }
+
+    public function prosesUpdatePassword(Request $request)
+    {
+        $request->validate(['password' => 'required|confirmed|min:8']);
+        $email = Session::get('reset_email');
+
+        if (!$email) {
+            return redirect()->route('lupa.password')->with('error', 'Sesi kedaluwarsa.');
+        }
+
+        $user = UserBiasa::where('email', $email)->first();
+        if($user) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
+
+        // Perbaikan: Hapus juga otp_verified
+        Session::forget(['reset_email', 'reset_otp', 'otp_verified']);
+
+        return redirect('/')->with('success', 'Password berhasil diubah!');
+    }
+
+    public function tampilFormLupaPass()
+    {
+        return view('akun.lupaPass');
     }
 }

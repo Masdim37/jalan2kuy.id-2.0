@@ -23,8 +23,8 @@ Route::get('/register', function () {
 
 Route::post('/register-proses', [UserBiasaController::class, 'register']);
 
-
-Route::post('/gantiPass', [AdminController::class, 'gantipass']);
+//Route::get('/gantiPass', [UserBiasaController::class, 'gantipass']);
+//Route::post('/gantiPass', [UserBiasaController::class, 'gantipass']);
 
 Route::get('/Homepage', function () {
     //Cek apakah user sudah melewati tahap login awal atau belum
@@ -170,10 +170,10 @@ Route::prefix('admin')->group(function () {
 // Alur Lupa Password (Start)
 // 1. Halaman input email
 // Lupa Password Routes
-Route::get('/lupaPass', [AdminController::class, 'tampilFormLupaPass'])->name('lupa.password');
-Route::post('/lupaPassProses', [AdminController::class, 'prosesKirimOtp']);
-Route::get('/verifikasi-otp', [AdminController::class, 'tampilFormOtp'])->name('verifikasi.otp');
-Route::post('/verifikasi-otp-proses', [AdminController::class, 'prosesVerifikasiOtp']);
-Route::get('/reset-password', [AdminController::class, 'tampilFormReset'])->name('reset.password');
-Route::post('/reset-password-proses', [AdminController::class, 'prosesUpdatePassword']);
+Route::get('/lupaPass', [UserBiasaController::class, 'tampilFormLupaPass'])->name('lupa.password');
+Route::post('/lupaPassProses', [UserBiasaController::class, 'prosesKirimOtp']);
+Route::get('/verifikasi-otp', [UserBiasaController::class, 'tampilFormOtp'])->name('verifikasi.otp');
+Route::post('/verifikasi-otp-proses', [UserBiasaController::class, 'prosesVerifikasiOtp']);
+Route::get('/reset-password', [UserBiasaController::class, 'tampilFormReset'])->name('reset.password');
+Route::post('/reset-password-proses', [UserBiasaController::class, 'prosesUpdatePassword']);
 // Alur Lupa Password (End)

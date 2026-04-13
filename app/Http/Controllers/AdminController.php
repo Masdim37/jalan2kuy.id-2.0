@@ -288,7 +288,7 @@ class AdminController extends Controller
         return view('akun.lupaPass');
     }
 
-    public function prosesKirimOtp(Request $request)
+    /*public function prosesKirimOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
         $admin = Admin::where('email', $request->email)->first();
@@ -311,9 +311,9 @@ class AdminController extends Controller
             // Menangkap error jika SMTP gagal atau tidak ada internet
             return back()->withErrors(['email' => 'Gagal mengirim email OTP. Pastikan koneksi internet dan pengaturan SMTP di .env sudah benar.']);
         }
-    }
+    }*/
 
-    public function tampilFormOtp()
+ /* public function tampilFormOtp()
     {
         if (!Session::has('reset_email')) return redirect()->route('lupa.password');
         return view('akun.lupaPassProses');
@@ -326,15 +326,15 @@ class AdminController extends Controller
             return redirect()->route('reset.password');
         }
         return back()->with('error', 'Kode OTP salah!');
-    }
+    }*/
 
-    public function tampilFormReset()
+   /*public function tampilFormReset()
     {
         if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
         return view('akun.resetPass');
     }
 
-    public function prosesUpdatePassword(Request $request)
+   /*public function prosesUpdatePassword(Request $request)
     {
         $request->validate([
             'password' => 'required|min:6|confirmed',
@@ -345,5 +345,5 @@ class AdminController extends Controller
 
         Session::forget(['reset_email', 'reset_otp', 'otp_verified']);
         return redirect('/login')->with('success', 'Password berhasil diubah!');
-    }
+    }*/
 }
