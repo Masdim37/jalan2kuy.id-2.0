@@ -50,7 +50,7 @@
     <script>
         // Tombol kembali
         document.getElementById('backButton').addEventListener('click', function () {
-            window.location.href = "{{ url('/lupaPassProses') }}";
+            window.location.href = "{{ url('/verifikasi-otp') }}";
         });
 
         function togglePassword(inputId, icon) {

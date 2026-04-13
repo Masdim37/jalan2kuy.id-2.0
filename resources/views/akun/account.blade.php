@@ -10,7 +10,7 @@
 
     <!-- ================= HEADER / TOP BAR ================= -->
     <header class="header-bar">
-        <button class="icon-btn back-btn" onclick="window.location.href='{{ url('admin/Homepage') }}'">
+        <button class="icon-btn back-btn" onclick="window.history.back()">
             <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="Kembali">
         </button>
         
