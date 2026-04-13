@@ -93,4 +93,8 @@ class UserBiasaController extends Controller
             return back()->with('error', 'Gagal register : ' . $e->getMessage())->withInput();
         }
     }
+
+    public function BeliTiket(){
+        return view('booking.create');
+    }
 }
