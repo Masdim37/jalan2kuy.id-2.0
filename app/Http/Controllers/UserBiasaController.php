@@ -123,7 +123,7 @@ class UserBiasaController extends Controller
 
     public function prosesVerifikasiOtp(Request $request)
     {
-        if ($request->otp_code == Session::get('reset_otp')) {
+        if ($request->code == Session::get('reset_otp')) {
             Session::put('otp_verified', true);
             return redirect()->route('reset.password');
         }
@@ -133,7 +133,7 @@ class UserBiasaController extends Controller
     public function tampilFormReset()
     {
         if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
-        return view('akun.resetPass');
+        return view('akun.gantiPass');
     }
 
     public function prosesUpdatePassword(Request $request)

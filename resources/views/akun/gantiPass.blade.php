@@ -25,7 +25,7 @@
     <div class="form-container">
         <h1>Ganti Password</h1>
         <!-- Form registrasi akun admin baru -->
-        <form id="lupaPassForm" action="{{ url('/lupaPassProses') }}" method="POST">
+        <form id="lupaPassForm" action="{{ url('/reset-password-proses') }}" method="POST">
             @csrf
 
             <!-- Input password dengan fitur show/hide -->
