@@ -94,7 +94,75 @@ class UserBiasaController extends Controller
         }
     }
 
-    public function BeliTiket(){
+    public function prosesKirimOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $user = UserBiasa::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email tidak terdaftar!']);
+        }
+
+        $otp = rand(111111, 999999);
+        Session::put('reset_email', $request->email);
+        Session::put('reset_otp', $otp);
+
+        try {
+            Mail::to($request->email)->send(new SendOtpMail($otp));
+            return redirect()->route('verifikasi.otp')->with('success', 'Kode OTP telah dikirim.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['email' => 'Gagal mengirim email OTP. Cek koneksi internet.']);
+        }
+    }
+
+    public function tampilFormOtp()
+    {
+        if (!Session::has('reset_email')) return redirect()->route('lupa.password');
+        return view('akun.lupaPassProses');
+    }
+
+    public function prosesVerifikasiOtp(Request $request)
+    {
+        if ($request->code == Session::get('reset_otp')) {
+            Session::put('otp_verified', true);
+            return redirect()->route('reset.password');
+        }
+        return back()->with('error', 'Kode OTP salah!');
+    }
+
+    public function tampilFormReset()
+    {
+        if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
+        return view('akun.gantiPass');
+    }
+
+    public function prosesUpdatePassword(Request $request)
+    {
+        $request->validate(['password' => 'required|confirmed|min:8']);
+        $email = Session::get('reset_email');
+
+        if (!$email) {
+            return redirect()->route('lupa.password')->with('error', 'Sesi kedaluwarsa.');
+        }
+
+        $user = UserBiasa::where('email', $email)->first();
+        if($user) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
+
+        // Perbaikan: Hapus juga otp_verified
+        Session::forget(['reset_email', 'reset_otp', 'otp_verified']);
+
+        return redirect('/')->with('success', 'Password berhasil diubah!');
+    }
+
+    public function tampilFormLupaPass()
+    {
+        return view('akun.lupaPass');
+    }
+
+    public function beliTiket(){
         return view('booking.create');
     }
 }
