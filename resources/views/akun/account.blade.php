@@ -43,7 +43,7 @@
                 <div class="info-item"><strong>Email:</strong> {{ $user->email }}</div>
                 <div class="info-item"><strong>Phone:</strong> {{ $user->phone }}</div>
                 <div class="info-item"><strong>Jenis Kelamin:</strong> {{ $user->gender ? 'Laki-laki' : 'Perempuan' }}</div>
-                <div class="info-item"><strong>Tanggal Lahir:</strong> {{ \Carbon\Carbon::parse($user->birth_date)->format('d-m-Y') }}</div>
+                <div class="info-item"><strong>Tanggal Lahir:</strong> {{ \Carbon\Carbon::parse($user->birthDate)->format('d-m-Y') }}</div>
                 <div class="info-item"><strong>Password:</strong> ********</div>
                 
                 <!-- Tombol aksi akun -->
