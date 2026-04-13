@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Tiket</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/event/detailEvent.css') }}">
+    {{-- CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/tiket/tiket.css') }}">
 </head>
 
 <body>
@@ -15,77 +17,108 @@
     {{-- Navbar --}}
     @include('partials.navbar')
 
-    <section class="event-detail">
-        <div class="event-box" id="eventBox">
+    <div class="container-booking">
 
+        {{-- LEFT --}}
+        <div class="left">
 
-            {{-- Judul Event --}}
-            <h2 class="event-title">{{ $event->name }}</h2>
+            <div class="event-title">
+                {{ $event->name }}
+            </div>
 
+            <h3>Pemesanan Tiket</h3>
 
-            <div id="eventDetailContent">
-                <div class="event-content">
+            <p>Quantity</p>
 
-                    {{-- Bagian Kiri: Deskripsi Teks --}}
+            <div class="qty-box">
+                <button type="button" onclick="minus()">-</button>
+                <input type="text" id="qty" value="1" readonly>
+                <button type="button" onclick="plus()">+</button>
+            </div>
 
-                    {{-- Bagian Kanan: Gambar, Info Singkat & Map --}}
-                    <div class="event-side">
-                        <img src="{{ asset('storage/' . $event->imagePath) }}" alt="{{ $event->name }}">
+            <label>
+                <input type="checkbox" id="check">
+                *Catatan : Yakin ingin melanjutkan pembelian tiket ini?
+            </label>
 
-                        <div class="event-info">
-                            {{-- Lokasi --}}
-                            <p><i class="fa-solid fa-location-dot"></i> {{ $event->location }}</p>
-                            <br>
-                            <ul>
-                                {{-- Media Social --}}
-                                <li>
-                                    <strong>Social Media :</strong>
-                                    <a href="https://www.instagram.com/{{ $event->socialMedia }}" target="_blank"
-                                        style="color: blue; text-decoration: none;">
-                                        {{ '@' . $event->socialMedia }}
-                                    </a>
-                                </li>
-                                {{-- Tanggal --}}
-                                <li>
-                                    <strong>Tanggal :</strong>
-                                    {{ $event->startDate ? \Carbon\Carbon::parse($event->startDate)->format('d M Y') :
-                                    '-' }}
-                                    -
-                                    {{ $event->endDate ? \Carbon\Carbon::parse($event->endDate)->format('d M Y') : '-'
-                                    }}
-                                </li>
+            <button class="btn-beli" onclick="beliTiket()">
+                Beli Tiket
+            </button>
 
-                                {{-- Jam --}}
-                                <li>
-                                    <strong>Jam :</strong>
-                                    {{ \Carbon\Carbon::parse($event->startTime)->format('H:i') }} -
-                                    {{ \Carbon\Carbon::parse($event->endTime)->format('H:i') }}
-                                </li>
+        </div>
 
-                                {{-- Harga --}}
-                                <li>
-                                    <strong>Tiket Masuk :</strong> Rp
-                                    {{ number_format($event->entranceFee, 0, ',', '.') }}
-                                </li>
-                            </ul>
-                        </div>
+        {{-- RIGHT --}}
+        <div class="right">
 
-                        {{-- maps--}}
-                        <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q={{ urlencode($event->location) }}&output=embed"
-                                loading="lazy">
-                            </iframe>
-                        </div>
+            <img src="{{ asset('storage/' . $event->imagePath) }}" alt="{{ $event->name }}">
 
-                    </div>
-                </div>
+            <div class="info">
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ $event->location }}
+                </p>
+
+                <p>
+                    <strong>Social Media :</strong>
+                    <a href="https://www.instagram.com/{{ $event->socialMedia }}" target="_blank">
+                        {{ '@' . $event->socialMedia }}
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Tanggal :</strong>
+                    {{ \Carbon\Carbon::parse($event->startDate)->format('d M Y') }}
+                    -
+                    {{ \Carbon\Carbon::parse($event->endDate)->format('d M Y') }}
+                </p>
+
+                <p>
+                    <strong>Jam :</strong>
+                    {{ \Carbon\Carbon::parse($event->startTime)->format('H:i') }}
+                    -
+                    {{ \Carbon\Carbon::parse($event->endTime)->format('H:i') }}
+                </p>
+
+                <p>
+                    <strong>Tiket Masuk :</strong>
+                    Rp {{ number_format($event->entranceFee, 0, ',', '.') }}
+                </p>
+
             </div>
         </div>
-    </section>
+
+    </div>
 
     {{-- Footer --}}
     @include('partials.footer')
 
-</body>
+    {{-- SCRIPT --}}
+    <script>
+        function plus() {
+            let qty = document.getElementById('qty');
+            qty.value = parseInt(qty.value) + 1;
+        }
 
+        function minus() {
+            let qty = document.getElementById('qty');
+            if (qty.value > 1) {
+                qty.value = parseInt(qty.value) - 1;
+            }
+        }
+
+        function beliTiket() {
+            let check = document.getElementById('check');
+            let qty = document.getElementById('qty').value;
+
+            if (!check.checked) {
+                alert('⚠️ Centang konfirmasi terlebih dahulu!');
+                return;
+            }
+
+            alert('✅ Tiket berhasil dipesan sebanyak ' + qty);
+        }
+    </script>
+
+</body>
 </html>
