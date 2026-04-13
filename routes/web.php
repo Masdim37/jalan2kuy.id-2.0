@@ -54,11 +54,12 @@ Route::get('/Event', [EventController::class, 'tampilEvent']);
 Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
 //Alur Event (User Biasa) (End)
 
+Route::get('/BeliTiket', [UserBiasaController::class, 'BeliTiket']);
+
 //route halaman Utama gallery (Method: GET)
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 
-
-Route::get('/BeliTiket', [UserBiasaController::class, 'BeliTiket']);
+Route::get('/Account', [UserBiasaController::class, 'showAccount']);
 
 
 

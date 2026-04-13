@@ -202,4 +202,29 @@ class UserBiasaController extends Controller
     public function beliTiket(){
         return view('booking.create');
     }
+
+    public function showAccount()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }
+
+        //query
+        $userID = Session::get('user_id'); //ambil adminID dari session
+
+        //query
+        $user = UserBiasa::find($userID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
+
+        //Kirim data $admin ke view accountAdmin
+        return view('akun.account', ['user' => $user]);
+    }
+
+    public function logout()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        Session::flush(); //Hapus semua data session
+
+        //Redirect ke halaman homepage (/)
+        return redirect('/')->with('success', 'Berhasil Logout.');
+    }
 }

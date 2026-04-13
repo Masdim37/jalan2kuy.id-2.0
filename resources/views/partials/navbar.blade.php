@@ -87,7 +87,7 @@
     </div>
 
     <div class="account">
-        <a href="{{ url('/login') }}"><i class="akun"></i> Account</a>
+        <a href="{{ url('/Account') }}"><i class="akun"></i> Account</a>
     </div>
 
 </nav>
