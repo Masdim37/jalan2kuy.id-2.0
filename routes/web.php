@@ -58,8 +58,7 @@ Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent'
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 
 
-
-
+Route::get('/BeliTiket', [UserBiasaController::class, 'BeliTiket']);
 
 
 
