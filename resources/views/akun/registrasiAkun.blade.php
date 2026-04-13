@@ -117,7 +117,7 @@
 <script>
     // Tombol kembali
     document.getElementById('backButton').addEventListener('click', function () {
-        window.location.href = "{{ url('/login') }}";
+        window.location.href = "{{ url('/') }}";
     });
 
     // 4. Tambahkan Script Toggle Password
