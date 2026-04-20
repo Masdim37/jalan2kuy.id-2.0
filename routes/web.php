@@ -64,6 +64,12 @@ Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 
 Route::get('/Account', [UserBiasaController::class, 'showAccount']);
 
+//route halaman form edit account admin (Method: GET)
+Route::get('/Edit-Profile', [UserBiasaController::class, 'tampilFormEditProfile']);
+
+//route untuk proses simpan update account admin (Method: PUT)
+Route::put('/Update-Profile', [UserBiasaController::class, 'editProfile']);
+
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
 

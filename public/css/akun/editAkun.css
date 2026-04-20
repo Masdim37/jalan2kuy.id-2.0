@@ -66,7 +66,8 @@ body {
 /* ================= INPUT ================= */
 .form-box input[type="text"],
 .form-box input[type="email"],
-.form-box input[type="password"] {
+.form-box input[type="password"],
+.form-box input[type="tel"] {
     width: 100%;
     padding: 14px;
     font-size: 16px;
@@ -127,6 +128,40 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+/* ================= DATE INPUT (BIRTHDATE) ================= */
+.form-box input[type="date"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+    background-color: #dcdada;
+    outline: none;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Biar icon kalender lebih rapi */
+.form-box input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.form-box input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Hilangkan tampilan default aneh di beberapa browser */
+.form-box input[type="date"]::-webkit-datetime-edit {
+    text-align: center;
+}
+
+/* Fokus effect biar konsisten */
+.form-box input[type="date"]:focus {
+    box-shadow: 0 0 6px rgba(27, 122, 147, 0.7);
 }
 
 /* ================= BUTTON ================= */

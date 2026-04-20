@@ -56,9 +56,9 @@ class UserBiasaController extends Controller
             'phone' => 'required|regex:/^08[0-9]{8,11}$/',
             'birthDate' => 'required|date|before:today',
         ], [
-            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka.',
+            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka (tanpa simbol).',
             'password.min'       => 'Password minimal harus 8 karakter.',
-            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol.',
+            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
             'phone.regex'        => 'Nomor telepon tidak valid.',
             'birthDate.before'   => 'Tanggal lahir harus sebelum hari ini'
@@ -257,4 +257,121 @@ class UserBiasaController extends Controller
         //Redirect ke halaman homepage (/)
         return redirect('/')->with('success', 'Berhasil Logout.');
     }
+
+    public function tampilFormEditProfile()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }
+
+        //query
+        $userID = Session::get('user_id'); //ambil adminID dari session
+
+        //query
+        $user = UserBiasa::find($userID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
+
+        //kirim data $admin ke view editAkun
+        return view('akun.editAkun', ['user' => $user]);
+    }
+
+    public function editProfile(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }
+
+        //query
+        $userID = Session::get('user_id'); //ambil adminID dari session
+
+        //query
+        $user = UserBiasa::find($userID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
+
+        //Validasi Input
+        $request->validate([
+            'nameUser' => 'required',
+            'email' => 'required|email|unique:user,email,' . $userID . ',userID',
+            'username' => 'required|alpha_num|unique:user,username,' . $userID . ',userID',
+                'password' => [
+                'nullable',
+                'min:8', //password minimal 8 karakter
+                'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
+                'regex:/[0-9]/', //password harus ada angka (minimal 1)
+                'regex:/[@$!%*#?&]/', //password harus ada simbol (minimal 1)
+            ],
+            'gender' => 'required',
+            'phone' => 'required|regex:/^08[0-9]{8,11}$/',
+            'birthDate' => 'required|date|before:today',
+        ], [
+            //Pesan Error Custom
+            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka (tanpa simbol).',
+            'password.min'       => 'Password minimal harus 8 karakter.',
+            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+            'phone.regex'        => 'Nomor telepon tidak valid.',
+            'birthDate.before'   => 'Tanggal lahir harus sebelum hari ini'
+        ]);
+
+        //Update Data dari input yang sudah divalidasi dan simpan datanya ke database
+        $user->nameUser = $request->input('nameUser');
+        $user->email = $request->input('email');
+        $user->username = $request->input('username');
+        $user->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
+        $user->phone = $request->input('phone');
+        $user->birthDate = $request->input('birthDate');
+        //Cek apakah user mengisi password baru
+        if ($request->filled('password')) { //jika user mengisi password baru
+            $user->password = Hash::make($request->input('password')); //simpan password baru dalam bentuk hash
+        }
+        $user->save();
+
+        //Update admin_name pada session  (jika nama berubah)
+        Session::put('user_name', $user->nameUser);
+
+        //Redirect ke halaman showAccount (/admin/Account)
+        return redirect('/Account')->with('success', 'Profil berhasil diperbarui!');
+    }
+
+    // public function deleteAccount()
+    // { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    //     //Cek apakah user sudah melewati tahap login awal atau belum 
+    //     if (!Session::has('user_id')) {
+    //         return redirect('/')->with('error', 'Anda harus login dulu!');
+    //     }
+
+    //     //query
+    //     $userID = Session::get('user_id'); //ambil adminID dari session
+
+    //     if ($userID) { //jika adminID ditemukan dari session
+    //         //Memulai Transaction ke database
+    //         DB::beginTransaction();
+    //         try {
+    //             //ubah foreign key adminID disetiap event menjadi null (query)
+    //             Event::where('adminID', $adminID)->update(['adminID' => null]);
+
+    //             //ubah foreign key adminID disetiap destination menjadi null (query)
+    //             Destination::where('adminID', $adminID)->update(['adminID' => null]);
+
+    //             //delete adminnya berdasarkan adminID (query)
+    //             Admin::where('adminID', $adminID)->delete();
+
+    //             //commit transaction
+    //             DB::commit();
+
+    //             //bersihkan session
+    //             Session::flush();
+
+    //             //redirect ke homepage (/)
+    //             return redirect('/')->with('success', 'Akun berhasil dihapus!');
+    //         } catch (\Exception $e) {
+    //             //Jika ada yang salah, rollback transaction
+    //             DB::rollBack();
+    //             //jika salah, Kembali ke halaman showAccount dengan pesan error
+    //             return back()->with('error', 'Error: ' . $e->getMessage());
+    //         }
+    //     }
+    //     //tampillkan pesan error jika $adminID tidak ditemukan di session
+    //     return back()->with('error', 'Gagal menghapus akun.');
+    // }
 }
