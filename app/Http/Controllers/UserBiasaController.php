@@ -227,6 +227,12 @@ class UserBiasaController extends Controller
         return view('booking.create', compact('event'));
     }
 
+    // controller tiket
+    public function showMyTicket()
+    {
+        return view('tikets.myTikets');
+    }
+
     public function showAccount()
     { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 

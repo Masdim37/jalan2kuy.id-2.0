@@ -56,6 +56,9 @@ Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent'
 
 Route::get('/BeliTiket/{id}', [UserBiasaController::class, 'TampilBeliTiket']);
 
+// route halaman tiket
+Route::get('/MyTiket', [UserBiasaController::class, 'showMyTicket']);
+
 //route halaman Utama gallery (Method: GET)
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 

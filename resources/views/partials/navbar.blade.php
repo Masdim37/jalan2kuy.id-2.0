@@ -83,7 +83,7 @@
         <a href="{{ url('/Destination') }}"><i class="destinasi"></i> Destination</a>
         <a href="{{ url('/Event') }}"><i class="event"></i> Event</a>
         <a href="{{ url('/Gallery') }}"><i class="gallery"></i> Gallery</a>
-        <a href="{{ url('/Tiket') }}"><i class="tiket"></i> Tiket</a>
+        <a href="{{ url('/MyTiket') }}"><i class="tiket"></i> Tiket</a>
     </div>
 
     <div class="account">
