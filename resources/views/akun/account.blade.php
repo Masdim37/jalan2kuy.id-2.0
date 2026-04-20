@@ -10,9 +10,12 @@
 
     <!-- ================= HEADER / TOP BAR ================= -->
     <header class="header-bar">
-        <button class="icon-btn back-btn" onclick="window.history.back()">
-            <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="Kembali">
-        </button>
+        <a href="{{ url('/Homepage') }}" class="back-wrapper">
+            <i class="fa-solid fa-arrow-left back"></i>
+            <button class="icon-btn back-btn" type="button">
+                <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="Kembali">
+            </button>
+        </a>
         
         <div class="header-content-inner">
             <div class="title-container">
