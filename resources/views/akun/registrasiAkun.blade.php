@@ -82,7 +82,7 @@
 
          <!-- Input password dengan fitur show/hide -->
         <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Kata Sandi" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
         </div>
         @error('password') <span class="error-msg">{{ $message }}</span> @enderror
@@ -105,7 +105,7 @@
 
         <!-- Input konfirmasi password dengan toggle -->
         <div class="password-container" style="margin-top: 15px; margin-bottom: 15px;">
-            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi Kata Sandi" required>
+            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi Password" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('password_confirmation', this)"></i>
         </div>
 
