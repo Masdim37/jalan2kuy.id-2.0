@@ -24,7 +24,7 @@
 
     <div class="form-container">
         <h1>Lupa Password</h1>
-        <h4>Masukkan Code Yang Sudah Dikirim Lewat </h4>
+        <h4>Masukkan Code Yang Sudah Dikirim Lewat Email </h4>
         <form id="registerForm" action="{{ url('/verifikasi-otp-proses') }}" method="POST">
             @csrf
 
