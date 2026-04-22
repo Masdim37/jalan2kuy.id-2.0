@@ -136,7 +136,7 @@ class AdminController extends Controller
     {
         return view('akun.lupaPass');
     }
-
+    
     public function lupapassproses(){
         return view('akun.lupaPassProses');
     }

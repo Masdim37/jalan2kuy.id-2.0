@@ -24,7 +24,7 @@
 
     <div class="form-container">
         <h1>Lupa Password</h1>
-        <h4>Masukkan Code Yang Sudah Dikirim Lewat Email </h4>
+        <h4>Masukkan Code Yang Sudah Dikirim Lewat Email {{ session('reset_email') }}</h4>
         <form id="registerForm" action="{{ url('/verifikasi-otp-proses') }}" method="POST">
             @csrf
 
@@ -34,6 +34,7 @@
 
             <!-- link -->
             <div class="link-box">
+                <div class="timer" id="countdown">00:15</div>
                 <a href="{{ url('/resend-otp') }}">Resend Code?</a>
             </div>
 

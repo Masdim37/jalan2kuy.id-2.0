@@ -128,7 +128,7 @@ class UserBiasaController extends Controller
             Session::put('otp_verified', true);
             return redirect()->route('reset.password');
         }
-        return back()->with('error', 'Kode OTP salah!');
+        return back()->withErrors(['code' => 'Code OTP Salah!']);
     }
 
     public function resendOtp()
