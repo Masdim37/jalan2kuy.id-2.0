@@ -10,7 +10,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  padding-top: var(--navbar-height); /* 🔥 agar tidak ketimpa navbar */
+  padding-top: var(--navbar-height); /* agar tidak ketimpa navbar */
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;

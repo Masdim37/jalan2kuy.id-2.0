@@ -233,6 +233,19 @@ class UserBiasaController extends Controller
         return view('tikets.myTikets');
     }
 
+    // controller payment
+    public function payment(Request $request, $id)
+    {
+        $event = Event::findOrFail($id);
+        $qty = $request->qty ?? 1;
+        $total = $qty * $event->entranceFee;
+        return view(
+            'booking.payment',
+            compact('event', 'qty', 'total')
+        );
+    }
+    
+
     public function showAccount()
     { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 

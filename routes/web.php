@@ -59,6 +59,9 @@ Route::get('/BeliTiket/{id}', [UserBiasaController::class, 'TampilBeliTiket']);
 // route halaman tiket
 Route::get('/MyTiket', [UserBiasaController::class, 'showMyTicket']);
 
+// rouute ke halaman payment
+Route::get('/payment/{id}', [UserBiasaController::class, 'payment'])->name('payment');
+
 //route halaman Utama gallery (Method: GET)
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 

@@ -1,0 +1,235 @@
+/* public/css/payments/payments.css */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    margin:0;
+    padding-top:110px;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('/assets/gambar/bgfix2.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:#000;
+}
+
+/* CONTAINER */
+.payment-container{
+    min-height:calc(100vh - 110px);
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:35px 20px 70px;
+}
+
+/* BOX */
+.payment-box{
+    width:100%;
+    max-width:1150px;
+    background:#f8f1f1;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+}
+
+.payment-box h2{
+    font-size:38px;
+    margin-bottom:12px;
+    text-align:center;
+}
+
+.desc{
+    text-align:center;
+    font-size:17px;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:35px;
+}
+
+/* CONTENT */
+.payment-content{
+    display:flex;
+    gap:55px;
+    align-items:center;
+}
+
+/* LEFT */
+.left-payment{
+    flex:1;
+    text-align:center;
+}
+
+.qr-wrapper{
+    width:420px;
+    height:420px;
+    margin:auto;
+    background:white;
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.qr-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.btn-download{
+    display:inline-block;
+    margin-top:22px;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    padding:14px 36px;
+    border-radius:10px;
+    font-size:17px;
+    transition:.2s;
+}
+
+.btn-download:hover{
+    opacity:.9;
+}
+
+/* RIGHT */
+.right-payment{
+    flex:1;
+}
+
+.timer-title{
+    font-size:18px;
+    color:#555;
+}
+
+.timer{
+    font-size:62px;
+    font-weight:bold;
+    color:#16a085;
+    margin-top:10px;
+}
+
+.status{
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.pending{
+    background:#fff4d6;
+    color:#c28b00;
+}
+
+.expired{
+    background:#ffdede;
+    color:#d10000;
+}
+
+.success{
+    background:#dafbe1;
+    color:#137333;
+}
+
+/* DETAIL */
+.detail-box{
+    margin-top:28px;
+    background:white;
+    padding:24px;
+    border-radius:14px;
+}
+
+.detail-item{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+    font-size:17px;
+}
+
+.detail-item:last-child{
+    border-bottom:none;
+}
+
+/* TABLET */
+@media(max-width:992px){
+
+    .payment-content{
+        flex-direction:column;
+    }
+
+    .payment-box{
+        max-width:760px;
+    }
+
+    .qr-wrapper{
+        width:320px;
+        height:320px;
+    }
+
+    .payment-box h2{
+        font-size:30px;
+    }
+
+    .timer{
+        font-size:48px;
+        text-align:center;
+    }
+
+    .timer-title{
+        text-align:center;
+    }
+
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    .payment-box{
+        padding:25px;
+    }
+
+    .payment-box h2{
+        font-size:26px;
+    }
+
+    .desc{
+        font-size:15px;
+    }
+
+    .qr-wrapper{
+        width:250px;
+        height:250px;
+    }
+
+    .btn-download{
+        padding:12px 28px;
+        font-size:15px;
+    }
+
+    .timer{
+        font-size:40px;
+    }
+
+    .status{
+        font-size:16px;
+    }
+
+    .detail-item{
+        flex-direction:column;
+        gap:5px;
+        font-size:15px;
+    }
+
+}

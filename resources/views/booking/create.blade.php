@@ -7,6 +7,7 @@
     <title>Booking Tiket</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/tiket/tiket.css') }}">
@@ -109,14 +110,67 @@
 
         function beliTiket() {
             let check = document.getElementById('check');
-            let qty = document.getElementById('qty').value;
+            let qty = parseInt(document.getElementById('qty').value);
 
             if (!check.checked) {
                 alert('⚠️ Centang konfirmasi terlebih dahulu!');
                 return;
             }
 
-            alert('✅ Tiket berhasil dipesan sebanyak ' + qty);
+            let namaEvent = "{{ $event->name }}";
+            let harga = {{ $event->entranceFee }};
+            let total = qty * harga;
+
+            Swal.fire({
+                background: '#f8f1f1',
+                width: '650px',
+                showConfirmButton: false,
+                html: `
+                    <div style="text-align:left; padding:10px;">
+                        <h3 style="margin-bottom:20px;">Konfirmasi Pembelian</h3>
+
+                        <h2 style="margin:0; font-size:24px;">${namaEvent}</h2>
+
+                        <p style="margin:5px 0; font-size:18px;">
+                            ${qty}x Rp.${harga.toLocaleString('id-ID')}
+                            <span style="float:right; font-weight:bold;">
+                                Rp.${total.toLocaleString('id-ID')}
+                            </span>
+                        </p>
+
+                        <br>
+
+                        <p style="font-weight:bold;">PEMBAYARAN VIA</p>
+
+                        <img 
+                            src="https://images.seeklogo.com/logo-png/39/2/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png"
+                            width="140"
+                            style="margin-top:10px;"
+                        >
+
+                        <br><br>
+
+                        <button onclick="bayarSekarang()"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                background:#16c4b0;
+                                color:white;
+                                border:none;
+                                border-radius:8px;
+                                font-size:16px;
+                                cursor:pointer;">
+                            Bayar Sekarang
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function bayarSekarang() {
+            let qty = document.getElementById('qty').value;
+
+            window.location.href ="/payment/{{ $event->eventID }}?qty=" + qty;
         }
     </script>
 
