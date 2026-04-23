@@ -34,8 +34,13 @@
 
             <!-- link -->
             <div class="link-box">
-                <div class="timer" id="countdown">00:15</div>
-                <a href="{{ url('/resend-otp') }}">Resend Code?</a>
+                @if (session('otp-resent'))
+                    <div class="timer" id="countdown">00:15 Untuk Memberi Code Lagi</div>
+                    <a href="{{ url('resend-otp') }}">Resend Code?</a>
+                @else
+                    <div class="timerNot" id="countdownNot"></div>
+                    <a href="{{ url('resend-otp') }}">Resend Code?</a>
+                @endif
             </div>
 
             <!-- Tombol submit registrasi -->
@@ -48,6 +53,27 @@
         document.getElementById('backButton').addEventListener('click', function () {
             window.location.href = "{{ url('/lupaPass') }}";
         });
+
+        // Timer resend code
+        let time = {{ $expired ?? 15 }};
+
+        let countdown = setInterval(function () {
+
+            let minute = Math.floor(time / 60);
+            let second = time % 60;
+
+            minute = minute < 10 ? "0" + minute : minute;
+            second = second < 10 ? "0" + second : second;
+
+            document.getElementById("countdown").innerHTML =
+                minute + ":" + second;
+            time--;
+
+            if (time < 0) {
+                clearInterval(countdown);
+                clearInterval(autoCheck);
+            }
+        }, 1000);
     </script>
 
 </body>

@@ -151,9 +151,11 @@ class UserBiasaController extends Controller
         try {
             Mail::to($email)->send(new SendOtpMail($newOtp));
             
-            // return back() artinya sistem akan mengembalikan user ke halaman saat ini 
+            // return back() artinya sistem akan mengembalikan user ke halaman saat ini dengan status 
             // (yaitu halaman verifikasi OTP) tanpa harus membuat halaman baru.
-            return back()->with('success', 'Kode OTP yang baru telah berhasil dikirim ke email Anda.');
+            return back()
+            ->with('success', 'Kode OTP yang baru telah berhasil dikirim ke email Anda.')
+            ->with('otp-resent',true);
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal mengirim email OTP. Silakan periksa koneksi internet Anda.');
         }
