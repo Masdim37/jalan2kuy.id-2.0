@@ -92,7 +92,7 @@ form input:focus {
 .link-box{
     display:flex;
     justify-content:space-between;
-    margin-top:25px;
+    margin-top:15px;
     margin-bottom:0px;
     font-size:14px;
 }

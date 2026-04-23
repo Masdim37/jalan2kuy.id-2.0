@@ -24,7 +24,7 @@
 
     <div class="form-container">
         <h1>Lupa Password</h1>
-        <h4>Masukkan Code Yang Sudah Dikirim Lewat Email {{ session('reset_email') }}</h4>
+        <h4>Masukkan code yang sudah dikirim lewat {{ session('reset_email') }}</h4>
         <form id="registerForm" action="{{ url('/verifikasi-otp-proses') }}" method="POST">
             @csrf
 
@@ -35,7 +35,7 @@
             <!-- link -->
             <div class="link-box">
                 @if (session('otp-resent'))
-                    <div class="timer" id="countdown">00:15 Untuk Memberi Code Lagi</div>
+                    <div class="timer" id="countdown">00:15 untuk memberi code lagi</div>
                     <a href="{{ url('resend-otp') }}">Resend Code?</a>
                 @else
                     <div class="timerNot" id="countdownNot"></div>
@@ -55,7 +55,7 @@
         });
 
         // Timer resend code
-        let time = {{ $expired ?? 15 }};
+        let time = {{ $expired ?? 14 }};
 
         let countdown = setInterval(function () {
 
@@ -66,7 +66,7 @@
             second = second < 10 ? "0" + second : second;
 
             document.getElementById("countdown").innerHTML =
-                minute + ":" + second;
+                minute + ":" + second + " untuk memberi code lagi";
             time--;
 
             if (time < 0) {
