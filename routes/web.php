@@ -183,6 +183,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/lupaPass', [UserBiasaController::class, 'tampilFormLupaPass'])->name('lupa.password');
 Route::post('/lupaPassProses', [UserBiasaController::class, 'prosesKirimOtp']);
 Route::get('/resend-otp',  [UserBiasaController::class, 'resendOtp']);
+Route::get('/otp-timer-reset', [UserBiasaController::class,'otpTimerReset']);
 Route::get('/verifikasi-otp', [UserBiasaController::class, 'tampilFormOtp'])->name('verifikasi.otp');
 Route::post('/verifikasi-otp-proses', [UserBiasaController::class, 'prosesVerifikasiOtp']);
 Route::get('/reset-password', [UserBiasaController::class, 'tampilFormReset'])->name('reset.password');

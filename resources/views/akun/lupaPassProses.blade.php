@@ -33,10 +33,10 @@
             @error('code') <span class="error-msg">{{ $message }}</span> @enderror
 
             <!-- link -->
-            <div class="link-box">
+            <div class="link-box" id="links">
                 @if (session('otp-resent'))
                     <div class="timer" id="countdown">00:15 untuk memberi code lagi</div>
-                    <a href="{{ url('resend-otp') }}">Resend Code?</a>
+                    <a>Resend Code?</a>
                 @else
                     <div class="timerNot" id="countdownNot"></div>
                     <a href="{{ url('resend-otp') }}">Resend Code?</a>
@@ -71,7 +71,14 @@
 
             if (time < 0) {
                 clearInterval(countdown);
-                clearInterval(autoCheck);
+                document.getElementById('links').innerHTML= '<div class="timerNot" id="countdownNot"></div> <a href="{{ url('resend-otp') }}">Resend Code?</a>'
+                fetch("{{ url('/otp-timer-reset') }}", {
+                    method: post,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                });
             }
         }, 1000);
     </script>

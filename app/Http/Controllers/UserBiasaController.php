@@ -161,6 +161,12 @@ class UserBiasaController extends Controller
         }
     }
 
+    public function otpTimerReset()
+    {
+        session()->forget('otp-resent');
+        return response()->json(['success' => true]);
+    }
+
     public function tampilFormReset()
     {
         if (!Session::get('otp_verified')) return redirect()->route('lupa.password');
