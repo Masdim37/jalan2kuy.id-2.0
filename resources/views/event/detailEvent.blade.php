@@ -30,9 +30,21 @@
                     <div class="event-text">
                         {{-- Menampilkan deskripsi dengan format baris baru --}}
                         <p>{!! nl2br(e($event->description)) !!}</p>
-                        <a href="{{ url('/BeliTiket/' . $event->eventID) }}" class="btn-ticket">
-                        Beli Tiket
-                        </a>
+                        
+                        {{-- Form Beli Tiket (Mengarah ke route checkout) --}}
+                        <form action="{{ route('checkout', $event->eventID) }}" method="POST" style="margin-top: 20px;">
+                            @csrf
+                            
+                            {{-- Input Jumlah Tiket --}}
+                            <div style="margin-bottom: 15px;">
+                                <label for="qty" style="font-weight: bold;">Jumlah Tiket:</label>
+                                <input type="number" id="qty" name="qty" value="1" min="1" max="10" style="padding: 8px; width: 70px; border-radius: 5px; border: 1px solid #ccc; margin-left: 10px;">
+                            </div>
+                            
+                            <button type="submit" class="btn-ticket" style="border: none; cursor: pointer; width: 100%;">
+                                Beli Tiket
+                            </button>
+                        </form>
                     </div>
 
                     {{-- Bagian Kanan: Gambar, Info Singkat & Map --}}

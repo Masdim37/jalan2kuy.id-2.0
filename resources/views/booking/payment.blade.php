@@ -4,221 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - Payments</title>
+    <title>Jalan2Kuy.id - Pembayaran</title>
 
-    <link rel="stylesheet" href="{{ asset('css/payments/payments.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Kalau temanmu punya CSS khusus buat payment, bisa di-uncomment nanti -->
+    {{-- <link rel="stylesheet" href="{{ asset('css/payments/payments.css') }}"> --}}
 </head>
 
-<body>
+<!-- Tambah margin 0 di body untuk ngakalin celah putih tanpa merusak CSS frontend temanmu -->
+<body style="margin: 0; padding: 0; background-color: #f8f9fa;">
 
-@include('partials.navbar')
+    {{-- Navbar --}}
+    @include('partials.navbar')
 
-<div class="payment-container">
-
-    <div class="payment-box">
-
-        <h2>Pembayaran QRIS</h2>
-
-        <p class="desc">
-            Scan kode QR berikut menggunakan aplikasi
-            E-Wallet / Mobile Banking untuk menyelesaikan pembayaran.
-        </p>
-
-        <div class="payment-content">
-
-            <!-- LEFT -->
-            <div class="left-payment">
-
-                <div class="qr-wrapper">
-
-                    <img
-                        id="qrImage"
-                        src="{{ $qr ?? asset('assets/qrSementara.jpg') }}"
-                        alt="QR Payment">
-
-                </div>
-
-                <a
-                    href="{{ $qr ?? asset('assets/qrSementara.jpg') }}"
-                    target="_blank"
-                    download="QRIS-Payment.png"
-                    class="btn-download">
-
-                    Download QR
-
-                </a>
-
+    {{-- Konten Pembayaran --}}
+    <div style="padding: 80px 20px; text-align: center; min-height: 70vh;">
+        <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; min-width: 450px; text-align: left;">
+            <h2 style="color: #16c4b0; text-align: center; margin-bottom: 20px;">Menunggu Pembayaran...</h2>
+            <hr>
+            
+            <div style="margin: 20px 0; font-size: 18px;">
+                <p><strong>Order ID:</strong> {{ $orderID }}</p>
+                <p><strong>Nama Event:</strong> {{ $event->name }}</p>
+                <p><strong>Jumlah Tiket:</strong> {{ $qty }}</p>
+                <p><strong>Total Tagihan:</strong> <span style="color: #e74c3c; font-weight: bold;">Rp {{ number_format($total, 0, ',', '.') }}</span></p>
             </div>
-
-
-            <!-- RIGHT -->
-            <div class="right-payment">
-
-                <div class="timer-title">
-                    Bayar Sebelum
-                </div>
-
-                <div class="timer" id="countdown">
-                    05:00
-                </div>
-
-                <div class="status pending" id="paymentStatus">
-                    Menunggu Pembayaran...
-                </div>
-
-                <div class="detail-box">
-
-                    <div class="detail-item">
-                        <span>Nama Event</span>
-                        <span>{{ $event->name ?? 'Nama Event' }}</span>
-                    </div>
-
-                    <div class="detail-item">
-                        <span>Jumlah Tiket</span>
-                        <span>{{ $qty ?? 1 }}</span>
-                    </div>
-
-                    <div class="detail-item">
-                        <span>Total Bayar</span>
-                        <span>
-                            Rp {{ number_format($total ?? 100000,0,',','.') }}
-                        </span>
-                    </div>
-
-                    <div class="detail-item">
-                        <span>Order ID</span>
-                        <span>{{ $order_id ?? 'ORD123456' }}</span>
-                    </div>
-
-                </div>
-
-            </div>
-
+            
+            <!-- Form untuk menembak ke route bypass -->
+            <form action="{{ route('dummy.pay', $orderID) }}" method="POST">
+                @csrf
+                <button type="submit" style="background-color: #16c4b0; color: white; padding: 15px 40px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; width: 100%;">
+                    Simulasikan Pembayaran Sukses
+                </button>
+            </form>
+            
+            <p style="margin-top: 15px; font-size: 12px; color: gray; text-align: center;">*Tombol ini hanya untuk simulasi bypass (Progress Video).</p>
         </div>
-
     </div>
 
-</div>
-
-@include('partials.footer')
-
-<script>
-
-/* ===================================
-   TIMER
-=================================== */
-
-let time = {{ $expired ?? 300 }};
-
-let countdown = setInterval(function(){
-
-    let minute = Math.floor(time / 60);
-    let second = time % 60;
-
-    minute = minute < 10 ? "0"+minute : minute;
-    second = second < 10 ? "0"+second : second;
-
-    document.getElementById("countdown").innerHTML =
-        minute + ":" + second;
-
-    time--;
-
-    if(time < 0){
-
-        clearInterval(countdown);
-        clearInterval(autoCheck);
-
-        document.getElementById("countdown").innerHTML =
-            "Expired";
-
-        document.getElementById("paymentStatus").innerHTML =
-            "Pembayaran Kadaluarsa";
-
-        document.getElementById("paymentStatus").className =
-            "status expired";
-
-        showPaymentStatus('expired');
-    }
-
-},1000);
-
-
-
-/* ===================================
-   AUTO CHECK PAYMENT
-=================================== */
-
-let autoCheck = setInterval(function(){
-    fetch("/check-payment/{{ $order_id ?? 'ORD123456' }}")
-    .then(response => response.json())
-    .then(data => {
-        if(data.status == "success"){
-            clearInterval(autoCheck);
-            clearInterval(countdown);
-            document.getElementById("paymentStatus").innerHTML =
-                "Pembayaran Berhasil";
-            document.getElementById("paymentStatus").className =
-                "status success";
-            showPaymentStatus('success');
-        }
-        else if(data.status == "failed"){
-            clearInterval(autoCheck);
-            clearInterval(countdown);
-            showPaymentStatus('failed');
-        }
-    })
-    .catch(error => {
-        console.log(error);
-    });
-},3000);
-
-
-
-/* ===================================
-   POPUP STATUS
-=================================== */
-
-function showPaymentStatus(status){
-    if(status == "success"){
-        Swal.fire({
-            icon:'success',
-            title:'Pembayaran Berhasil!',
-            text:'Silahkan lihat tiket yang sudah dibeli.',
-            confirmButtonColor:'#16c4b0',
-            confirmButtonText:'Ke Halaman Event',
-            allowOutsideClick:false
-        }).then(() => {
-            window.location.href = "/Event";
-        });
-    }
-    else if(status == "failed"){
-        Swal.fire({
-            icon:'error',
-            title:'Pembayaran Gagal!',
-            text:'Pembayaran gagal. Silahkan coba lagi.',
-            confirmButtonColor:'#e74c3c',
-            confirmButtonText:'Ke Halaman Event',
-            allowOutsideClick:false
-        }).then(() => {
-            window.location.href = "/Event";
-        });
-    }
-    else if(status == "expired"){
-        Swal.fire({
-            icon:'warning',
-            title:'Timeout!',
-            text:'Anda melewati batas waktu pembayaran.',
-            confirmButtonColor:'#f39c12',
-            confirmButtonText:'Ke Halaman Event',
-            allowOutsideClick:false
-        }).then(() => {
-            window.location.href = "/Event";
-        });
-    }
-}
-
-</script>
+    {{-- Footer --}}
+    @include('partials.footer')
 
 </body>
+
 </html>
