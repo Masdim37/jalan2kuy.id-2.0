@@ -78,6 +78,8 @@ Route::get('/Edit-Profile', [UserBiasaController::class, 'tampilFormEditProfile'
 //route untuk proses simpan update account admin (Method: PUT)
 Route::put('/Update-Profile', [UserBiasaController::class, 'editProfile']);
 
+Route::delete('/delete-account', [UserBiasaController::class, 'deleteAccount']);
+
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);
 
