@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserBiasa extends Model {
+    use SoftDeletes;
+    
     protected $table = 'user'; //nama tabel memakai huruf kecil
     protected $primaryKey = 'userID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
     protected $keyType = 'string'; //tipe data primary key selalu string

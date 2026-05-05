@@ -6,6 +6,8 @@ use App\Http\Controllers\DestCategoryController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserBiasaController;
+use App\Http\Controllers\TiketController;
+use App\Http\Controllers\PaymentController;
 
 //Note:
 //Method GET digunakan untuk mengambil atau menampilkan data/halaman. Tidak mengubah data di server.
@@ -56,11 +58,14 @@ Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent'
 
 Route::get('/BeliTiket/{id}', [UserBiasaController::class, 'TampilBeliTiket']);
 
-// route halaman tiket
-Route::get('/MyTiket', [UserBiasaController::class, 'showMyTicket']);
+// Tampilkan Tiket (Pastikan fungsi showMyTicket di TiketController cuma nampilin yg tiketStatus == 1 ya)
+Route::get('/MyTiket', [TiketController::class, 'showMyTicket']);
 
-// rouute ke halaman payment
-Route::get('/payment/{id}', [UserBiasaController::class, 'payment'])->name('payment');
+// Proses Buat Order
+Route::post('/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
+
+// Route Bypass untuk pura-pura sukses bayar
+Route::post('/dummy-pay/{orderID}', [PaymentController::class, 'dummyPay'])->name('dummy.pay');
 
 //route halaman Utama gallery (Method: GET)
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
@@ -72,6 +77,8 @@ Route::get('/Edit-Profile', [UserBiasaController::class, 'tampilFormEditProfile'
 
 //route untuk proses simpan update account admin (Method: PUT)
 Route::put('/Update-Profile', [UserBiasaController::class, 'editProfile']);
+
+Route::delete('/delete-account', [UserBiasaController::class, 'deleteAccount']);
 
 //route halaman passkey (Method: GET)
 Route::get('/verifikasi-login', [AdminController::class, 'showVerifikasiLogin']);

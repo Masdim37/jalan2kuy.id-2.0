@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserBiasa;
 use App\Models\Event;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -42,8 +43,18 @@ class UserBiasaController extends Controller
         $request->validate([
             'nameUser' => 'required',
             // Perbaikan: Pastikan unique ke tabel user yang benar (contoh: 'users')
-            'email' => 'required|email|unique:user,email', 
-            'username' => 'required|alpha_num|unique:user,username',
+            'email' => [
+                'required',
+                'email',
+                // Hanya tolak jika email ada DAN belum dihapus
+                Rule::unique('user', 'email')->whereNull('deleted_at') 
+            ], 
+            'username' => [
+                'required',
+                'alpha_num',
+                // Hanya tolak jika username ada DAN belum dihapus
+                Rule::unique('user', 'username')->whereNull('deleted_at')
+            ],
             'password' => [
                 'required',
                 'confirmed',
@@ -66,27 +77,57 @@ class UserBiasaController extends Controller
 
         DB::beginTransaction();
         try {
-            $lastUser = UserBiasa::orderBy('userID', 'desc')->lockForUpdate()->first();
-            $newUserID = 'usr001';
+        // Cek apakah email ATAU username yang diinput ada di data yang terhapus
+        $trashedUser = UserBiasa::onlyTrashed()
+            ->where(function($query) use ($request) {
+                $query->where('username', $request->input('username'))
+                    ->orWhere('email', $request->input('email'));
+            })
+            ->first();
 
-            if ($lastUser) {
-                $lastID = $lastUser->userID;
-                $number = (int) substr($lastID, 3);
-                $number++;
-                $newUserID = 'usr' . sprintf("%03d", $number);
+            if ($trashedUser) {
+                // ==========================================
+                // KONDISI A: AKUN LAMA DITEMUKAN -> RESTORE
+                // ==========================================
+                $trashedUser->restore(); // Kembalikan akun (ubah deleted_at menjadi null)
+
+                // Update dengan data terbaru yang di-inputkan di form
+                // 2. Kode di bawah ini yang menimpa/meng-update data lama dengan data baru dari form
+                $trashedUser->nameUser  = $request->input('nameUser');
+                $trashedUser->email     = $request->input('email'); // Pastikan baris ini ada!
+                $trashedUser->username  = $request->input('username');
+                $trashedUser->password  = Hash::make($request->input('password'));
+                $trashedUser->gender    = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
+                $trashedUser->phone     = $request->input('phone');
+                $trashedUser->birthDate = $request->input('birthDate');
+                
+                $trashedUser->save();
+            } else {
+                // ==========================================
+                // KONDISI B: AKUN BENAR-BENAR BARU -> CREATE
+                // ==========================================
+                $lastUser = UserBiasa::orderBy('userID', 'desc')->lockForUpdate()->first();
+                $newUserID = 'usr001';
+
+                if ($lastUser) {
+                    $lastID = $lastUser->userID;
+                    $number = (int) substr($lastID, 3);
+                    $number++;
+                    $newUserID = 'usr' . sprintf("%03d", $number);
+                }
+
+                $user = new UserBiasa();
+                $user->userID = $newUserID;
+                $user->nameUser = $request->input('nameUser');
+                $user->email = $request->input('email');
+                $user->username = $request->input('username');
+                $user->password = Hash::make($request->input('password'));
+                $user->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
+                $user->phone = $request->input('phone');
+                $user->birthDate = $request->input('birthDate');
+                $user->save();
             }
-
-            $user = new UserBiasa();
-            $user->userID = $newUserID;
-            $user->nameUser = $request->input('nameUser');
-            $user->email = $request->input('email');
-            $user->username = $request->input('username');
-            $user->password = Hash::make($request->input('password'));
-            $user->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
-            $user->phone = $request->input('phone');
-            $user->birthDate = $request->input('birthDate');
-            $user->save();
-
+            
             DB::commit();
             return redirect('/')->with('success', 'Registrasi Berhasil! Silakan Login.');
         } catch (\Exception $e) {
@@ -354,45 +395,39 @@ class UserBiasaController extends Controller
         return redirect('/Account')->with('success', 'Profil berhasil diperbarui!');
     }
 
-    // public function deleteAccount()
-    // { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
-    //     //Cek apakah user sudah melewati tahap login awal atau belum 
-    //     if (!Session::has('user_id')) {
-    //         return redirect('/')->with('error', 'Anda harus login dulu!');
-    //     }
+    public function deleteAccount()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
+        if (!Session::has('user_id')) {
+            return redirect('/')->with('error', 'Anda harus login dulu!');
+        }
 
-    //     //query
-    //     $userID = Session::get('user_id'); //ambil adminID dari session
+        //query
+        $userID = Session::get('user_id'); //ambil userID dari session
 
-    //     if ($userID) { //jika adminID ditemukan dari session
-    //         //Memulai Transaction ke database
-    //         DB::beginTransaction();
-    //         try {
-    //             //ubah foreign key adminID disetiap event menjadi null (query)
-    //             Event::where('adminID', $adminID)->update(['adminID' => null]);
+        if ($userID) { //jika userID ditemukan dari session
+            //Memulai Transaction ke database
+            DB::beginTransaction();
+            try {
+                //delete adminnya berdasarkan userID (query)
+                UserBiasa::where('userID', $userID)->delete();
 
-    //             //ubah foreign key adminID disetiap destination menjadi null (query)
-    //             Destination::where('adminID', $adminID)->update(['adminID' => null]);
+                //commit transaction
+                DB::commit();
 
-    //             //delete adminnya berdasarkan adminID (query)
-    //             Admin::where('adminID', $adminID)->delete();
+                //bersihkan session
+                Session::forget('user_id');
 
-    //             //commit transaction
-    //             DB::commit();
-
-    //             //bersihkan session
-    //             Session::flush();
-
-    //             //redirect ke homepage (/)
-    //             return redirect('/')->with('success', 'Akun berhasil dihapus!');
-    //         } catch (\Exception $e) {
-    //             //Jika ada yang salah, rollback transaction
-    //             DB::rollBack();
-    //             //jika salah, Kembali ke halaman showAccount dengan pesan error
-    //             return back()->with('error', 'Error: ' . $e->getMessage());
-    //         }
-    //     }
-    //     //tampillkan pesan error jika $adminID tidak ditemukan di session
-    //     return back()->with('error', 'Gagal menghapus akun.');
-    // }
+                //redirect ke homepage (/)
+                return redirect('/')->with('success', 'Akun berhasil dihapus!');
+            } catch (\Exception $e) {
+                //Jika ada yang salah, rollback transaction
+                DB::rollBack();
+                //jika salah, Kembali ke halaman showAccount dengan pesan error
+                return back()->with('error', 'Error: ' . $e->getMessage());
+            }
+        }
+        //tampillkan pesan error jika $userID tidak ditemukan di session
+        return back()->with('error', 'Gagal menghapus akun.');
+    }
 }
