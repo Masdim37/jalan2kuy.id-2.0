@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Apr 2026 pada 13.36
+-- Waktu pembuatan: 04 Bulan Mei 2026 pada 03.56
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`adminID`, `name`, `username`, `password`, `email`, `gender`) VALUES
 ('adm001', 'Dhimas HP', 'dhimas123', '$2y$12$GkZE8QL3APnlT13COURgfe72lHnD1qhhNTasDL6X3tV7mstcp0bDe', 'dhimas.hfzh375@gmail.com', 0),
-('adm002', 'dhimas', 'Dhimas', '$2y$12$eovFinhAqMCph2BCZNFiGOU75Q2QQ/atJm2kbFEwKGPqPKbM.Fetm', 'dhimas@gmail.com', 1),
+('adm002', 'dhimas', 'Dhimas', '$2y$12$eovFinhAqMCph2BCZNFiGOU75Q2QQ/atJm2kbFEwKGPqPKbM.Fetm', 'dhimas.hfzh@gmail.com', 1),
 ('adm003', 'nizal', 'nizal123', '$2y$12$bVwSLd19nxhKnCapNUSh3OQdBKMI/6Ti5Y.0yhiNA0kDJidbrUH7S', 'nizal@gmail.com', 1),
 ('adm004', 'nizal', 'nizal', '$2y$12$r7KYPiB/VjV2p7B2KklRne7vzP93swydYETfkIhm7Ru6dkPedIDVK', 'balala@gmail.com', 1),
 ('adm005', 'daffa', 'daffa', '$2y$12$yceDkhSlJKi/W59HpOqby.j.K5fzCLEKx3lgE61PL122DGyOi7nHK', 'daffa@gmail.com', 1);
@@ -184,6 +184,14 @@ CREATE TABLE `order` (
   `totalPrice` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data untuk tabel `order`
+--
+
+INSERT INTO `order` (`orderID`, `orderDate`, `userID`, `totalPrice`) VALUES
+('ODFVSG', '2026-05-04', 'usr001', 200000.00),
+('ODHRFM', '2026-05-04', 'usr001', 150000.00);
+
 -- --------------------------------------------------------
 
 --
@@ -196,6 +204,14 @@ CREATE TABLE `payment` (
   `paymentStatus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `orderID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `payment`
+--
+
+INSERT INTO `payment` (`paymentID`, `paymentDate`, `paymentStatus`, `orderID`) VALUES
+('PYHANO', '2026-05-04', 'success', 'ODHRFM'),
+('PYJ2KN', '2026-05-04', 'success', 'ODFVSG');
 
 -- --------------------------------------------------------
 
@@ -217,8 +233,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6iDG5BT6Fs1zE3PEu59RQMqySfyDpl0sI59gvczP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzdmbUhZN0pmdDlVdlhYdDlWQnFxVEtMNG5pd3l1VEw0NW03aHYwdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDIiO3M6MTA6ImFkbWluX25hbWUiO3M6NjoiZGhpbWFzIjt9', 1775895121),
-('n99UOSYuIOsu7VCOSwyuPl3z5Cd6hqWkrNmbsgYT', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiRHJ3eWlpVUFlRVpvaTZPVEJKaTJjVFF4MWFna2dCYUJHUDJGQTA2YSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9BY2NvdW50IjtzOjU6InJvdXRlIjtOO31zOjg6ImFkbWluX2lkIjtzOjY6ImFkbTAwNSI7czoxMDoiYWRtaW5fbmFtZSI7czo1OiJkYWZmYSI7fQ==', 1772442587);
+('c2RULR7TeUv7yFddadqBcS1o2sl3wiF4bKDYC56c', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYnQzdkpFVEVlWjFBQ0NxT3JrRjI5ZTlDd3FHM0ZSWlhaOThDMG1mWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1777856992),
+('Fd5rFt0fpaEn0023Islf1vkXcjoVq02exiDOuD3U', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoicEpzS2VFdEVSd2lyckNFSzRkUnZMMlpFdFdHQTBDRjJEM0tiQzZ3QSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9NeVRpa2V0IjtzOjU6InJvdXRlIjtOO31zOjk6InVzZXJfbmFtZSI7czoxNjoiYmFydSBkaGltYXMgbGFnaSI7czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwMSI7fQ==', 1777859774),
+('JlS1R6eqzV9xjFhZyOE1gsWCU7kjBTihwORDgOD5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOW9CZzI4bHdzM3FlbGVKVjlTeEFBbk1rQTFPNG8zaldtdUhlSXQydyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1777856991);
 
 -- --------------------------------------------------------
 
@@ -234,6 +251,15 @@ CREATE TABLE `tiket` (
   `orderID` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data untuk tabel `tiket`
+--
+
+INSERT INTO `tiket` (`tiketID`, `price`, `tiketStatus`, `eventID`, `orderID`) VALUES
+('TK56QA', 100000.00, 1, 'evt003', 'ODFVSG'),
+('TKOM3X', 100000.00, 1, 'evt003', 'ODFVSG'),
+('TKP2O9', 150000.00, 1, 'evt002', 'ODHRFM');
+
 -- --------------------------------------------------------
 
 --
@@ -248,8 +274,17 @@ CREATE TABLE `user` (
   `gender` tinyint(1) NOT NULL,
   `birthDate` date NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`userID`, `nameUser`, `email`, `phone`, `gender`, `birthDate`, `username`, `password`, `deleted_at`) VALUES
+('usr001', 'baru dhimas lagi', 'dhimas.hfzh375@gmail.com', '081234567890', 0, '2026-01-01', 'AkunDhimas', '$2y$12$M78Ls9Z21sp35ItdEqHqf./tkvJCnm3/R4aYTN87XM8Gfagq5KZu6', NULL),
+('usr002', 'zmihd', 'zmihd.net37@gmail.com', '081290071606', 1, '2024-01-01', 'Zmihd', '$2y$12$y.zKk1Odpzn8vpIapsBLJOYOncOCb5XAhb0.JBRzRjpTx91.AfsPy', NULL);
 
 --
 -- Indexes for dumped tables
