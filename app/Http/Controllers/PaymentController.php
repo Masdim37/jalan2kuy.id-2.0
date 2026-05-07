@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    // Proses saat tombol "Beli Tiket" ditekan
+    public function __construct()
+    {
+        // Konfigurasi Midtrans
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+    }
+
     public function checkout(Request $request, $id)
     {
         if (!Session::has('user_id')) {
-            return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
+            return redirect('/')->with('error', 'Silakan login terlebih dahulu!');
         }
 
         $event = Event::findOrFail($id);
@@ -26,7 +34,7 @@ class PaymentController extends Controller
 
         DB::beginTransaction();
         try {
-            // 1. Buat Data Order (Maks 6 karakter)
+            // 1. Buat Data Order
             $orderID = $this->generateID('order', 'orderID', 'OD');
             order::create([
                 'orderID' => $orderID,
@@ -35,7 +43,7 @@ class PaymentController extends Controller
                 'totalPrice' => $total,
             ]);
 
-            // 2. Buat Data Payment (Status Pending)
+            // 2. Buat Data Payment
             $paymentID = $this->generateID('payment', 'paymentID', 'PY');
             payment::create([
                 'paymentID' => $paymentID,
@@ -56,9 +64,22 @@ class PaymentController extends Controller
                 ]);
             }
 
+            // 4. Request Snap Token ke Midtrans
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $orderID,
+                    'gross_amount' => (int)$total,
+                ],
+                'customer_details' => [
+                    'first_name' => Session::get('user_name') ?? 'Customer',
+                ],
+            ];
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
             DB::commit();
-            // Tampilkan halaman konfirmasi pembayaran
-            return view('booking.payment', compact('event', 'qty', 'total', 'orderID'));
+            // Arahkan ke halaman konfirmasi yang ada tombol Midtrans-nya
+            return view('booking.payment', compact('event', 'qty', 'total', 'orderID', 'snapToken'));
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -66,7 +87,6 @@ class PaymentController extends Controller
         }
     }
 
-    // Fungsi Helper untuk generate ID 6 Karakter
     private function generateID($table, $column, $prefix) {
         do {
             $id = $prefix . strtoupper(Str::random(4));
@@ -74,15 +94,29 @@ class PaymentController extends Controller
         return $id;
     }
 
-    // Fungsi pura-pura sukses bayar (Bypass untuk video progress)
-    public function dummyPay($orderID)
-    {
-        // Ubah status payment jadi success
-        payment::where('orderID', $orderID)->update(['paymentStatus' => 'success']);
-        
-        // Ubah status tiket jadi 1 (Aktif)
-        tiket::where('orderID', $orderID)->update(['tiketStatus' => 1]);
+    // Menampilkan halaman sukses dari Figma
+    public function success($orderID) {
+        return view('booking.success', compact('orderID'));
+    }
 
-        return redirect('/MyTiket')->with('success', 'Pembayaran Berhasil! Tiket Anda sudah diterbitkan.');
+    // Menampilkan halaman gagal dari Figma
+    public function failed($orderID) {
+        return view('booking.failed', compact('orderID'));
+    }
+
+    // Webhook otomatis dari Midtrans (Berjalan di background)
+    public function callback(Request $request) {
+        $serverKey = env('MIDTRANS_SERVER_KEY');
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
+                payment::where('orderID', $request->order_id)->update(['paymentStatus' => 'success']);
+                tiket::where('orderID', $request->order_id)->update(['tiketStatus' => 1]); // TIKET AKTIF
+            } elseif ($request->transaction_status == 'expire' || $request->transaction_status == 'cancel') {
+                payment::where('orderID', $request->order_id)->update(['paymentStatus' => 'failed']);
+            }
+        }
+        return response()->json(['status' => 'ok']);
     }
 }

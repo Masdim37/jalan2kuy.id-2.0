@@ -61,11 +61,15 @@ Route::get('/BeliTiket/{id}', [UserBiasaController::class, 'TampilBeliTiket']);
 // Tampilkan Tiket (Pastikan fungsi showMyTicket di TiketController cuma nampilin yg tiketStatus == 1 ya)
 Route::get('/MyTiket', [TiketController::class, 'showMyTicket']);
 
-// Proses Buat Order
-Route::post('/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
+// Proses Buat Order & Tampilkan Tombol Bayar
+Route::post('/checkout/{id}', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('checkout');
 
-// Route Bypass untuk pura-pura sukses bayar
-Route::post('/dummy-pay/{orderID}', [PaymentController::class, 'dummyPay'])->name('dummy.pay');
+// Halaman Redirect setelah dari Midtrans
+Route::get('/payment/success/{orderID}', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/failed/{orderID}', [\App\Http\Controllers\PaymentController::class, 'failed'])->name('payment.failed');
+
+// Route Callback/Webhook (Jalur belakang untuk update database otomatis)
+Route::post('/api/midtrans-callback', [\App\Http\Controllers\PaymentController::class, 'callback']);
 
 //route halaman Utama gallery (Method: GET)
 Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
