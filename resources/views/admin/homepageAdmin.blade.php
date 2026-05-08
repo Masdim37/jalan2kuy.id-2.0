@@ -1,293 +1,141 @@
-<!-- resources/views/admin/homepageAdmin.blade.php -->
-
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-
+    <title>Jalan2Kuy.id - Homepage Admin</title>
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
 </head>
-
 <body>
 
-<div class="dashboard-layout">
+    @include('partials.navbarAdmin')
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <div class="dashboard-container">
 
-        <div class="sidebar-logo">
-            jalan2kuy.id
-        </div>
+        <!-- Statistik -->
+        <div class="stats-container">
 
-        <div class="menu-title">
-            MAIN MENU
-        </div>
-
-        <ul class="sidebar-menu">
-
-            <li class="active">
-                Dashboard
-            </li>
-
-            <li>
-                Event
-            </li>
-
-            <li>
-                Destination
-            </li>
-
-            <li>
-                Transaksi
-            </li>
-
-            <li>
-                Tiket
-            </li>
-
-            <li>
-                User
-            </li>
-
-            <li>
-                Laporan
-            </li>
-
-            <li>
-                Logout
-            </li>
-
-        </ul>
-
-    </aside>
-
-
-    <!-- MAIN -->
-    <main class="main-wrapper">
-
-        <!-- TOPBAR -->
-        <div class="topbar">
-
-            <div>
-                <h1>Dashboard Admin</h1>
-                <p>Monitoring Website Wisata & Event</p>
+            <div class="card">
+                <h3>Total Penjualan Tiket</h3>
+                <p>1.250</p>
             </div>
 
-            <div class="topbar-right">
+            <div class="card">
+                <h3>Jumlah Event</h3>
+                <p>35</p>
+            </div>
 
-                <div class="notif">
-                    3
-                </div>
+            <div class="card">
+                <h3>Destinasi Wisata</h3>
+                <p>18</p>
+            </div>
 
-                <div class="profile">
-                    A
-                </div>
-
+            <div class="card">
+                <h3>Akun Terdaftar</h3>
+                <p>2.430</p>
             </div>
 
         </div>
 
+        <!-- Konten bawah -->
+        <div class="bottom-section">
 
-        <!-- STATS -->
-        <div class="stats-grid">
+            <!-- Event populer -->
+            <div class="popular-event">
+                <h2>Event Paling Banyak Dikunjungi</h2>
 
-            <div class="stats-card green">
-                <h3>Revenue</h3>
-                <h2>Rp 23.569.000</h2>
-                <span>↑ 12.5%</span>
-            </div>
-
-            <div class="stats-card purple">
-                <h3>Total Transaksi</h3>
-                <h2>3.435</h2>
-                <span>↑ 8.2%</span>
-            </div>
-
-            <div class="stats-card blue">
-                <h3>User</h3>
-                <h2>1.245</h2>
-                <span>↑ 5.7%</span>
-            </div>
-
-            <div class="stats-card orange">
-                <h3>Pending Payment</h3>
-                <h2>47</h2>
-                <span>↓ 2.1%</span>
-            </div>
-
-        </div>
-
-
-        <!-- CHART -->
-        <div class="chart-grid">
-
-            <!-- SALES -->
-            <div class="chart-box large-chart">
-
-                <div class="box-title">
-                    Statistik Penjualan Tiket
+                <div class="event-card">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Event">
+                    
+                    <div class="event-info">
+                        <h3>Festival Dieng Culture</h3>
+                        <p>Total Pengunjung: 850 orang</p>
+                        <p>Tiket Terjual: 720 tiket</p>
+                    </div>
                 </div>
-
-                <div class="fake-chart">
-
-                    <div class="line blue-line"></div>
-                    <div class="line green-line"></div>
-
-                </div>
-
             </div>
 
+            <!-- Grafik sederhana -->
+            <div class="chart-section">
+                <h2>Statistik Pengunjung</h2>
 
-            <!-- PIE -->
-            <div class="chart-box pie-box">
+                <div class="chart">
 
-                <div class="box-title">
-                    Traffic Sources
-                </div>
+                    <div class="bar">
+                        <span>Jan</span>
+                        <div class="fill jan"></div>
+                    </div>
 
-                <div class="pie-chart"></div>
+                    <div class="bar">
+                        <span>Feb</span>
+                        <div class="fill feb"></div>
+                    </div>
 
-                <div class="legend">
+                    <div class="bar">
+                        <span>Mar</span>
+                        <div class="fill mar"></div>
+                    </div>
 
-                    <span>
-                        <div class="dot blue"></div>
-                        Direct
-                    </span>
+                    <div class="bar">
+                        <span>Apr</span>
+                        <div class="fill apr"></div>
+                    </div>
 
-                    <span>
-                        <div class="dot green"></div>
-                        Social
-                    </span>
-
-                    <span>
-                        <div class="dot orange"></div>
-                        Referral
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- BOTTOM -->
-        <div class="bottom-grid">
-
-            <!-- ACTIVITY -->
-            <div class="activity-box">
-
-                <div class="box-title">
-                    Recent Activity
-                </div>
-
-                <div class="activity-item">
-
-                    <div class="circle blue-bg"></div>
-
-                    <div>
-                        <h4>New Order Received</h4>
-                        <p>Order tiket berhasil dibuat</p>
+                    <div class="bar">
+                        <span>Mei</span>
+                        <div class="fill mei"></div>
                     </div>
 
                 </div>
-
-
-                <div class="activity-item">
-
-                    <div class="circle green-bg"></div>
-
-                    <div>
-                        <h4>User Baru Registrasi</h4>
-                        <p>User berhasil membuat akun</p>
-                    </div>
-
-                </div>
-
-
-                <div class="activity-item">
-
-                    <div class="circle orange-bg"></div>
-
-                    <div>
-                        <h4>Payment Pending</h4>
-                        <p>Menunggu pembayaran QRIS</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- TABLE -->
-            <div class="product-box">
-
-                <div class="box-title">
-                    Top Event
-                </div>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Event</th>
-                            <th>Tiket</th>
-                            <th>Revenue</th>
-                            <th>Status</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>Sorak Sorai Fest</td>
-                            <td>245</td>
-                            <td>Rp 12JT</td>
-                            <td>
-                                <span class="status success">
-                                    Active
-                                </span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Sendratari Ramayana</td>
-                            <td>189</td>
-                            <td>Rp 9JT</td>
-                            <td>
-                                <span class="status success">
-                                    Active
-                                </span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Jazz Pantai Festival</td>
-                            <td>98</td>
-                            <td>Rp 4JT</td>
-                            <td>
-                                <span class="status warning">
-                                    Low
-                                </span>
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
             </div>
 
         </div>
 
-    </main>
+        <!-- Tabel aktivitas -->
+        <div class="activity-section">
 
-</div>
+            <h2>Aktivitas Terbaru</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama User</th>
+                        <th>Event</th>
+                        <th>Status</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Andi</td>
+                        <td>Festival Dieng</td>
+                        <td>Sukses</td>
+                        <td>07 Mei 2026</td>
+                    </tr>
+
+                    <tr>
+                        <td>Siti</td>
+                        <td>Jazz Baturaden</td>
+                        <td>Sukses</td>
+                        <td>06 Mei 2026</td>
+                    </tr>
+
+                    <tr>
+                        <td>Raka</td>
+                        <td>Camping Serayu</td>
+                        <td>Pending</td>
+                        <td>06 Mei 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    @include('partials.footer')
 
 </body>
 </html>
