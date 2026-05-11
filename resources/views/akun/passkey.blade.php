@@ -21,7 +21,7 @@
 
 <!-- Navbar berisi tombol kembali ke halaman login dan logo aplikasi -->
 <header class="navbar">
-    <a href="{{ url('/login') }}" class="back-btn">
+    <a href="{{ url('/loginAdmin') }}" class="back-btn">
         <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="kembali">
     </a>
     <div class="logo">
@@ -42,7 +42,7 @@
     @endif
 
     <!-- Form untuk mengirim kode verifikasi ke server Laravel -->
-    <form id="passkeyForm" action="{{ url('/verifikasi-login-proses') }}" method="POST">
+    <form id="passkeyForm" action="{{ url('/admin/verifikasi-login-proses') }}" method="POST">
         @csrf
         
         <input type="hidden" name="passkey_code" id="full_code">

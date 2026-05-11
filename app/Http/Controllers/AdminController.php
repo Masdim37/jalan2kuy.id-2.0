@@ -28,7 +28,7 @@ class AdminController extends Controller
                 Session::put('temp_admin_name', $usernameAdmin->name); //simpan sementara name didalam temp_admin_name untuk dipakai pada verifikasi passkey
 
                 //Redirect ke URL halaman Passkey (/verifikasi-login)
-                return redirect('/verifikasi-login');
+                return redirect('/admin/verifikasi-login');
             }
         }
 
@@ -39,7 +39,7 @@ class AdminController extends Controller
     { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('temp_admin_id')) {
-            return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
+            return redirect('/admin/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
         //redirect ke halaman passkey
@@ -65,7 +65,7 @@ class AdminController extends Controller
             Session::forget('temp_admin_name');
 
             //Redirect ke URL homepage admin (admin/Homepage)
-            return redirect('admin/Homepage');
+            return redirect('/admin/Homepage');
         } else { //jika salah, Kembali ke halaman passkey dengan pesan error
             return back()->with('error', 'Passkey salah, silakan coba lagi.');
         }
@@ -132,18 +132,18 @@ class AdminController extends Controller
         }
     }
 
-    public function lupapass()
-    {
-        return view('akun.lupaPass');
-    }
+    // public function lupapass()
+    // {
+    //     return view('akun.lupaPass');
+    // }
     
-    public function lupapassproses(){
-        return view('akun.lupaPassProses');
-    }
+    // public function lupapassproses(){
+    //     return view('akun.lupaPassProses');
+    // }
 
-    public function gantipass(){
-        return view('akun.gantiPass');
-    }
+    // public function gantipass(){
+    //     return view('akun.gantiPass');
+    // }
 
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 

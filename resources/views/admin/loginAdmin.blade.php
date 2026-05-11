@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jalan2kuy.id - Admin Login</title>
 
-    <link rel="stylesheet" href="{{ asset('css/akun/loginAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/loginAdmin.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
