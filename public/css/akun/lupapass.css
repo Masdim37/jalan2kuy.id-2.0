@@ -124,3 +124,23 @@ form button {
     cursor: pointer;
     transition: background 0.3s ease;
 }
+
+/* ================= PASSWORD CONTAINER GANTI PASSWORD ================= */
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    margin: 0;
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: grey;
+    font-size: 18px;
+}
