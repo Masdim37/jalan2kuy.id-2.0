@@ -159,12 +159,14 @@ body{
     margin-bottom: 22px;
 }
 
-.input-group i{
+/* PERUBAHAN: Hanya target ikon yang merupakan child langsung dari input-group (ikon sebelah kiri) */
+.input-group > i {
     position: absolute;
     top: 50%;
     left: 16px;
     transform: translateY(-50%);
     color: #64748b;
+    z-index: 2;
 }
 
 .input-group input{
@@ -175,11 +177,13 @@ body{
     border-radius: 14px;
 
     padding-left: 48px;
-    padding-right: 45px;
+    padding-right: 45px; /* Ini sudah benar, memberi ruang agar teks tidak tertutup ikon mata */
 
     font-size: 15px;
 
     transition: 0.3s;
+    position: relative;
+    z-index: 1;
 }
 
 .input-group input:focus{
@@ -191,11 +195,22 @@ body{
 /* show hide password */
 .toggle-pass-login{
     position: absolute;
-    right: 15px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #64748b;
+    z-index: 3; /* Memastikan span ini berada di atas input agar bisa diklik */
+}
+
+/* PERUBAHAN: Memastikan ikon mata di dalam span tidak ikut tertarik ke kiri */
+.toggle-pass-login i {
+    position: static;
+    transform: none;
+}
+
+.toggle-pass-login:hover {
+    color: #0f172a;
 }
 
 /* ================= BUTTON ================= */

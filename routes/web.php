@@ -195,18 +195,20 @@ Route::prefix('admin')->group(function () {
     //route halaman Utama gallery Admin (Method: GET)
     Route::get('/Gallery', [DestinationController::class, 'tampilGaleriAdmin']);
 
+    Route::post('/logout', [AdminController::class, 'logout']);
+
     //Alur account (User Admin) (Start)
     //route halaman Utama account Admin (Method: GET)
-    Route::get('/Account', [AdminController::class, 'showAccount']);
+    // Route::get('/Account', [AdminController::class, 'showAccount']);
 
     //route halaman form edit account admin (Method: GET)
-    Route::get('/Edit-Profile', [AdminController::class, 'tampilFormEditProfile']);
+    // Route::get('/Edit-Profile', [AdminController::class, 'tampilFormEditProfile']);
 
-    //route untuk proses simpan update account admin (Method: PUT)
-    Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
+    // //route untuk proses simpan update account admin (Method: PUT)
+    // Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
     
-    //route untuk proes delete account admin (Method: DELETE)
-    Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
+    // //route untuk proes delete account admin (Method: DELETE)
+    // Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
     //Alur account (User Admin) (End)
 });
 
