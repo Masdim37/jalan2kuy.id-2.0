@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2026 pada 14.56
+-- Waktu pembuatan: 17 Bulan Mei 2026 pada 17.17
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -150,10 +150,10 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`eventID`, `name`, `startDate`, `endDate`, `location`, `description`, `entranceFee`, `startTime`, `endTime`, `socialMedia`, `imagePath`, `destinationID`, `adminID`, `deleted_at`) VALUES
-('evt001', 'SAMBUT ENERGI POSITIF DI TENGAH KEAGUNGAN CANDI BOROBUDUR', '2025-08-22', '2025-12-28', 'Borobudur Cultural Center, Candi Borobudur', 'Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. \"Samadha\" (Samadhi) merupakan istilah dalam praktik meditasi yang merujuk pada kondisi konsentrasi penuh dan ketenangan mendalam, sementara Pranic Healing adalah teknik penyembuhan yang menggunakan energi prana atau energi vital. Acara ini bukan sekadar meditasi biasa, melainkan penggabungan ilmu pranic healing dengan teknik meditasi, bertujuan untuk melepaskan stres, mengembalikan keseimbangan tubuh, serta mengisi diri dengan energi positif yang berlimpah dari lingkungan Borobudur. Program ini sangat ideal bagi mereka yang mencari pengalaman wisata wellness dan spiritual.', 0, '09:00:00', '15:00:00', 'borobudurculturalcenter', 'events/z2rXQT6K6lTGH70YUI6zwKNnFzR6WWao1LRgv1fU.jpg', 'dst004', 'adm001', NULL),
+('evt001', 'SAMBUT ENERGI POSITIF DI TENGAH KEAGUNGAN CANDI BOROBUDUR', '2025-08-22', '2025-12-28', 'Borobudur Cultural Center, Candi Borobudur', 'Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. \"Samadha\" (Samadhi) merupakan istilah dalam praktik meditasi yang merujuk pada kondisi konsentrasi penuh dan ketenangan mendalam, sementara Pranic Healing adalah teknik penyembuhan yang menggunakan energi prana atau energi vital. Acara ini bukan sekadar meditasi biasa, melainkan penggabungan ilmu pranic healing dengan teknik meditasi, bertujuan untuk melepaskan stres, mengembalikan keseimbangan tubuh, serta mengisi diri dengan energi positif yang berlimpah dari lingkungan Borobudur. Program ini sangat ideal bagi mereka yang mencari pengalaman wisata wellness dan spiritual.', 100, '09:00:00', '15:00:00', 'borobudurculturalcenter', 'events/z2rXQT6K6lTGH70YUI6zwKNnFzR6WWao1LRgv1fU.jpg', 'dst004', 'adm001', NULL),
 ('evt002', 'SENDRATARI RAMAYANA PRAMBANAN', '2025-11-01', '2025-12-31', 'Gedung Trimurti, Candi Prambanan', 'Persembahan budaya yang megah, Sendratari Ramayana Prambanan adalah sebuah mahakarya yang menawan. Di tengah keagungan Candi Prambanan yang spiritual, epos kuno Ramayana dihidupkan kembali melalui tarian gemulai, drama yang kuat, dan iringan gamelan yang syahdu. Pertunjukan ini bukan sekadar tontonan, melainkan pengalaman mendalam yang menghubungkan penonton dengan warisan budaya luhur Jawa. Pada periode akhir tahun ini, suasana hangat Gedung Trimurti (panggung tetutup) akan menjadi saksi bisu keindahan abadi kisah Rama dan Shinta.', 150000, '19:30:00', '21:00:00', 'prambananpark', 'events/NemigAYqbj0Ie9Sk2ygu8sw6gONsz8ruWLyGodJW.jpg', 'dst005', 'adm001', NULL),
 ('evt003', 'SORAK SORAI FEST 2026', '2025-12-30', '2026-01-01', 'Taman Mini Indonesia Indah', 'Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. Festival ini biasanya berlangsung di Taman Mini Indonesia Indah (TMII) saat pergantian tahun, menawarkan hiburan untuk pengunjung dari berbagai kalangan. Festival yang biasanya diselenggarakan di Taman Mini Indonesia Indah (TMII) menjelang pergantian tahun. Dengan konsep hiburan keluarga dan pesta rakyat, Sorak Sorai Fest menjadi salah satu agenda tahunan yang paling dinanti oleh masyarakat Jakarta untuk merayakan malam tahun baru dalam suasana penuh warna dan kebersamaan.', 100000, '17:00:00', '23:00:00', 'soraksoraifest', 'events/PMwiAL85B8JFoBeZmh8FwuriBxkX8JCA5kPLymnR.jpg', 'dst017', 'adm001', NULL),
-('evt004', 'tes', '2026-05-01', '2026-05-02', 'tes', 'tes', 10, '09:00:00', '12:00:00', 'tes', 'events/Kab0x59zlqw2SwUSQ8PTudFoXohg0q77WQmlaXz9.jpg', NULL, 'adm002', NULL);
+('evt004', 'tes', '2026-05-01', '2026-05-02', 'tes', 'tes', 10, '09:00:00', '12:00:00', 'tes', 'events/Kab0x59zlqw2SwUSQ8PTudFoXohg0q77WQmlaXz9.jpg', NULL, 'adm002', '2026-05-17 08:10:49');
 
 -- --------------------------------------------------------
 
@@ -194,8 +194,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`orderID`, `orderDate`, `userID`, `totalPrice`) VALUES
-('ODEPBJ', '2026-05-17', 'usr001', 10.00),
-('ODZXXA', '2026-05-11', 'usr001', 10.00);
+('ODAIMH', '2026-05-17', 'usr001', 200.00);
 
 -- --------------------------------------------------------
 
@@ -215,8 +214,7 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`paymentID`, `paymentDate`, `paymentStatus`, `orderID`) VALUES
-('PYVQOT', '2026-05-11', 'pending', 'ODZXXA'),
-('PYX58S', '2026-05-17', 'pending', 'ODEPBJ');
+('PYPUAC', '2026-05-17', 'pending', 'ODAIMH');
 
 -- --------------------------------------------------------
 
@@ -238,8 +236,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('eIaCA9cKhY6WAmJFWLR6cqKlTt04szz8puSEFPQo', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiRjZIM3RWUXZ4VHFXZXlhNzN0UUtlb0daQ2JONHltbWNaY25yOUQ4USI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9FdmVudCI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDEiO3M6MTA6ImFkbWluX25hbWUiO3M6MTI6IkFkbWluX0RoaW1hcyI7fQ==', 1779021710),
-('wzHgTxJFDrrzNJ1SvVPzwafqlqhYt6vkeo4iNjbF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTG9DbmhFc0FjRm9ENE1Jd01yU09JRkZYdFloU09JN09xZnVaRnJ5ZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9FdmVudCI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDEiO3M6MTA6ImFkbWluX25hbWUiO3M6MTI6IkFkbWluX0RoaW1hcyI7fQ==', 1779022105);
+('wzHgTxJFDrrzNJ1SvVPzwafqlqhYt6vkeo4iNjbF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiNVRXWUlGbGxlUjBiWnNrWUpnMVlqb0ljbmc3YnRvMHNEbXhnTnFTWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9Ib21lcGFnZSI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDEiO3M6MTA6ImFkbWluX25hbWUiO3M6MTI6IkFkbWluX0RoaW1hcyI7fQ==', 1779031002);
 
 -- --------------------------------------------------------
 
@@ -260,8 +257,8 @@ CREATE TABLE `tiket` (
 --
 
 INSERT INTO `tiket` (`tiketID`, `price`, `tiketStatus`, `eventID`, `orderID`) VALUES
-('TKA46Q', 10.00, 0, 'evt004', 'ODEPBJ'),
-('TKUPTF', 10.00, 0, 'evt004', 'ODZXXA');
+('TKHMXE', 100.00, 0, 'evt001', 'ODAIMH'),
+('TKYXJ8', 100.00, 0, 'evt001', 'ODAIMH');
 
 -- --------------------------------------------------------
 
@@ -278,21 +275,23 @@ CREATE TABLE `user` (
   `birthDate` date NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`userID`, `nameUser`, `email`, `phone`, `gender`, `birthDate`, `username`, `password`, `deleted_at`) VALUES
-('usr001', 'Dhimas Hafizh', 'dhimas.hfzh375@gmail.com', '081290071606', 1, '2005-07-03', 'UserDhimas', '$2y$12$gFzLME27zZvmuwbnRszDRed.OSRQCDTPoD38FpzPnshsnrL7bO7Du', NULL),
-('usr002', 'Christoba Joshua', 'Akunkhusustugas51@gmail.com', '085348455669', 1, '2005-09-27', 'UserJoshua', '$2y$12$nngpJXs269lQTAx1PdfNAu7dfZq5R5aSK2Vz0pNdzVDb.hKuq0aEG', NULL),
-('usr003', 'Nizal Maulana', 'roniiinaldo601@gmail.com', '081476626723', 1, '2005-04-26', 'UserNizal', '$2y$12$PG0kQ9z.pdDX4FrwBSo6yunvG5Uz0y7Ss37IIe6hGMGEt0whTmkjm', NULL),
-('usr004', 'Daffa Falih', 'daffalih75@gmail.com', '085174235775', 1, '2005-06-13', 'UserDaffa', '$2y$12$3M43bbpkkyHLDjLs4hI.quBdgeGxtGJVRoa1Lxzoj34ozP2F07u/W', NULL),
-('usr005', 'Irfan Thoriq', 'Nnfaff59@gmail.com', '081337195915', 1, '2005-03-12', 'UserIrfan', '$2y$12$V6p/v8qyPSg2BPbnWbLi/OdSMvtCxc8S1cvE66l/Hbyd4wsJW1Un2', NULL),
-('usr006', 'Naufal Geraldo', 'naufal.geraldo30@gmail.com', '081289492745', 1, '2005-05-30', 'UserNaufal', '$2y$12$iF7PrXG5pHMPWk9W/1lquOsa0eJYTeZ8.E7E4R3qoFHKNOBV.4iMq', NULL),
-('usr007', 'Arsyad Zaidan', '2311102058@ittelkom-pwt.ac.id', '081574166613', 1, '2005-03-03', 'UserZaidan', '$2y$12$vwwhMXmuyVEgpTGiPttltufde4oM6nf6rjFQ8otdidXi2.p760T1O', NULL);
+INSERT INTO `user` (`userID`, `nameUser`, `email`, `phone`, `gender`, `birthDate`, `username`, `password`, `deleted_at`, `created_at`, `updated_at`) VALUES
+('usr001', 'Dhimas Hafizh', 'dhimas.hfzh375@gmail.com', '081290071606', 1, '2005-07-03', 'UserDhimas', '$2y$12$gFzLME27zZvmuwbnRszDRed.OSRQCDTPoD38FpzPnshsnrL7bO7Du', NULL, '2026-01-01 14:38:08', NULL),
+('usr002', 'Christoba Joshua', 'Akunkhusustugas51@gmail.com', '085348455669', 1, '2005-09-27', 'UserJoshua', '$2y$12$nngpJXs269lQTAx1PdfNAu7dfZq5R5aSK2Vz0pNdzVDb.hKuq0aEG', NULL, '2026-01-10 14:38:08', NULL),
+('usr003', 'Nizal Maulana', 'roniiinaldo601@gmail.com', '081476626723', 1, '2005-04-26', 'UserNizal', '$2y$12$PG0kQ9z.pdDX4FrwBSo6yunvG5Uz0y7Ss37IIe6hGMGEt0whTmkjm', NULL, '2026-02-05 14:38:08', NULL),
+('usr004', 'Daffa Falih', 'daffalih75@gmail.com', '085174235775', 1, '2005-06-13', 'UserDaffa', '$2y$12$3M43bbpkkyHLDjLs4hI.quBdgeGxtGJVRoa1Lxzoj34ozP2F07u/W', NULL, '2026-02-26 14:38:08', NULL),
+('usr005', 'Irfan Thoriq', 'Nnfaff59@gmail.com', '081337195915', 1, '2005-03-12', 'UserIrfan', '$2y$12$V6p/v8qyPSg2BPbnWbLi/OdSMvtCxc8S1cvE66l/Hbyd4wsJW1Un2', NULL, '2026-03-04 14:38:08', NULL),
+('usr006', 'Naufal Geraldo', 'naufal.geraldo30@gmail.com', '081289492745', 1, '2005-05-30', 'UserNaufal', '$2y$12$iF7PrXG5pHMPWk9W/1lquOsa0eJYTeZ8.E7E4R3qoFHKNOBV.4iMq', NULL, '2026-05-07 14:38:08', NULL),
+('usr007', 'Arsyad Zaidan', '2311102058@ittelkom-pwt.ac.id', '081574166613', 1, '2005-03-03', 'UserZaidan', '$2y$12$vwwhMXmuyVEgpTGiPttltufde4oM6nf6rjFQ8otdidXi2.p760T1O', NULL, '2026-05-15 14:38:08', NULL);
 
 --
 -- Indexes for dumped tables
