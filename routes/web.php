@@ -134,14 +134,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/verifikasi-login-proses', [AdminController::class, 'prosesVerifikasiLogin']);
     //Alur Login (End)
 
-    //route halaman homepage admin (Method: GET)
-    Route::get('/Homepage', function () {
-        //Cek apakah user sudah melewati tahap login awal atau belum
-        if (!session()->has('admin_id')) {
-            return redirect('/login')->with('error', 'Anda harus login dulu!');
-        }
-        return view('admin.homepageAdmin');
-    });
+    // route halaman homepage admin (Method: GET)
+    Route::get('/Homepage', [AdminController::class, 'dashboard']);
 
     //Alur Destination (User Admin) (Start)
     //route halaman Utama Destination Admin (Method: GET)

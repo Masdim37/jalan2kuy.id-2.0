@@ -416,7 +416,7 @@ class UserBiasaController extends Controller
                 DB::commit();
 
                 //bersihkan session
-                Session::forget('user_id');
+                Session::flush();
 
                 //redirect ke homepage (/)
                 return redirect('/')->with('success', 'Akun berhasil dihapus!');

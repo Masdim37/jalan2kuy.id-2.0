@@ -2,18 +2,130 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Admin;
-use \App\Models\Event;
-use \App\Models\Destination;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendOtpMail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use App\Models\Admin;
+use App\Models\Event;
+use App\Models\Destination;
+use App\Models\UserBiasa;
+use App\Models\order;
+use App\Models\payment;
+use App\Models\tiket;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
+    public function dashboard(){
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
+
+        // ==========================================
+        // 1. DATA KPI (Key Performance Indicators)
+        // ==========================================
+        // Data dari entitas yang sudah menggunakan SoftDeletes (Otomatis mengabaikan data yang terhapus)
+        $totalDestinasi = Destination::count();
+        $totalEvent     = Event::count();
+        $totalPengguna  = UserBiasa::count();
+
+        // Total Tiket Terjual 
+        // Logika: Menghitung jumlah baris di tabel tiket yang berelasi dengan payment berstatus 'Berhasil'
+        $totalTiketTerjual = tiket::join('payment', 'tiket.orderID', '=', 'payment.orderID')
+            ->where('payment.paymentStatus', 'Berhasil')
+            ->count();
+
+        // Total Pendapatan (Revenue)
+        // Logika: Menjumlahkan kolom totalPrice dari tabel order yang berelasi dengan payment berstatus 'Berhasil'
+        $totalPendapatan = order::join('payment', 'order.orderID', '=', 'payment.orderID')
+            ->where('payment.paymentStatus', 'Berhasil')
+            ->sum('order.totalPrice');
+
+        // ==========================================
+        // 2. DATA GRAFIK (5 Bulan Terakhir)
+        // ==========================================
+        // Buat array/label untuk 5 bulan terakhir (Contoh format: "Jan", "Feb", dst)
+        $chartLabels = [];
+        $revenueData = [];
+        $newUserData = [];
+
+        for ($i = 5; $i >= 0; $i--) {
+            // Ambil nama bulan (Misal: 'Jan', 'Feb')
+            $chartLabels[] = Carbon::now()->subMonths($i)->translatedFormat('M'); 
+            
+            // Inisialisasi data awal dengan angka 0
+            $revenueData[] = 0;
+            $newUserData[] = 0;
+        }
+
+        // --- Query Grafik Pendapatan ---
+        // Mengambil data order yang berhasil dalam 5 bulan terakhir (dari awal bulan ke-5)
+        $startOf6MonthsAgo = Carbon::now()->subMonths(5)->startOfMonth();
+
+        $revenues = order::join('payment', 'order.orderID', '=', 'payment.orderID')
+            ->where('payment.paymentStatus', 'Berhasil')
+            ->where('order.orderDate', '>=', $startOf6MonthsAgo)
+            ->selectRaw('MONTH(order.orderDate) as month, SUM(order.totalPrice) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+        // --- Query Grafik Pendaftaran User ---
+        // (CATATAN: Logika ini membutuhkan kolom 'created_at' di tabel user)
+        $newUsers = UserBiasa::where('created_at', '>=', $startOf6MonthsAgo)
+            ->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+        // Memasukkan hasil query ke dalam array sesuai urutan bulan yang benar (agar 0 tetap 0 jika tidak ada data di bulan tersebut)
+        foreach ($chartLabels as $index => $label) {
+            // Kita cari tahu angka bulan dari label tersebut untuk dicocokkan dengan hasil Pluck DB
+            $monthNumber = Carbon::now()->subMonths(5 - $index)->month; 
+            
+            // Masukkan data pendapatan (jika ada, jika tidak ada biarkan 0)
+            if (isset($revenues[$monthNumber])) {
+                $revenueData[$index] = $revenues[$monthNumber];
+            }
+
+            // Masukkan data user baru (jika ada, jika tidak ada biarkan 0)
+            if (isset($newUsers[$monthNumber])) {
+                $newUserData[$index] = $newUsers[$monthNumber];
+            }
+        }
+
+        // ==========================================
+        // 3. DATA TRANSAKSI TERBARU (Recent Transactions)
+        // ==========================================
+        // Menggunakan leftJoin agar jika user dihapus (soft delete), nama/data transaksinya tetap muncul di laporan admin
+        $recentTransactions = order::select(
+                'order.orderID', 
+                'user.nameUser', 
+                'order.orderDate', 
+                'order.totalPrice', 
+                'payment.paymentStatus'
+            )
+            ->leftJoin('user', 'order.userID', '=', 'user.userID')
+            ->leftJoin('payment', 'order.orderID', '=', 'payment.orderID')
+            ->orderBy('order.orderDate', 'desc') // Urutkan dari yang paling baru
+            ->take(10) // Ambil 10 data terakhir
+            ->get();
+
+        // Mengirimkan semua data ke view
+        return view('admin.homepageAdmin', compact(
+            'totalDestinasi',
+            'totalEvent',
+            'totalPengguna',
+            'totalTiketTerjual',
+            'totalPendapatan',
+            'chartLabels',
+            'revenueData',
+            'newUserData',
+            'recentTransactions'
+        ));
+
+
+    }
+    
     public function login(Request $request)
     { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         $usernameInput = $request->input('username'); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)

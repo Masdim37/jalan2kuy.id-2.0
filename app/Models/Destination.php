@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model {
+    use SoftDeletes;
+
     protected $table = 'destination'; //nama tabel memakai huruf kecil
     protected $primaryKey = 'destinationID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
     protected $keyType = 'string'; //tipe data primary key selalu string
@@ -30,5 +33,6 @@ class Destination extends Model {
     //casting tipe data agar sesuai kebutuhan
     protected $casts = [
         'entranceFee' => 'integer',
+        'deleted_at'  => 'datetime'
     ];
 }

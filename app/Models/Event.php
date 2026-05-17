@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model {
+    use SoftDeletes;
+
     protected $table = 'event'; //nama tabel memakai huruf kecil
     protected $primaryKey = 'eventID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
     protected $keyType = 'string'; //tipe data primary key selalu string
@@ -31,5 +34,6 @@ class Event extends Model {
         'entranceFee' => 'integer',
         'startDate' => 'date',
         'endDate'   => 'date',
+        'deleted_at'  => 'datetime',
     ];
 }

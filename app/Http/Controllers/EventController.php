@@ -273,19 +273,12 @@ class EventController extends Controller { //penamaan controller menggunakan hur
         $event = Event::where('eventID', $id)->first();
 
         if ($event) { //jika event ketemu
-            //ambil path gambar yang disimpan di folder storage/app/public/events menggunakan fungsi storage_path, simpan kedalam $gambarPath
-            $gambarPath = storage_path('app/public/' . $event->imagePath); 
-            
-            //cek apakah file gambar tersebut ada dan $event->imagePath tidak kosong
-            if (!empty($event->imagePath) && File::exists($gambarPath)) {
-                File::delete($gambarPath); //jika valid, hapus gambar tersebut (path nya ngambil dari $gambarPath)
-            }
 
             //hapus event nya
             $event->delete();
             
             //redirect ke URL /admin/Event dengan membawa pesan sukses
-            return redirect('/admin/Event')->with('success', 'Event berhasil dihapus.');
+            return redirect('/admin/Event')->with('success', 'Event berhasil dihapus!');
         }
         
         //redirect ke halaman sebelunya jika terjadi kesalahan dengan membawa pesan error

@@ -162,21 +162,11 @@ class DestinationController extends Controller { //penamaan controller menggunak
         $destination = Destination::where('destinationID', $id)->first();
         
         if ($destination) { //jika $destination ketemu
-            //lepaskan atau un-assign relasi event - destination
-            //cari semua event yang foreign key destinationID nya sesuai dengan $id, kemudian ubah foreign key destinationID nya menjadi NULL
-            Event::where('destinationID', $id)->update(['destinationID' => null]);
-
-            //hapus file image yang path-nya berdasarkan $destination->imagePath
-            if ($destination->imagePath) Storage::disk('public')->delete($destination->imagePath);
-
-            //hapus file thumbnail image yang path-nya berdasarkan $destination->thumbnailImagePath
-            if ($destination->thumbnailImagePath) Storage::disk('public')->delete($destination->thumbnailImagePath);
-
             //hapus destination nya
             $destination->delete();
 
             //redirect ke halaman destination dimana categorynya sesuai dengan $destination->destCategoryID (/admin/Destination/Category?Category=(destCategoryID nya))
-            return redirect('/admin/Destination/Category?Category=' . $destination->destCategoryID)->with('success', 'Destinasi berhasil dihapus (Event terkait telah di-unassign).');
+            return redirect('/admin/Destination/Category?Category=' . $destination->destCategoryID)->with('success', 'Destinasi berhasil dihapus');
         }
 
         //jika $destination ngga ketemu, kembali ke halaman sebelumnya dengan pesan error
