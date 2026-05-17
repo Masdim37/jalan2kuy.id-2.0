@@ -1,93 +1,153 @@
-<style>
-    *, *::before, *::after { box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar User</title>
+    <style>
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+        }
 
-    /* Note: Body margin dihapus dari sini karena sudah ada di homepage utama */
-    
-    .navbar {
-        background-color: #15514A;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 40px;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
+        /* Note: Body margin dihapus dari sini karena sudah ada di homepage utama */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            /* Tambahkan padding-top agar konten di bawah navbar tidak tertutup karena position: fixed */
+            padding-top: 85px; 
+        }
+        
+        /* ================= NAVBAR ================= */
+        .navbar {
+            background-color: #15514A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
 
-    .logo img {
-        height: 55px;
-        width: auto;
-        display: block;
-        filter: brightness(0) invert(1);
-    }
+        /* ================= LOGO ================= */
+        .logo img {
+            height: 55px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
 
-    .nav-links { display: flex; gap: 45px; }
+        /* ================= NAV LINKS ================= */
+        /* Jarak antar menu disesuaikan menjadi 35px agar pas untuk 5 menu */
+        .nav-links { 
+            display: flex; 
+            gap: 35px; 
+        }
 
-    .nav-links a, .account a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 20px;
-        font-weight: 500;
-        transition: 0.3s ease;
-    }
+        .nav-links a, .account a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            transition: 0.3s ease;
+            /* Tambahan agar icon dan teks sejajar rapi */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .nav-links a:hover, .account a:hover { color: #b7f7d8; }
+        .nav-links a:hover, .account a:hover { 
+            color: #b7f7d8; 
+        }
 
-    /* ICON BASE - Menggunakan asset() agar jalur gambar benar */
-    .home, .destinasi, .event, .gallery, .akun {
-        width: 18px;
-        height: 18px;
-        display: inline-block;
-        background-size: cover;
-        background-position: center;
-    }
+        /* ================= ICONS ================= */
+        /* Menggunakan asset() agar jalur gambar benar */
+        .home, .destinasi, .event, .gallery, .akun, .tiket {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+        }
 
-    /* Perhatikan penggunaan asset() di dalam url CSS */
-    .home { background-image: url('{{ asset("assets/gambar/icon/home.png") }}'); }
-    .destinasi { background-image: url('{{ asset("assets/gambar/icon/destinasi.png") }}'); }
-    .event { background-image: url('{{ asset("assets/gambar/icon/event.png") }}'); }
-    .gallery { background-image: url('{{ asset("assets/gambar/icon/gallery.png") }}'); }
-    .akun { background-image: url('{{ asset("assets/gambar/icon/account.png") }}'); }
+        /* Perhatikan penggunaan asset() di dalam url CSS */
+        .home { background-image: url('{{ asset("assets/gambar/icon/home.png") }}'); }
+        .destinasi { background-image: url('{{ asset("assets/gambar/icon/destinasi.png") }}'); }
+        .event { background-image: url('{{ asset("assets/gambar/icon/event.png") }}'); }
+        .gallery { background-image: url('{{ asset("assets/gambar/icon/gallery.png") }}'); }
+        .akun { background-image: url('{{ asset("assets/gambar/icon/account.png") }}'); }
+        .tiket { background-image: url('{{ asset("assets/gambar/icon/tiket.png") }}'); }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .nav-links { gap: 25px; }
-        .nav-links a, .account a { font-size: 18px; }
-    }
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .nav-links { gap: 25px; }
+            .nav-links a, .account a { font-size: 18px; }
+        }
 
-    @media (max-width: 700px) {
-        .navbar { padding: 10px 20px; }
-        .logo img { height: 45px; }
-        .nav-links { gap: 15px; }
-        .nav-links a, .account a { font-size: 16px; }
-    }
+        @media (max-width: 900px) {
+            .nav-links { gap: 20px; }
+            .nav-links a, .account a { font-size: 16px; }
+        }
 
-    @media (max-width: 550px) {
-        .navbar { flex-direction: column; gap: 10px; padding: 12px; }
-        .nav-links { order: 3; flex-wrap: wrap; justify-content: center; gap: 18px; }
-    }
-</style>
+        @media (max-width: 700px) {
+            .navbar { 
+                padding: 10px 20px; 
+                height: 75px;
+            }
+            body {
+                padding-top: 75px;
+            }
+            .logo img { height: 45px; }
+            .nav-links { gap: 15px; }
+        }
 
-<nav class="navbar">
+        @media (max-width: 600px) {
+            .navbar { 
+                height: auto;
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 15px; 
+            }
+            body {
+                padding-top: 130px;
+            }
+            .nav-links { 
+                order: 3; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 18px; 
+            }
+        }
+    </style>
+</head>
+<body>
 
-    <div class="logo">
-        <a href="{{ url('/') }}">
-            <img src="{{ asset('assets/gambar/icon/logo.png') }}" alt="jalan2kuy.id logo">
-        </a>
-    </div>
+    <nav class="navbar">
 
-    <div class="nav-links">
-        <a href="{{ url('/Homepage') }}"><i class="home"></i> Home</a>
-        <a href="{{ url('/Destination') }}"><i class="destinasi"></i> Destination</a>
-        <a href="{{ url('/Event') }}"><i class="event"></i> Event</a>
-        <a href="{{ url('/Gallery') }}"><i class="gallery"></i> Gallery</a>
-        <a href="{{ url('/MyTiket') }}"><i class="tiket"></i> Tiket</a>
-    </div>
+        <div class="logo">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/gambar/icon/logo.png') }}" alt="jalan2kuy.id logo">
+            </a>
+        </div>
 
-    <div class="account">
-        <a href="{{ url('/Account') }}"><i class="akun"></i> Account</a>
-    </div>
+        <div class="nav-links">
+            <a href="{{ url('/Homepage') }}"><i class="home"></i> Home</a>
+            <a href="{{ url('/Destination') }}"><i class="destinasi"></i> Destination</a>
+            <a href="{{ url('/Event') }}"><i class="event"></i> Event</a>
+            <a href="{{ url('/Gallery') }}"><i class="gallery"></i> Gallery</a>
+            <a href="{{ url('/MyTiket') }}"><i class="tiket"></i> Tiket</a>
+        </div>
 
-</nav>
+        <div class="account">
+            <a href="{{ url('/Account') }}"><i class="akun"></i> Account</a>
+        </div>
+
+    </nav>
+
+</body>
+</html>
