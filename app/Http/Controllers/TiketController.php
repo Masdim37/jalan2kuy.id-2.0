@@ -8,34 +8,45 @@ use Illuminate\Support\Facades\Session;
 
 class TiketController extends Controller
 {
-    // Fungsi untuk menampilkan daftar tiket milik user
     public function showMyTicket()
     {
-        // Cek apakah user sudah login
+        // 1. Pastikan user sudah login
         if (!Session::has('user_id')) {
-            return redirect('/')->with('error', 'Silakan login terlebih dahulu!');
+            return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
         }
 
-        $userId = Session::get('user_id'); 
-        
-        // HANYA ambil tiket yang SUDAH DIBAYAR (tiketStatus = 1)
-        $tikets = tiket::whereHas('order', function($query) use ($userId) {
-            $query->where('userID', $userId);
-        })->where('tiketStatus', 1)->with('event')->get();
+        $userID = Session::get('user_id');
+
+        // 2. Ambil semua tiket milik user (Pending, Lunas, Maupun Gagal)
+        // Diurutkan dari yang terbaru, dibatasi 5 tiket per halaman
+        $tikets = tiket::with(['event', 'order'])
+            ->whereHas('order', function ($query) use ($userID) {
+                $query->where('userID', $userID);
+            })
+            ->orderBy('tiketID', 'desc') // Menampilkan yang paling baru dibeli di urutan teratas
+            ->paginate(5);
 
         return view('tikets.myTikets', compact('tikets'));
     }
 
-    // Fungsi scan tiket (opsional untuk admin)
     public function scanTiket($tiketID)
     {
-        $tiket = tiket::find($tiketID);
-        
+        $tiket = tiket::where('tiketID', $tiketID)->first();
+
         if ($tiket && $tiket->tiketStatus == 1) {
-            $tiket->update(['tiketStatus' => 0]);
-            return redirect()->back()->with('success', 'Tiket berhasil di-scan!');
+            // Ubah status menjadi 0 setelah sukses di-scan (hangus)
+            $tiket->tiketStatus = 0;
+            $tiket->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Tiket Valid! Selamat Datang.'
+            ]);
         }
-        
-        return redirect()->back()->with('error', 'Tiket tidak valid atau sudah digunakan.');
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Tiket Tidak Valid atau Sudah Pernah Digunakan!'
+        ], 400);
     }
 }
