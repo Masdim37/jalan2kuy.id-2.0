@@ -217,9 +217,9 @@
                                 <td>{{ $trx->nameUser ?? 'User Terhapus' }}</td>
                                 <td>Rp {{ number_format($trx->totalPrice, 0, ',', '.') }}</td>
                                 <td>
-                                    @if($trx->paymentStatus == 'Berhasil')
+                                    @if($trx->paymentStatus == 'success')
                                         <span class="badge bg-success">Berhasil</span>
-                                    @elseif($trx->paymentStatus == 'Pending')
+                                    @elseif($trx->paymentStatus == 'pending')
                                         <span class="badge bg-warning">Pending</span>
                                     @else
                                         <span class="badge bg-danger">Gagal</span>

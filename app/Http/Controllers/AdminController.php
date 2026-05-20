@@ -33,13 +33,13 @@ class AdminController extends Controller
         // Total Tiket Terjual 
         // Logika: Menghitung jumlah baris di tabel tiket yang berelasi dengan payment berstatus 'Berhasil'
         $totalTiketTerjual = tiket::join('payment', 'tiket.orderID', '=', 'payment.orderID')
-            ->where('payment.paymentStatus', 'Berhasil')
+            ->where('payment.paymentStatus', 'success')
             ->count();
 
         // Total Pendapatan (Revenue)
         // Logika: Menjumlahkan kolom totalPrice dari tabel order yang berelasi dengan payment berstatus 'Berhasil'
         $totalPendapatan = order::join('payment', 'order.orderID', '=', 'payment.orderID')
-            ->where('payment.paymentStatus', 'Berhasil')
+            ->where('payment.paymentStatus', 'success')
             ->sum('order.totalPrice');
 
         // ==========================================
@@ -64,7 +64,7 @@ class AdminController extends Controller
         $startOf6MonthsAgo = Carbon::now()->subMonths(5)->startOfMonth();
 
         $revenues = order::join('payment', 'order.orderID', '=', 'payment.orderID')
-            ->where('payment.paymentStatus', 'Berhasil')
+            ->where('payment.paymentStatus', 'success')
             ->where('order.orderDate', '>=', $startOf6MonthsAgo)
             ->selectRaw('MONTH(order.orderDate) as month, SUM(order.totalPrice) as total')
             ->groupBy('month')

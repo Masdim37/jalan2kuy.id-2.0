@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AdminController; 
 use App\Http\Controllers\DestCategoryController;
 use App\Http\Controllers\DestinationController;
@@ -37,7 +38,7 @@ Route::post('/reset-password-proses', [UserBiasaController::class, 'prosesUpdate
 
 Route::get('/Homepage', function () {
     //Cek apakah user sudah melewati tahap login awal atau belum
-    if (!session()->has('user_id')) {
+    if (!Session::has('user_id')) {
         return redirect('/login')->with('error', 'Anda harus login dulu!');
     }
     return view('homepage');

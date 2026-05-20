@@ -19,6 +19,6 @@ class order extends Model {
     ];
 
     protected $casts = [
-        'orderDate' => 'date',
+        'orderDate' => 'datetime',
     ];
 }
