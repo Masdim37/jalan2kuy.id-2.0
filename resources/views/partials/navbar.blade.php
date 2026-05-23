@@ -130,7 +130,7 @@
     <nav class="navbar">
 
         <div class="logo">
-            <a href="{{ url('/') }}">
+            <a href="{{ url('/Homepage') }}">
                 <img src="{{ asset('assets/gambar/icon/logo.png') }}" alt="jalan2kuy.id logo">
             </a>
         </div>
