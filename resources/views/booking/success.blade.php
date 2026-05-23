@@ -6,7 +6,7 @@
     <title>Jalan2Kuy.id - Pembayaran Berhasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8f9fa;">
+<body style="margin: 0; padding: 0; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/gambar/bgfix2.jpg'); background-size: cover;  background-position: center; background-attachment: fixed;  min-height: 100vh;">
     @include('partials.navbar')
 
     <div style="padding: 100px 20px; text-align: center; min-height: 70vh;">
