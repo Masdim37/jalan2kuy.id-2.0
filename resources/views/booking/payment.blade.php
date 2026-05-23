@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jalan2Kuy.id - Pembayaran</title>
+    <link rel="stylesheet" href="{{ asset('css/payments/checkout.css') }}">
     <!-- Script WAJIB Midtrans -->
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 </head>

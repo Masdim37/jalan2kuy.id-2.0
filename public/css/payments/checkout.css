@@ -1,0 +1,34 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 110px;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('/assets/gambar/bgfix2.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #000;
+}
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+    body {
+        padding-top: 90px;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 576px) {
+    body {
+        padding-top: 80px;
+        background-size: cover;
+        background-position: center;
+    }
+}
