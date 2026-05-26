@@ -83,7 +83,7 @@ class EventController extends Controller { //penamaan controller menggunakan hur
         DB::beginTransaction();
         try {
             //generate eventID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
-            $lastEvent = Event::orderBy('eventID', 'desc')->lockForUpdate()->first(); //ambil eventID terakhir yang ada pada tabel event di database
+            $lastEvent = Event::withTrashed()->orderBy('eventID', 'desc')->first();
             $newEventID = 'evt001'; //jika tidak ditemukan eventID terakhir, gunakan $newEventID
 
             if ($lastEvent) { //jika ditemukan destinationID terakhir, maka generate destinationID baru

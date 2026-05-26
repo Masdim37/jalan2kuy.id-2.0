@@ -106,7 +106,7 @@ class UserBiasaController extends Controller
                 // ==========================================
                 // KONDISI B: AKUN BENAR-BENAR BARU -> CREATE
                 // ==========================================
-                $lastUser = UserBiasa::orderBy('userID', 'desc')->lockForUpdate()->first();
+                $lastUser = UserBiasa::withTrashed()->orderBy('userID', 'desc')->first();
                 $newUserID = 'usr001';
 
                 if ($lastUser) {

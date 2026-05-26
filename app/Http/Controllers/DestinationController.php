@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
-use App\Models\Destination; 
+use App\Models\Destination;
 use App\Models\DestCategory;
 use App\Models\Event;
 
-class DestinationController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
+class DestinationController extends Controller
+{ //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
     //function untuk menampilkan form addDestination
-    public function addDestination(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function addDestination(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -21,13 +23,14 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
         //ambil semua data event untuk ditampilkan pada dropdown 
         $events = Event::all(); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
-        
+
         //redirect ke halaman addDestination dengan membawa data $events
         return view('admin.destination.addDestination', ['events' => $events]);
     }
 
     //function untuk menyimpan data destination yang diinputkan pada form addDestination
-    public function storeDestinationData(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function storeDestinationData(Request $request)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -37,12 +40,12 @@ class DestinationController extends Controller { //penamaan controller menggunak
         $request->validate([
             'name' => 'required',
             'location' => 'required',
-            'description'=> 'required',
-            'entranceFee' =>'required|numeric',
+            'description' => 'required',
+            'entranceFee' => 'required|numeric',
             'openingDay' => 'required',
-            'closingDay'=> 'required',
-            'openingHours'=> 'required',
-            'closingHours'=> 'required',
+            'closingDay' => 'required',
+            'openingHours' => 'required',
+            'closingHours' => 'required',
             'timezone' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:10240',
             'thumbnailImage' => 'required|image|mimes:jpeg,png,jpg|max:10240',
@@ -53,7 +56,7 @@ class DestinationController extends Controller { //penamaan controller menggunak
         DB::beginTransaction();
         try {
             //generate destinationID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
-            $lastDestination = Destination::orderBy('destinationID', 'desc')->lockForUpdate()->first(); //ambil destinationID terakhir yang ada pada tabel destination di database
+            $lastDestination = Destination::withTrashed()->orderBy('destinationID', 'desc')->first();
             $newDestinationID = 'dst001'; //jika tidak ditemukan destinationID terakhir, gunakan $newDestinationID
 
             if ($lastDestination) { //jika ditemukan destinationID terakhir, maka generate destinationID baru
@@ -68,7 +71,7 @@ class DestinationController extends Controller { //penamaan controller menggunak
             if ($request->hasFile('image')) { //jika user mengupload image
                 $imagePath = $request->file('image')->store('destinations/image', 'public'); //simpan image tersebut kedalam folder storage/app/public/destinations/image menggunakan disk 'public', simpan string path nya kedalam variabel $imagePath
             }
-            
+
             //logika upload gambar thumbnail (thumbnailImage)
             $thumbnailImagePath = null; //set variabel $thumbnailImagePath ke NULL
             //cek apakah user mengupload thumbnail image atau tidak
@@ -78,13 +81,13 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
             //buat objek destination dan simpan datanya ke database
             $destination = new Destination();
-            $destination->destinationID = $newDestinationID; 
+            $destination->destinationID = $newDestinationID;
             $destination->name = $request->name;
             $destination->location = $request->location;
             $destination->description = $request->description;
             $destination->entranceFee = $request->entranceFee;
-            $destination->openingDay = $request->openingDay; 
-            $destination->closingDay = $request->closingDay; 
+            $destination->openingDay = $request->openingDay;
+            $destination->closingDay = $request->closingDay;
             $destination->openingHours = $request->openingHours;
             $destination->closingHours = $request->closingHours;
             $destination->timezone = $request->timezone;
@@ -130,7 +133,8 @@ class DestinationController extends Controller { //penamaan controller menggunak
     }
 
     //function untuk menampilkan detail destination pada halaman destination admin
-    public function tampilkanDetailDestinationAdmin($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilkanDetailDestinationAdmin($id)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -152,7 +156,8 @@ class DestinationController extends Controller { //penamaan controller menggunak
     }
 
     //function untuk mengahpus destination tertentu 
-    public function deleteDestination($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function deleteDestination($id)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -160,7 +165,7 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
         //ambil data destination dimana destinationID nya sesuai dengan $id (query), simpan kedalam $destination
         $destination = Destination::where('destinationID', $id)->first();
-        
+
         if ($destination) { //jika $destination ketemu
             //hapus destination nya
             $destination->delete();
@@ -174,7 +179,8 @@ class DestinationController extends Controller { //penamaan controller menggunak
     }
 
     //function untuk menampilkan form edit destination
-    public function tampilFormEditDestination($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilFormEditDestination($id)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -182,25 +188,26 @@ class DestinationController extends Controller { //penamaan controller menggunak
 
         //ambil data destination dimana destinationID nya sesuai dengan $id (query), simpan kedalam $destination
         $destination = Destination::where('destinationID', $id)->first();
-        
+
         if (!$destination) { //jika $destination tidak ketemu
             //redirect ke halaman sebelumnya dengan pesan error
             return back()->with('error', 'Destinasi tidak ditemukan.');
         }
 
-       //ambil semua data event untuk ditampilkan pada dropdown 
-        $allEvents = Event::all(); 
+        //ambil semua data event untuk ditampilkan pada dropdown 
+        $allEvents = Event::all();
 
         //ambil event milik destination yang mau di-edit
         //cari di tabel Event, yang foreign key destinationID-nya sesuai dengan $id, simpan kedalam $currentEvents
         $currentEvents = Event::where('destinationID', $id)->get();
-        
+
         //redirect ke halaman editDestinationAdmin dengan membawa data $destination, $allEvents (semua event), dan $currentEvents (event-event milik destination yang mau di-edit)
         return view('admin.destination.editDestinationAdmin', ['destination' => $destination, 'events' => $allEvents, 'currentEvents' => $currentEvents]);
     }
 
     //function untuk menyimpan hasil edit data destination yang diinputkan pada form editDestination
-    public function editDestination(Request $request, $id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function editDestination(Request $request, $id)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
@@ -217,14 +224,14 @@ class DestinationController extends Controller { //penamaan controller menggunak
             'openingHours' => 'required',
             'closingHours' => 'required',
             'timezone' => 'required',
-            'image' => 'nullable|image|max:10240', 
+            'image' => 'nullable|image|max:10240',
             'thumbnailImage' => 'nullable|image|max:10240',
         ]);
 
         try {
             //ambil data destination yang destinationID nya sesuai dengan $id, simpan kedalam $destination
             $destination = Destination::where('destinationID', $id)->first();
-            
+
             //logika update Gambar (Hanya jika ada user menguploadkan gambar baru)
             //cek apakah user mengupload image baru atau tidak
             if ($request->hasFile('image')) { //jika user mengupload image baru
@@ -275,10 +282,11 @@ class DestinationController extends Controller { //penamaan controller menggunak
     }
 
     //function untuk menampilkan detail destination pada halaman destination
-    public function tampilkanDetailDestination($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilkanDetailDestination($id)
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         if (!Session::has('user_id')) {
             return redirect('/')->with('error', 'Anda harus login dulu!');
-        } 
+        }
 
         //ambil data destination dimana destinationID nya sesuai dengan $id (query), simpan kedalam $destination
         $destination = Destination::where('destinationID', $id)->first();
@@ -296,23 +304,25 @@ class DestinationController extends Controller { //penamaan controller menggunak
     }
 
     //function untuk menampilkan galeri pada user biasa
-    public function tampilGaleri() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilGaleri()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         if (!Session::has('user_id')) {
             return redirect('/')->with('error', 'Anda harus login dulu!');
-        } 
-    
+        }
+
         $destinations = Destination::all(); //Ambil semua data destination dari database, simpan kedalam $destinations
         //redirect ke halaman gallery dengan membawa data $destinations
         return view('gallery.gallery', ['destinations' => $destinations]);
     }
 
     //function untuk menampilkan galeri pada user admin
-    public function tampilGaleriAdmin() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+    public function tampilGaleriAdmin()
+    { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        
+
         $destinations = Destination::all(); //Ambil semua data destination dari database, simpan kedalam $destinations
         //redirect ke halaman galleryAdmin dengan membawa data $destinations
         return view('admin.gallery.galleryAdmin', compact('destinations'));
