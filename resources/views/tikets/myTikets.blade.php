@@ -32,7 +32,10 @@
                         <span style="background-color: #2ecc71; color: white; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 15px;">
                             <i class="fa-solid fa-circle-check"></i> Sudah Dibayar
                         </span>
-                        <div style="font-size: 11px; color: #27ae60; font-weight: bold;">Tiket Siap Digunakan</div>
+                        <div style="font-size: 11px; color: #27ae60; font-weight: bold; margin-bottom: 15px;">Tiket Siap Digunakan</div>
+                        <form action="{{ url('/PrintTiket') }}" method="GET">
+                            <button style="background-color: #2ecc71; color: white; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 15px;"><i class="fa-solid fa-ticket"></i> Print Tiket</button>
+                        </form>
                     @elseif($tiket->tiketStatus == 0)
                         <span style="background-color: #f1c40f; color: #333; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 15px;">
                             <i class="fa-solid fa-clock"></i> Pending

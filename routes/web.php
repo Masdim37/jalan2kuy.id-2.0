@@ -69,6 +69,9 @@ Route::get('/BeliTiket/{id}', [UserBiasaController::class, 'TampilBeliTiket']);
 // Tampilkan Tiket (Pastikan fungsi showMyTicket di TiketController cuma nampilin yg tiketStatus == 1 ya)
 Route::get('/MyTiket', [TiketController::class, 'showMyTicket']);
 
+// Tampilkan Tiket (Pastikan fungsi showMyTicket di TiketController cuma nampilin yg tiketStatus == 1 ya)
+Route::get('/PrintTiket', [TiketController::class, 'printMyTicket']);
+
 // Proses Buat Order & Tampilkan Tombol Bayar
 Route::post('/checkout/{id}', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('checkout');
 

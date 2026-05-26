@@ -49,4 +49,25 @@ class TiketController extends Controller
             'message' => 'Tiket Tidak Valid atau Sudah Pernah Digunakan!'
         ], 400);
     }
+
+    public function printMyTicket()
+    {
+        // 1. Pastikan user sudah login
+        if (!Session::has('user_id')) {
+            return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
+        }
+
+        $userID = Session::get('user_id');
+
+        // 2. Ambil semua tiket milik user (Pending, Lunas, Maupun Gagal)
+        // Diurutkan dari yang terbaru, dibatasi 5 tiket per halaman
+        $tikets = tiket::with(['event', 'order'])
+            ->whereHas('order', function ($query) use ($userID) {
+                $query->where('userID', $userID);
+            })
+            ->orderBy('tiketID', 'desc') // Menampilkan yang paling baru dibeli di urutan teratas
+            ->paginate(5);
+
+        return view('tikets.printTikets', compact('tikets'));
+    }
 }
