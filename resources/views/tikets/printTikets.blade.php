@@ -24,11 +24,11 @@
                     <p style="margin: 5px 0; color: #555; font-size: 20px; font-weight: bold;">Tanggal</p>
                     <p style="margin: 5px 0; color: black; font-size: 20px; font-weight: bold; margin-bottom: 11px;"><i class="fa-solid fa-calendar-days" style="width: 20px; color: #16c4b0; margin-bottom: 11px;"></i> {{ $tiket->event->date ?? '-' }}</p>
                     <p style="margin: 5px 0; color: #555; font-size: 20px; font-weight: bold;">Waktu</p>
-                    <p style="margin: 5px 0; color: black; font-size: 20px; font-weight: bold;"><i class="fa-solid fa-location-dot" style="width: 20px; color: #16c4b0;"></i> {{ $tiket->event->time ?? '-' }}</p>
+                    <p style="margin: 5px 0; color: black; font-size: 20px; font-weight: bold;"><i class="fa-solid fa-clock" style="width: 20px; color: #16c4b0;"></i> {{ $tiket->event->time ?? '-' }}</p>
                     
                 </div>
 
-                <div class: ticket-right style=" background: #fdfdfd; border-left: 2px dashed #ddd; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 180px; text-align: center;">
+                <div class: ticket-right style=" background: #fdfdfd; #ddd; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 180px; text-align: center;">
                     
                     @if($tiket->tiketStatus == 1)
                         <span style=" color: gray; font-weight: bold; font-size: 22px; display: inline-block; margin-bottom: 10px;">
