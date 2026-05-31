@@ -19,10 +19,6 @@ class tiket extends Model {
         'orderID',
     ];
 
-    protected $casts = [
-        'tiketStatus' => 'boolean',
-    ];
-
     // Relasi ke tabel Event
     public function event()
     {

@@ -26,7 +26,9 @@ Route::get('/register', function () {
 
 Route::post('/register-proses', [UserBiasaController::class, 'register']);
 
+// Alur Lupa Password (Start)
 // Lupa Password Routes
+// 1. Halaman input email
 Route::get('/lupaPass', [UserBiasaController::class, 'tampilFormLupaPass'])->name('lupa.password');
 Route::post('/lupaPassProses', [UserBiasaController::class, 'prosesKirimOtp']);
 Route::get('/resend-otp',  [UserBiasaController::class, 'resendOtp']);
@@ -43,6 +45,9 @@ Route::get('/Homepage', function () {
     }
     return view('homepage');
 });
+// Alur Lupa Password (End)
+
+
 
 
 //Alur Destination (User Biasa) (Start)
@@ -210,7 +215,8 @@ Route::prefix('admin')->group(function () {
     //Alur account (User Admin) (End)
 });
 
-// Alur Lupa Password (Start)
-// 1. Halaman input email
+// Route untuk memproses ulang Snap Token dan lanjut ke halaman pembayaran
+Route::get('/payment/continue/{orderID}', [App\Http\Controllers\PaymentController::class, 'continuePayment'])->name('payment.continue');
 
-// Alur Lupa Password (End)
+// Route POST untuk membatalkan pesanan yang berstatus pending
+Route::post('/payment/cancel/{orderID}', [App\Http\Controllers\PaymentController::class, 'cancelPayment'])->name('payment.cancel');
