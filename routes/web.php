@@ -220,3 +220,5 @@ Route::get('/payment/continue/{orderID}', [App\Http\Controllers\PaymentControlle
 
 // Route POST untuk membatalkan pesanan yang berstatus pending
 Route::post('/payment/cancel/{orderID}', [App\Http\Controllers\PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+// Route untuk mencetak tiket PDF/Kertas
+Route::get('/tiket/print/{tiketID}', [App\Http\Controllers\TiketController::class, 'printTiket'])->name('tiket.print');

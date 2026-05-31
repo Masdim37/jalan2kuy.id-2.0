@@ -10,20 +10,17 @@ class TiketController extends Controller
 {
     public function showMyTicket()
     {
-        // 1. Pastikan user sudah login
         if (!Session::has('user_id')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
         }
 
         $userID = Session::get('user_id');
 
-        // 2. Ambil semua tiket milik user (Pending, Lunas, Maupun Gagal)
-        // Diurutkan dari yang terbaru, dibatasi 5 tiket per halaman
         $tikets = tiket::with(['event', 'order'])
             ->whereHas('order', function ($query) use ($userID) {
                 $query->where('userID', $userID);
             })
-            ->orderBy('tiketID', 'desc') // Menampilkan yang paling baru dibeli di urutan teratas
+            ->orderBy('tiketID', 'desc') 
             ->paginate(5);
 
         return view('tikets.myTikets', compact('tikets'));
@@ -34,7 +31,6 @@ class TiketController extends Controller
         $tiket = tiket::where('tiketID', $tiketID)->first();
 
         if ($tiket && $tiket->tiketStatus == 1) {
-            // Ubah status menjadi 0 setelah sukses di-scan (hangus)
             $tiket->tiketStatus = 0;
             $tiket->save();
 
@@ -50,24 +46,19 @@ class TiketController extends Controller
         ], 400);
     }
 
-    public function printMyTicket()
+    // Fungsi Baru: Tampilkan Tiket untuk di-Print
+    public function printTiket($tiketID)
     {
-        // 1. Pastikan user sudah login
         if (!Session::has('user_id')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
         }
 
-        $userID = Session::get('user_id');
+        $tiket = tiket::with(['event', 'order'])->where('tiketID', $tiketID)->firstOrFail();
 
-        // 2. Ambil semua tiket milik user (Pending, Lunas, Maupun Gagal)
-        // Diurutkan dari yang terbaru, dibatasi 5 tiket per halaman
-        $tikets = tiket::with(['event', 'order'])
-            ->whereHas('order', function ($query) use ($userID) {
-                $query->where('userID', $userID);
-            })
-            ->orderBy('tiketID', 'desc') // Menampilkan yang paling baru dibeli di urutan teratas
-            ->paginate(5);
+        if ($tiket->tiketStatus != 1) {
+            return redirect('/MyTiket')->with('error', 'Tiket tidak valid atau belum dilunasi!');
+        }
 
-        return view('tikets.printTikets', compact('tikets'));
+        return view('tikets.printTikets', compact('tiket'));
     }
 }

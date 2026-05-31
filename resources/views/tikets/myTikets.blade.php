@@ -34,9 +34,7 @@
                     <h3 style="margin: 5px 0 10px 0; color: #222; font-size: 20px;">{{ $tiket->event->name ?? 'Nama Event Tidak Tersedia' }}</h3>
                     
                     <p style="margin: 5px 0; color: #555; font-size: 14px;"><i class="fa-solid fa-calendar-days" style="width: 20px; color: #16c4b0;"></i> {{ $tiket->event->startDate ?? '-' }} s/d {{ $tiket->event->endDate ?? '-' }}</p>
-                    
                     <p style="margin: 5px 0; color: #555; font-size: 14px;"><i class="fa-solid fa-clock" style="width: 20px; color: #16c4b0;"></i> {{ isset($tiket->event->startTime) ? date('H:i', strtotime($tiket->event->startTime)) : '-' }} - {{ isset($tiket->event->endTime) ? date('H:i', strtotime($tiket->event->endTime)) : '-' }} WIB</p>
-                    
                     <p style="margin: 5px 0; color: #555; font-size: 14px;"><i class="fa-solid fa-location-dot" style="width: 20px; color: #16c4b0;"></i> {{ $tiket->event->location ?? '-' }}</p>
                     <p style="margin: 5px 0; color: #333; font-weight: bold; font-size: 15px;">Harga: Rp {{ number_format($tiket->price, 0, ',', '.') }}</p>
                 </div>
@@ -44,18 +42,15 @@
                 <div style="padding: 20px; background: #fdfdfd; border-left: 2px dashed #ddd; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 200px; text-align: center;">
                     
                     @if($tiket->tiketStatus == 1)
-                        <span style="background-color: #2ecc71; color: white; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 15px;">
+                        <span style="background-color: #2ecc71; color: white; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 10px;">
                             <i class="fa-solid fa-circle-check"></i> Sudah Dibayar
                         </span>
-<<<<<<< HEAD
-                        <div style="font-size: 11px; color: #27ae60; font-weight: bold; margin-bottom: 15px;">Tiket Siap Digunakan</div>
-                        <form action="{{ url('/PrintTiket') }}" method="GET">
-                            <button style="background-color: #2ecc71; color: white; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 15px;"><i class="fa-solid fa-ticket"></i> Print Tiket</button>
-                        </form>
-=======
-                        <div style="font-size: 11px; color: #27ae60; font-weight: bold;">Tiket Siap Digunakan</div>
+                        <div style="font-size: 11px; color: #27ae60; font-weight: bold; margin-bottom: 10px;">Tiket Siap Digunakan</div>
+                        
+                        <a href="{{ route('tiket.print', $tiket->tiketID) }}" target="_blank" style="background-color: #3498db; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: bold; display: inline-block; box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);">
+                            <i class="fa-solid fa-print"></i> Print Tiket
+                        </a>
                     
->>>>>>> versi2
                     @elseif($tiket->tiketStatus == 0)
                         <span style="background-color: #f1c40f; color: #333; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 12px; display: inline-block; margin-bottom: 8px;">
                             <i class="fa-solid fa-clock"></i> Pending
