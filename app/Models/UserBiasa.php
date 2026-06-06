@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserBiasa extends Model {
     use SoftDeletes;
+    use HasApiTokens;
     
     protected $table = 'user'; //nama tabel memakai huruf kecil
     protected $primaryKey = 'userID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
