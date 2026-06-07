@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserMobileController; 
 use App\Http\Controllers\Api\DestinationMobileController; 
+use App\Http\Controllers\Api\EventMobileController;
 
 // Route untuk Login Mobile
 Route::post('/', [UserMobileController::class, 'login']);
@@ -21,5 +22,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/destination/category', [DestinationMobileController::class, 'destinasiByKategori']);
     Route::get('/destination/detail', [DestinationMobileController::class, 'detailDestination']);
     Route::get('/gallery', [DestinationMobileController::class, 'tampilGaleri']);
+
+    Route::get('/event', [EventMobileController::class, 'tampilEvent']);
+    Route::get('/event/detail', [EventMobileController::class, 'tampilDetailEvent']);
+    
 
 });
