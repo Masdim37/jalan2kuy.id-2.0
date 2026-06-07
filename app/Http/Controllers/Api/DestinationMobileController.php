@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DestCategory;
 use App\Models\Destination;
+use App\Models\Event;
+use Symfony\Component\Mime\Part\Multipart\RelatedPart;
 
 class DestinationMobileController extends Controller
 {
@@ -60,6 +62,49 @@ class DestinationMobileController extends Controller
         return response()->json([
             'success' => true,
             'data' => $destinations
+        ], 200);
+    }
+
+    public function detailDestination(Request $request)
+    {
+        $destinationId = $request->destinationID;
+
+        $destination = Destination::where('destinationID', $destinationId)->first();
+
+        $relatedEvents = Event::where('destinationID', $destinationId)->get();
+
+        if (!$destination) {
+            return response()->json([
+                'success' => false, // Ganti ke false agar Flutter bisa membedakan dengan sukses data
+                'message' => 'Destinasi Tidak Ditemukan.',
+                'destination' => null, // Kirim array kosong
+                'event' => []
+            ], 200); // Tetap 200 OK karena server berhasil memproses request, hanya saja datanya tidak ada
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Destinasi Ditemukan',
+            'destination' => $destination,   
+            'event' => $relatedEvents
+        ], 200);
+    }
+
+    public function tampilGaleri(){
+        $destination = Destination::all();
+
+        if (!$destination) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Destinasi Tidak Ditemukan',
+                'data' => [], 
+            ], 200); 
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Destinasi Ditemukan',
+            'data' => $destination
         ], 200);
     }
 }

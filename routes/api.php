@@ -19,4 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/destination', [DestinationMobileController::class, 'tampilCategory']);
     Route::get('/destination/category', [DestinationMobileController::class, 'destinasiByKategori']);
+    Route::get('/destination/detail', [DestinationMobileController::class, 'detailDestination']);
+    Route::get('/gallery', [DestinationMobileController::class, 'tampilGaleri']);
+
 });
