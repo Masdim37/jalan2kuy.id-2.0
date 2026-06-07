@@ -28,7 +28,8 @@ class UserBiasa extends Model {
     ];
 
     protected $casts = [
-        'birthDate' => 'date',
+        // 'birthDate' => 'date',
+        'birthDate' => 'date:Y-m-d',
         'gender'   => 'boolean',
         'deleted_at' => 'datetime',
         'created_at' => 'datetime',

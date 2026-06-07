@@ -2,14 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthMobileController; 
+use App\Http\Controllers\Api\UserMobileController; 
+use App\Http\Controllers\Api\DestinationMobileController; 
 
 // Route untuk Login Mobile
-Route::post('/', [AuthMobileController::class, 'login']);
+Route::post('/', [UserMobileController::class, 'login']);
 
-// Contoh route yang dilindungi (Hanya bisa diakses jika di Flutter mengirimkan Token yang valid)
+// Route yang WAJIB menyertakan Token (Harus Login)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    
+    // Route untuk mengambil data akun
+    Route::get('/account', [UserMobileController::class, 'showAccount']);
+    
+    // Jalur mengubah data profil (Gunakan POST atau PUT)
+    Route::post('/account/edit', [UserMobileController::class, 'editProfile']);
+
+    Route::get('/destination', [DestinationMobileController::class, 'tampilCategory']);
+    Route::get('/destination/category', [DestinationMobileController::class, 'destinasiByKategori']);
 });

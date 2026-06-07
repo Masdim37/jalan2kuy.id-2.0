@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DestCategory extends Model {
+class DestCategory extends Model
+{
     protected $table = 'destcategory'; //nama tabel memakai huruf kecil
     protected $primaryKey = 'destCategoryID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
     protected $keyType = 'string'; //tipe data primary key selalu string
@@ -17,4 +18,9 @@ class DestCategory extends Model {
         'categoryName',
         'categoryImage',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->categoryImage); // Pastikan path benar
+    }
 }
