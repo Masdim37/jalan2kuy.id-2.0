@@ -263,4 +263,28 @@ class UserMobileController extends Controller
             ], 500);
         }
     }
+
+    public function deleteAccount(Request $request)
+    {
+        // 1. Ambil data user yang sedang login dari token Sanctum
+        $user = $request->user();
+
+        if ($user) {
+            // 2. Hapus token akses agar tidak bisa digunakan lagi
+            $user->currentAccessToken()->delete();
+
+            // 3. Hapus akun (Karena model memakai SoftDeletes, ini hanya akan mengisi kolom deleted_at)
+            $user->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Akun berhasil dihapus.'
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Sesi tidak valid atau user tidak ditemukan.'
+        ], 401);
+    }
 }

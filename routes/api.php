@@ -20,7 +20,8 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Jalur mengubah data profil (Gunakan POST atau PUT)
     Route::post('/account/edit', [UserMobileController::class, 'editProfile']);
-    
+
+    Route::post('/account/delete', [UserMobileController::class, 'deleteAccount']);
 
     Route::get('/destination', [DestinationMobileController::class, 'tampilCategory']);
     Route::get('/destination/category', [DestinationMobileController::class, 'destinasiByKategori']);
