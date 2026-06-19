@@ -12,6 +12,8 @@ Route::post('/register', [UserMobileController::class, 'register']);
 
 // Route yang WAJIB menyertakan Token (Harus Login)
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::post('/logout', [UserMobileController::class, 'logout']);
     
     // Route untuk mengambil data akun
     Route::get('/account', [UserMobileController::class, 'showAccount']);

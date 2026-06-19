@@ -44,6 +44,29 @@ class UserMobileController extends Controller
         ], 200);
     }
 
+    public function logout(Request $request)
+    {
+        // 1. Ambil instance user aktif lewat Sanctum token
+        $user = $request->user();
+
+        if ($user) {
+            // 2. Hapus token token yang sedang digunakan saat ini (Revoke Token)
+            $user->currentAccessToken()->delete();
+
+            // 3. Kembalikan response JSON sukses ke Flutter
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil Logout. Sesi token telah dihapus.'
+            ], 200);
+        }
+
+        // Return error jika sesi token dari mobile sudah tidak valid terlebih dahulu
+        return response()->json([
+            'success' => false,
+            'message' => 'Sesi tidak valid.'
+        ], 401);
+    }
+
     public function showAccount(Request $request)
     {
         // Karena route ini akan dilindungi middleware auth:sanctum, 
