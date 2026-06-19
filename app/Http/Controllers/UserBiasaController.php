@@ -41,7 +41,7 @@ class UserBiasaController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'nameUser' => 'required',
+            'nameUser'  => 'required|string|max:255',
             // Perbaikan: Pastikan unique ke tabel user yang benar (contoh: 'users')
             'email' => [
                 'required',

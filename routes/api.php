@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\EventMobileController;
 
 // Route untuk Login Mobile
 Route::post('/', [UserMobileController::class, 'login']);
+Route::post('/register', [UserMobileController::class, 'register']); 
 
 // Route yang WAJIB menyertakan Token (Harus Login)
 Route::middleware('auth:sanctum')->group(function () {
@@ -17,6 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Jalur mengubah data profil (Gunakan POST atau PUT)
     Route::post('/account/edit', [UserMobileController::class, 'editProfile']);
+    
 
     Route::get('/destination', [DestinationMobileController::class, 'tampilCategory']);
     Route::get('/destination/category', [DestinationMobileController::class, 'destinasiByKategori']);
@@ -26,5 +28,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/event', [EventMobileController::class, 'tampilEvent']);
     Route::get('/event/detail', [EventMobileController::class, 'tampilDetailEvent']);
     
-
+    
 });
