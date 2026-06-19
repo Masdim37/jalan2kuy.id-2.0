@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserMobileController; 
 use App\Http\Controllers\Api\DestinationMobileController; 
 use App\Http\Controllers\Api\EventMobileController;
+use App\Http\Controllers\Api\TiketMobileController; 
 
 // Route untuk Login Mobile
 Route::post('/', [UserMobileController::class, 'login']);
@@ -30,6 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/event', [EventMobileController::class, 'tampilEvent']);
     Route::get('/event/detail', [EventMobileController::class, 'tampilDetailEvent']);
+
+    Route::get('/MyTicket', [TiketMobileController::class, 'showMyTicket']);
     
     
 });
