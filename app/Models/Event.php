@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Event extends Model {
     use SoftDeletes;
@@ -32,8 +33,20 @@ class Event extends Model {
     //casting tipe data agar sesuai kebutuhan
     protected $casts = [
         'entranceFee' => 'integer',
-        'startDate' => 'date',
-        'endDate'   => 'date',
         'deleted_at'  => 'datetime',
     ];
+
+    // Accessor untuk memformat startDate dari UTC ke WIB lalu mengambil Y-m-d
+    public function getStartDateAttribute($value)
+    {
+        if (!$value) return null;
+        return Carbon::parse($value)->timezone('Asia/Jakarta')->format('Y-m-d');
+    }
+
+    // Accessor untuk memformat endDate dari UTC ke WIB lalu mengambil Y-m-d
+    public function getEndDateAttribute($value)
+    {
+        if (!$value) return null;
+        return Carbon::parse($value)->timezone('Asia/Jakarta')->format('Y-m-d');
+    }
 }
