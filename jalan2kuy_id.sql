@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Bulan Mei 2026 pada 18.07
+-- Waktu pembuatan: 20 Jun 2026 pada 21.48
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -152,9 +152,9 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`eventID`, `name`, `quota`, `startDate`, `endDate`, `location`, `description`, `entranceFee`, `startTime`, `endTime`, `socialMedia`, `imagePath`, `destinationID`, `adminID`, `deleted_at`) VALUES
-('evt001', 'SAMBUT ENERGI POSITIF DI TENGAH KEAGUNGAN CANDI BOROBUDUR', 100000, '2025-08-22', '2025-12-28', 'Borobudur Cultural Center, Candi Borobudur', 'Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. \"Samadha\" (Samadhi) merupakan istilah dalam praktik meditasi yang merujuk pada kondisi konsentrasi penuh dan ketenangan mendalam, sementara Pranic Healing adalah teknik penyembuhan yang menggunakan energi prana atau energi vital. Acara ini bukan sekadar meditasi biasa, melainkan penggabungan ilmu pranic healing dengan teknik meditasi, bertujuan untuk melepaskan stres, mengembalikan keseimbangan tubuh, serta mengisi diri dengan energi positif yang berlimpah dari lingkungan Borobudur. Program ini sangat ideal bagi mereka yang mencari pengalaman wisata wellness dan spiritual.', 100, '09:00:00', '15:00:00', 'borobudurculturalcenter', 'events/z2rXQT6K6lTGH70YUI6zwKNnFzR6WWao1LRgv1fU.jpg', 'dst004', 'adm001', NULL),
-('evt002', 'SENDRATARI RAMAYANA PRAMBANAN', 99999, '2025-11-01', '2025-12-31', 'Gedung Trimurti, Candi Prambanan', 'Persembahan budaya yang megah, Sendratari Ramayana Prambanan adalah sebuah mahakarya yang menawan. Di tengah keagungan Candi Prambanan yang spiritual, epos kuno Ramayana dihidupkan kembali melalui tarian gemulai, drama yang kuat, dan iringan gamelan yang syahdu. Pertunjukan ini bukan sekadar tontonan, melainkan pengalaman mendalam yang menghubungkan penonton dengan warisan budaya luhur Jawa. Pada periode akhir tahun ini, suasana hangat Gedung Trimurti (panggung tetutup) akan menjadi saksi bisu keindahan abadi kisah Rama dan Shinta.', 150000, '19:30:00', '21:00:00', 'prambananpark', 'events/NemigAYqbj0Ie9Sk2ygu8sw6gONsz8ruWLyGodJW.jpg', 'dst005', 'adm001', NULL),
-('evt003', 'SORAK SORAI FEST 2026', 100000, '2025-12-30', '2026-01-01', 'Taman Mini Indonesia Indah', 'Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. Festival ini biasanya berlangsung di Taman Mini Indonesia Indah (TMII) saat pergantian tahun, menawarkan hiburan untuk pengunjung dari berbagai kalangan. Festival yang biasanya diselenggarakan di Taman Mini Indonesia Indah (TMII) menjelang pergantian tahun. Dengan konsep hiburan keluarga dan pesta rakyat, Sorak Sorai Fest menjadi salah satu agenda tahunan yang paling dinanti oleh masyarakat Jakarta untuk merayakan malam tahun baru dalam suasana penuh warna dan kebersamaan.', 100000, '17:00:00', '23:00:00', 'soraksoraifest', 'events/PMwiAL85B8JFoBeZmh8FwuriBxkX8JCA5kPLymnR.jpg', 'dst017', 'adm001', NULL),
+('evt001', 'SAMBUT ENERGI POSITIF DI TENGAH KEAGUNGAN CANDI BOROBUDUR', 99999, '2025-08-22', '2025-12-28', 'Borobudur Cultural Center, Candi Borobudur', 'Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. \"Samadha\" (Samadhi) merupakan istilah dalam praktik meditasi yang merujuk pada kondisi konsentrasi penuh dan ketenangan mendalam, sementara Pranic Healing adalah teknik penyembuhan yang menggunakan energi prana atau energi vital. Acara ini bukan sekadar meditasi biasa, melainkan penggabungan ilmu pranic healing dengan teknik meditasi, bertujuan untuk melepaskan stres, mengembalikan keseimbangan tubuh, serta mengisi diri dengan energi positif yang berlimpah dari lingkungan Borobudur. Program ini sangat ideal bagi mereka yang mencari pengalaman wisata wellness dan spiritual.', 100, '09:00:00', '15:00:00', 'borobudurculturalcenter', 'events/z2rXQT6K6lTGH70YUI6zwKNnFzR6WWao1LRgv1fU.jpg', 'dst004', 'adm001', NULL),
+('evt002', 'SENDRATARI RAMAYANA PRAMBANAN', 99997, '2025-11-01', '2025-12-31', 'Gedung Trimurti, Candi Prambanan', 'Persembahan budaya yang megah, Sendratari Ramayana Prambanan adalah sebuah mahakarya yang menawan. Di tengah keagungan Candi Prambanan yang spiritual, epos kuno Ramayana dihidupkan kembali melalui tarian gemulai, drama yang kuat, dan iringan gamelan yang syahdu. Pertunjukan ini bukan sekadar tontonan, melainkan pengalaman mendalam yang menghubungkan penonton dengan warisan budaya luhur Jawa. Pada periode akhir tahun ini, suasana hangat Gedung Trimurti (panggung tetutup) akan menjadi saksi bisu keindahan abadi kisah Rama dan Shinta.', 150000, '19:30:00', '21:00:00', 'prambananpark', 'events/NemigAYqbj0Ie9Sk2ygu8sw6gONsz8ruWLyGodJW.jpg', 'dst005', 'adm001', NULL),
+('evt003', 'SORAK SORAI FEST 2026', 99997, '2025-12-29', '2025-12-31', 'Taman Mini Indonesia Indah', 'Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. Festival ini biasanya berlangsung di Taman Mini Indonesia Indah (TMII) saat pergantian tahun, menawarkan hiburan untuk pengunjung dari berbagai kalangan. Festival yang biasanya diselenggarakan di Taman Mini Indonesia Indah (TMII) menjelang pergantian tahun. Dengan konsep hiburan keluarga dan pesta rakyat, Sorak Sorai Fest menjadi salah satu agenda tahunan yang paling dinanti oleh masyarakat Jakarta untuk merayakan malam tahun baru dalam suasana penuh warna dan kebersamaan.', 100000, '17:00:00', '23:00:00', 'soraksoraifest', 'events/PMwiAL85B8JFoBeZmh8FwuriBxkX8JCA5kPLymnR.jpg', 'dst017', 'adm001', NULL),
 ('evt004', 'tes', 100000, '2026-05-01', '2026-05-02', 'tes', 'tes', 10, '09:00:00', '12:00:00', 'tes', 'events/Kab0x59zlqw2SwUSQ8PTudFoXohg0q77WQmlaXz9.jpg', NULL, 'adm002', '2026-05-17 08:10:49');
 
 -- --------------------------------------------------------
@@ -176,7 +176,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1);
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(5, '2026_06_06_161136_create_personal_access_tokens_table', 2);
 
 -- --------------------------------------------------------
 
@@ -198,9 +199,16 @@ CREATE TABLE `order` (
 INSERT INTO `order` (`orderID`, `orderDate`, `userID`, `totalPrice`) VALUES
 ('OD2QZP', '2026-05-20 18:11:05', 'usr002', 100000.00),
 ('OD2RLE', '2026-05-20 11:21:00', 'usr007', 150000.00),
+('OD5SFG', '2026-06-20 19:17:34', 'usr003', 150000.00),
+('OD85LH', '2026-06-07 18:16:34', 'usr001', 150000.00),
 ('ODAIMH', '2026-05-20 18:11:05', 'usr001', 200.00),
+('ODCXVQ', '2026-06-05 15:53:02', 'usr001', 100000.00),
+('ODDAAX', '2026-06-20 19:16:59', 'usr003', 100.00),
+('ODDABM', '2026-06-08 08:46:19', 'usr001', 100.00),
 ('ODGRZU', '2026-05-20 18:27:17', 'usr006', 100.00),
 ('ODKLGF', '2026-05-23 05:03:40', 'usr001', 100000.00),
+('ODLNXP', '2026-06-05 15:52:38', 'usr001', 100000.00),
+('ODMRL8', '2026-06-08 08:38:08', 'usr005', 100000.00),
 ('ODQDQK', '2026-05-31 05:48:14', 'usr004', 150000.00),
 ('ODUSLP', '2026-05-20 18:11:05', 'usr001', 100000.00),
 ('ODVMJL', '2026-05-20 11:18:49', 'usr007', 100000.00),
@@ -228,15 +236,137 @@ CREATE TABLE `payment` (
 INSERT INTO `payment` (`paymentID`, `paymentDate`, `paymentStatus`, `orderID`) VALUES
 ('PY18H0', '2026-05-31', 'pending', 'ODZ969'),
 ('PY39BZ', '2026-05-20', 'success', 'OD2RLE'),
+('PY6BNA', '2026-06-08', 'success', 'ODDABM'),
 ('PYAHHM', '2026-05-20', 'success', 'OD2QZP'),
 ('PYARZX', '2026-05-23', 'success', 'ODKLGF'),
 ('PYBKQI', '2026-05-20', 'success', 'ODUSLP'),
+('PYBOLL', '2026-06-21', 'pending', 'OD5SFG'),
+('PYFM1B', '2026-06-05', 'pending', 'ODCXVQ'),
 ('PYJ7VI', '2026-05-21', 'success', 'ODGRZU'),
+('PYMUVS', '2026-06-21', 'cancelled', 'ODDAAX'),
+('PYOOCH', '2026-06-08', 'success', 'ODMRL8'),
+('PYPERS', '2026-06-05', 'pending', 'ODLNXP'),
 ('PYPRNU', '2026-05-20', 'pending', 'ODZPYR'),
 ('PYPUAC', '2026-05-17', 'pending', 'ODAIMH'),
 ('PYSQBM', '2026-05-31', 'pending', 'ODQDQK'),
+('PYTLDH', '2026-06-08', 'pending', 'OD85LH'),
 ('PYUAXR', '2026-05-20', 'pending', 'ODVMJL'),
 ('PYWPNV', '2026-05-20', 'success', 'ODVVMK');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'e8aedec9d396ad782604f62c8b823842b771aca08fe91e8ba89ca2ad7306d955', '[\"*\"]', NULL, NULL, '2026-06-06 09:37:50', '2026-06-06 09:37:50'),
+(2, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'd6da9f5da4dde771ed67ad57c00f7220615be9924ef5b1349b571ec1d9870ca4', '[\"*\"]', NULL, NULL, '2026-06-06 09:56:27', '2026-06-06 09:56:27'),
+(3, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '44887d790c77fe14b4a661c880a10ed663f1c48a72355cbc16348fe895084d77', '[\"*\"]', NULL, NULL, '2026-06-06 10:21:06', '2026-06-06 10:21:06'),
+(4, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '8b817003504c01cdacfa489a863a9ce4d93484495b9434b19316e7da61513901', '[\"*\"]', NULL, NULL, '2026-06-06 10:23:53', '2026-06-06 10:23:53'),
+(5, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'df97ee1c32a7a93b8879f6a1f07e9ef2add381feb291c3000f6e722b9bf0d58e', '[\"*\"]', NULL, NULL, '2026-06-06 10:24:50', '2026-06-06 10:24:50'),
+(6, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '40da6756a1373b802f9fed1046a5c223c0241e14e6720e5a7d08bf2fd88f6037', '[\"*\"]', NULL, NULL, '2026-06-06 10:27:52', '2026-06-06 10:27:52'),
+(7, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'd6b5af92a4d2122ebcd691344e2a49ae9afd911867769d75438ffa7c7ae8fbd4', '[\"*\"]', NULL, NULL, '2026-06-06 10:35:31', '2026-06-06 10:35:31'),
+(8, 'App\\Models\\UserBiasa', 'usr004', 'auth_token', 'f123944f5ab64f5b5e254ebbf87957bcdd59614ac656c553a147f68c67376795', '[\"*\"]', NULL, NULL, '2026-06-06 10:39:08', '2026-06-06 10:39:08'),
+(9, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'ee63eeb11a5815447ea510369904e6452ee4ad1c6b5208e13de659884b2117e3', '[\"*\"]', NULL, NULL, '2026-06-06 14:14:32', '2026-06-06 14:14:32'),
+(10, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '07257120b3013e42a47033993b3daf6408205e13123c0afd8c93700160c7edf6', '[\"*\"]', NULL, NULL, '2026-06-06 14:18:25', '2026-06-06 14:18:25'),
+(11, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b053e5f0e90af34f728326a08a0bb6811c239718cba9223492ac20e2015c4dd6', '[\"*\"]', NULL, NULL, '2026-06-06 14:20:52', '2026-06-06 14:20:52'),
+(12, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b2f05a973febae107f397345c86333fe5c9fa6d7c16bd3dbd6176340af5e5c85', '[\"*\"]', NULL, NULL, '2026-06-06 19:11:39', '2026-06-06 19:11:39'),
+(13, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'c8667194d31a720c6bc6cd13f91a27d393deb424a02f0b638577475fcfd9c861', '[\"*\"]', NULL, NULL, '2026-06-06 19:21:22', '2026-06-06 19:21:22'),
+(14, 'App\\Models\\UserBiasa', 'usr004', 'auth_token', '08a184e234f1147de3f03259ec5e3f43ac73fb707e55c654ccaf1e96a0a71cca', '[\"*\"]', '2026-06-06 19:46:00', NULL, '2026-06-06 19:27:22', '2026-06-06 19:46:00'),
+(15, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '2ae4a565dfd529b088d55ac9069b8df3c3ae49bcdef23592faf1d3f4995a04eb', '[\"*\"]', '2026-06-07 10:08:29', NULL, '2026-06-06 19:37:49', '2026-06-07 10:08:29'),
+(16, 'App\\Models\\UserBiasa', 'usr004', 'auth_token', '53e21ccc05efca0583fffc988809f0643c6b9c878f67718237f7896e45cd6b9f', '[\"*\"]', '2026-06-06 19:56:07', NULL, '2026-06-06 19:56:05', '2026-06-06 19:56:07'),
+(17, 'App\\Models\\UserBiasa', 'usr004', 'auth_token', '3d07621d568a73287d65e4d5db80e3d416a844456ec0a672cba68125e1de06be', '[\"*\"]', '2026-06-06 20:07:39', NULL, '2026-06-06 19:57:31', '2026-06-06 20:07:39'),
+(18, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'fdc0f6b16d7cc2c0a6e6b3f278961c0ac4aba5b55643cf128a4788a0d4bc6ccc', '[\"*\"]', '2026-06-06 20:14:27', NULL, '2026-06-06 20:14:12', '2026-06-06 20:14:27'),
+(19, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '6b34e5083c21c49de06f57c3287fda65274702cc54ac6d1a764ee78f431c1d09', '[\"*\"]', '2026-06-06 20:53:13', NULL, '2026-06-06 20:49:08', '2026-06-06 20:53:13'),
+(20, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'c4d953e1521c8919a679f6a578db5306feb15a824c3d3d33113407fd95dd1e56', '[\"*\"]', '2026-06-06 21:04:21', NULL, '2026-06-06 21:03:19', '2026-06-06 21:04:21'),
+(21, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b8b1a0ba5d2ae02d0097e72092e8ab47880d5c8e5c6598232a05353d428cd928', '[\"*\"]', '2026-06-06 21:11:17', NULL, '2026-06-06 21:10:45', '2026-06-06 21:11:17'),
+(22, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'ea916841169b81ee1027ce8f70e88295a38dfe0ed768e1d3809f170194e21dcd', '[\"*\"]', '2026-06-06 21:16:35', NULL, '2026-06-06 21:16:32', '2026-06-06 21:16:35'),
+(23, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '35940147387283df948a6023d53465cb9db72079ed4c350fd0d2419f0027f584', '[\"*\"]', '2026-06-07 08:38:37', NULL, '2026-06-07 08:38:21', '2026-06-07 08:38:37'),
+(24, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '33d01968478ac3bd8b27785e33c4fd95fa3b2caacecc9075321c868dbf8a445b', '[\"*\"]', '2026-06-07 08:52:06', NULL, '2026-06-07 08:44:02', '2026-06-07 08:52:06'),
+(25, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '6c797d1978112d2afe2bf8af98af6e4d9281d119f7b650f7f4ca0404c9c1f37e', '[\"*\"]', '2026-06-07 09:51:29', NULL, '2026-06-07 09:51:23', '2026-06-07 09:51:29'),
+(26, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'c8b3a5a3309213791391c4f668cdfd5eb320e3d95b49d644fde6f93bb0a5fa7c', '[\"*\"]', '2026-06-07 09:58:42', NULL, '2026-06-07 09:58:40', '2026-06-07 09:58:42'),
+(27, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '2cb4a32950c5ba2c4e4fe2776af5b8a3a4c5d558d7f42d13e50e57f9851eb213', '[\"*\"]', '2026-06-07 10:05:40', NULL, '2026-06-07 10:05:37', '2026-06-07 10:05:40'),
+(28, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'dc07ee6a7b196f12553092432f0fe8e00edbfc2338cb732a0a19a465bb607d98', '[\"*\"]', '2026-06-07 10:26:46', NULL, '2026-06-07 10:26:40', '2026-06-07 10:26:46'),
+(29, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '3dec0d3cd61481b107dbff7c58d75cec42b9c8a9418fc80b6f49e0cd992bc27e', '[\"*\"]', '2026-06-07 10:31:07', NULL, '2026-06-07 10:30:23', '2026-06-07 10:31:07'),
+(30, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '09d9058b43ef871c2c04757e35baed14798e40347a6d6634bfddde26c3fe76ad', '[\"*\"]', '2026-06-07 10:34:21', NULL, '2026-06-07 10:34:17', '2026-06-07 10:34:21'),
+(31, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '0c0bf992c968286b837e86d326870b66600fc4d9ae76ad908940a72f91a7a823', '[\"*\"]', '2026-06-07 10:46:41', NULL, '2026-06-07 10:41:58', '2026-06-07 10:46:41'),
+(32, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b8e313678385dd348e7fb85e524ca50664536b115e26d1349a65b951accbd0d2', '[\"*\"]', '2026-06-07 18:04:43', NULL, '2026-06-07 10:55:48', '2026-06-07 18:04:43'),
+(33, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '6602bfa8e78d455a7e2d0ac8e0e6983bae5dda01ed2ebfd0f45be076c0099553', '[\"*\"]', '2026-06-07 11:03:41', NULL, '2026-06-07 11:02:57', '2026-06-07 11:03:41'),
+(34, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'f688068477b3f758de5e12860ed6b3ee35a4f59d50fcbb5edd439a28a192f74a', '[\"*\"]', '2026-06-07 11:09:35', NULL, '2026-06-07 11:09:22', '2026-06-07 11:09:35'),
+(35, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'd473fd801ab50145e5bfbb1734704b7a4044263c36f18190446510298010895e', '[\"*\"]', '2026-06-07 11:14:50', NULL, '2026-06-07 11:14:44', '2026-06-07 11:14:50'),
+(36, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '29746395ea3ae00be618885420bfa138eddb667399685691cd3460630de39603', '[\"*\"]', '2026-06-07 11:17:54', NULL, '2026-06-07 11:17:50', '2026-06-07 11:17:54'),
+(37, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '078c2863cd98b7e83fa3bf4c1a077c1496322b1a8c189fb3b1ea7756d212e089', '[\"*\"]', '2026-06-07 11:24:37', NULL, '2026-06-07 11:21:35', '2026-06-07 11:24:37'),
+(38, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '4bf8f2a93546250adef235188cadfb4d7cf913db655255f17533dec1d1042f76', '[\"*\"]', '2026-06-07 11:41:57', NULL, '2026-06-07 11:38:13', '2026-06-07 11:41:57'),
+(39, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '43996a4a33b0b121b26bc48b717450bf47022ca4de07cfc7254e015f2d62b535', '[\"*\"]', '2026-06-07 14:14:03', NULL, '2026-06-07 14:13:47', '2026-06-07 14:14:03'),
+(40, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '4842421247ac4fc3886187798b16a9536f13f12405233284a7adfa410bf704ef', '[\"*\"]', '2026-06-07 14:17:18', NULL, '2026-06-07 14:16:37', '2026-06-07 14:17:18'),
+(41, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b069f890fca7be9213dfb2951deaf7b29451f51032ec41ef5fffe8d24d5f4c11', '[\"*\"]', '2026-06-07 14:24:59', NULL, '2026-06-07 14:20:14', '2026-06-07 14:24:59'),
+(42, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'bd0a4fb5667665dd6f8a27b5b854d287e1816c9cf3764c9612f5e7ffc3e146d2', '[\"*\"]', '2026-06-07 14:27:47', NULL, '2026-06-07 14:27:21', '2026-06-07 14:27:47'),
+(43, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '09812b0978f6ede9282bd70a21b53cc9b905f9d01bc61fcaf5f5592c237dbd69', '[\"*\"]', '2026-06-07 14:41:52', NULL, '2026-06-07 14:34:23', '2026-06-07 14:41:52'),
+(44, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'f9c810328f7d35345d59b8e6ba1ecdac0f834e92c0951fc9ce1abd7f75750c87', '[\"*\"]', '2026-06-07 15:09:09', NULL, '2026-06-07 14:57:00', '2026-06-07 15:09:09'),
+(45, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'e042acdfa74e207c51f5309f021b021659f896f3d869a80d064087b424f9be21', '[\"*\"]', '2026-06-07 15:10:02', NULL, '2026-06-07 15:09:48', '2026-06-07 15:10:02'),
+(46, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '414c5c43cdcff81ca64f4dd4a83568bb3fc5a80de35f38220b1f08a771db1dff', '[\"*\"]', '2026-06-07 15:15:36', NULL, '2026-06-07 15:11:12', '2026-06-07 15:15:36'),
+(47, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '4cf9c3a0b3672e912b5abdcffdbfeb6a8ee0de5d5683760c378bbb9c75e125b1', '[\"*\"]', '2026-06-07 15:21:47', NULL, '2026-06-07 15:18:00', '2026-06-07 15:21:47'),
+(48, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '0f9b3b0a60c2e3a6649a60ab37f2e69a557541c4b77b1ec631727cb01dcd003f', '[\"*\"]', '2026-06-07 15:23:11', NULL, '2026-06-07 15:23:09', '2026-06-07 15:23:11'),
+(49, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '59bbb611af1a98891ddc2f1adecd13e8e4e9cb88067af463f5bf24f3a5872cba', '[\"*\"]', '2026-06-07 15:24:22', NULL, '2026-06-07 15:23:49', '2026-06-07 15:24:22'),
+(50, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '5067249948c2ba194e8adeb3bdde3ca59c284e140ac389b3c3a476afc21223a6', '[\"*\"]', '2026-06-07 15:25:01', NULL, '2026-06-07 15:24:43', '2026-06-07 15:25:01'),
+(51, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'b892b36a1da2360b716a8ca178c06f92e5467f5c82602aa4df87d87973fda961', '[\"*\"]', '2026-06-07 15:26:11', NULL, '2026-06-07 15:25:57', '2026-06-07 15:26:11'),
+(52, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '6ce2492e010a339ecb459a612afe384e7fc486e9d67266432b0af344c6e8cb2e', '[\"*\"]', '2026-06-07 15:30:27', NULL, '2026-06-07 15:28:30', '2026-06-07 15:30:27'),
+(53, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '258f5d692a8d80935e382048dc6194f3a277210cf3dd5e129880003e2cd7185f', '[\"*\"]', '2026-06-07 15:51:46', NULL, '2026-06-07 15:51:20', '2026-06-07 15:51:46'),
+(54, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'a569b3d98851f8377fb3946e09da96dd0e6c24a99a15eaf5a6e2958b7d7922b4', '[\"*\"]', '2026-06-07 16:03:34', NULL, '2026-06-07 16:03:31', '2026-06-07 16:03:34'),
+(55, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'fd21df18cca86ed1edc88db96904b0b5cc7d0ad6e531dfdafa5f7d8129051535', '[\"*\"]', '2026-06-07 16:24:04', NULL, '2026-06-07 16:15:39', '2026-06-07 16:24:04'),
+(56, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '015c834d9cb7373900b61facd8c79c51bf85293c16c0e8356b9ddce07cacfb7d', '[\"*\"]', '2026-06-07 16:39:08', NULL, '2026-06-07 16:25:04', '2026-06-07 16:39:08'),
+(57, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '05fb6850fd3dd3130bb0af66b7044362841f20641f8fdd6126a539663897cfa2', '[\"*\"]', '2026-06-07 17:19:17', NULL, '2026-06-07 17:00:50', '2026-06-07 17:19:17'),
+(58, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '6f6d00ec48d0512116d14bcbbe1b22e26bb40cd5c111c3b32f12ca91e3470454', '[\"*\"]', '2026-06-07 18:21:29', NULL, '2026-06-07 18:20:19', '2026-06-07 18:21:29'),
+(59, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '84c7d9d1f7957a43a7aa4aef4baf7dd9e423ab776b5ec7cac98ce87cdc7c00f1', '[\"*\"]', '2026-06-07 18:24:40', NULL, '2026-06-07 18:24:31', '2026-06-07 18:24:40'),
+(60, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', '7c25d5e51b57ebc4b22fdc204a4053a7ce05b9772a9e739a47bd97aac5bbf365', '[\"*\"]', '2026-06-08 07:50:34', NULL, '2026-06-08 07:49:01', '2026-06-08 07:50:34'),
+(61, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '0d3df8ddc5fa16c22c72f5022e78d81f22fd634b3736bdfd0affa7a4f606c0f8', '[\"*\"]', '2026-06-08 07:51:07', NULL, '2026-06-08 07:50:54', '2026-06-08 07:51:07'),
+(62, 'App\\Models\\UserBiasa', 'usr007', 'auth_token', '3a409998b2545c75a029f14ef43634a1885fde38ff34b35f4bbbad4a8140733f', '[\"*\"]', '2026-06-08 07:54:03', NULL, '2026-06-08 07:53:10', '2026-06-08 07:54:03'),
+(63, 'App\\Models\\UserBiasa', 'usr007', 'auth_token', '680c80fc09c11f5c02b815189f0cfb7094b332e60cf2ea6e2132d2e92d8a67cc', '[\"*\"]', '2026-06-08 08:55:29', NULL, '2026-06-08 07:55:23', '2026-06-08 08:55:29'),
+(64, 'App\\Models\\UserBiasa', 'usr001', 'auth_token', 'ab920f9c79900b3dbe6c2863f492176f0599e83763ab39e8143f2b797ff52453', '[\"*\"]', '2026-06-08 08:58:56', NULL, '2026-06-08 08:55:16', '2026-06-08 08:58:56'),
+(65, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '53d480990805b596a10a612788d37c67916f0294d90cf429710c062db2492705', '[\"*\"]', '2026-06-18 13:35:49', NULL, '2026-06-18 13:33:15', '2026-06-18 13:35:49'),
+(66, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', 'd175c86032c3136400cc5448cb37585c07d02f754d36f1e7abbf1f5ce590f59e', '[\"*\"]', '2026-06-19 08:25:30', NULL, '2026-06-19 08:25:09', '2026-06-19 08:25:30'),
+(67, 'App\\Models\\UserBiasa', 'usr008', 'auth_token', '79b3323de9ff4272a2142e1e299a7b46349d9cf8d042850d4ba9a3432d9ba70d', '[\"*\"]', '2026-06-19 09:22:11', NULL, '2026-06-19 09:17:17', '2026-06-19 09:22:11'),
+(68, 'App\\Models\\UserBiasa', 'usr008', 'auth_token', '721659dfd8ebab67d30f5848c78a5fb71d84abd73550409b4ae8bbdb60b0d255', '[\"*\"]', '2026-06-19 09:38:49', NULL, '2026-06-19 09:38:46', '2026-06-19 09:38:49'),
+(72, 'App\\Models\\UserBiasa', 'usr008', 'auth_token', 'aa7f47a65a2c8add660e3ca21ed02d24553e17f7bbf7c21ea807c17a9e96fc46', '[\"*\"]', '2026-06-19 09:58:05', NULL, '2026-06-19 09:58:02', '2026-06-19 09:58:05'),
+(73, 'App\\Models\\UserBiasa', 'usr008', 'auth_token', 'c0e2cbe953f47e5f4e90b44b28e18607f8f2ab6d62a9d9fe4b9b13c5327ca961', '[\"*\"]', '2026-06-19 10:05:35', NULL, '2026-06-19 10:05:33', '2026-06-19 10:05:35'),
+(75, 'App\\Models\\UserBiasa', 'usr008', 'auth_token', 'a0ff63611e5995da99b968b63ecd4455869b5df4adc6b9ea968b71085d51ce44', '[\"*\"]', '2026-06-19 10:26:38', NULL, '2026-06-19 10:26:36', '2026-06-19 10:26:38'),
+(78, 'App\\Models\\UserBiasa', 'usr002', 'auth_token', '944b723073228af3fe355b48857a1ae2448c1b85e6398e8a4c73f69d8eff3b8c', '[\"*\"]', NULL, NULL, '2026-06-19 10:59:20', '2026-06-19 10:59:20'),
+(79, 'App\\Models\\UserBiasa', 'usr002', 'auth_token', '09b359d24131129b10aba731fec2ad9c178d2b25e9a7573bfd03896aa7f51178', '[\"*\"]', '2026-06-19 11:41:29', NULL, '2026-06-19 11:11:03', '2026-06-19 11:41:29'),
+(80, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', 'e81fc871639ca203f1167b8852e505acca52f75105f1496f2fedc6b23ed1af95', '[\"*\"]', '2026-06-19 12:03:15', NULL, '2026-06-19 11:53:57', '2026-06-19 12:03:15'),
+(81, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '1850374246a49a8817bce12f61219f8e9951e3d9e0d384e7f92dd9c5c298d25f', '[\"*\"]', NULL, NULL, '2026-06-19 12:04:17', '2026-06-19 12:04:17'),
+(82, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '568fdaf51c61c3ab64e7326585514cf392c427a8e0bc2c1d8b0fbed8c6425f51', '[\"*\"]', '2026-06-19 12:04:43', NULL, '2026-06-19 12:04:39', '2026-06-19 12:04:43'),
+(83, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '6d384d79bf8fa13529439294db4928b5daf0d3c696dd5f2fba501c6a3e4b3a9a', '[\"*\"]', '2026-06-20 19:24:56', NULL, '2026-06-19 12:05:55', '2026-06-20 19:24:56'),
+(84, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '725dce9a71e016e83b4e3c7808f7c20f4967af6a7d9f340d81bf739415f2dc00', '[\"*\"]', '2026-06-19 12:19:10', NULL, '2026-06-19 12:19:03', '2026-06-19 12:19:10'),
+(85, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '7f2b51bd2791fbd3f2219779024eddac0446e36dfd02206fd8d0b90a2af67cc8', '[\"*\"]', NULL, NULL, '2026-06-19 12:19:43', '2026-06-19 12:19:43'),
+(86, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '9fbc8c7f94d259f992e4dcf8c5a61e2e8952fbea21e2dd4cbce5e83e0455aa81', '[\"*\"]', NULL, NULL, '2026-06-19 12:26:43', '2026-06-19 12:26:43'),
+(87, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '2da230860d4d0e3f84a90ddf52e583cbf9e10a03ba85bae2cfb078f454a54f21', '[\"*\"]', '2026-06-19 12:27:05', NULL, '2026-06-19 12:27:02', '2026-06-19 12:27:05'),
+(88, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', 'd3c877fe0ddada64575ae09d19b2179fadd66d78d0f2b5a65dd20bc105fec9c9', '[\"*\"]', '2026-06-19 16:45:01', NULL, '2026-06-19 16:25:26', '2026-06-19 16:45:01'),
+(89, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', 'e04e843a0a543cc29414bc6740ef6e54e060dbc272f7a01bc3a97cb374a1adf7', '[\"*\"]', '2026-06-19 16:45:38', NULL, '2026-06-19 16:45:34', '2026-06-19 16:45:38'),
+(90, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '5fabc52c2049ba5e7c1121c4b3ab3453442b74d98ae92bba1dd5ba910ebc29fa', '[\"*\"]', '2026-06-20 11:59:22', NULL, '2026-06-20 11:59:18', '2026-06-20 11:59:22'),
+(91, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '84cb6f6858f42d6231497cc4d2fe4675938cc52bde3ef078b57bef4e0a790e57', '[\"*\"]', '2026-06-20 11:59:48', NULL, '2026-06-20 11:59:35', '2026-06-20 11:59:48'),
+(92, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '803942346decd732640eace34251056b7123bb7835923ca4372d8912ca4331d2', '[\"*\"]', '2026-06-20 18:55:50', NULL, '2026-06-20 18:55:44', '2026-06-20 18:55:50'),
+(93, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '056a5e1d4db74de988bf82adb0f552c19a9291a63f5e5b3f2e8f5d1d17b408e1', '[\"*\"]', NULL, NULL, '2026-06-20 18:56:42', '2026-06-20 18:56:42'),
+(94, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', 'dac1d7c12c3ce404c68ebcbe4a02941768c49c1f160d89d5b36ceafca7585f8b', '[\"*\"]', '2026-06-20 19:07:19', NULL, '2026-06-20 19:02:28', '2026-06-20 19:07:19'),
+(95, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '11bbbc38385da3651518a69b325a69196c3df4efbcaa90585e8e3c752e486683', '[\"*\"]', '2026-06-20 19:32:12', NULL, '2026-06-20 19:11:56', '2026-06-20 19:32:12'),
+(96, 'App\\Models\\UserBiasa', 'usr003', 'auth_token', '120509f5cd34d961e2a40474c21dcfa1e28600c1926bc2f759f54c4605c35a3d', '[\"*\"]', '2026-06-20 19:46:12', NULL, '2026-06-20 19:44:21', '2026-06-20 19:46:12');
 
 -- --------------------------------------------------------
 
@@ -258,7 +388,41 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4A3QjdVoupjE9qTT338UyriaFdkrFPRR8HwnTMyl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoibnhVbVFKVURoUGtYdEJQT3hpTGVJZWgzU3Y2R1VWWEJuUUZaY0R3byI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9NeVRpa2V0IjtzOjU6InJvdXRlIjtOO31zOjc6InVzZXJfaWQiO3M6NjoidXNyMDA0IjtzOjk6InVzZXJfbmFtZSI7czoxMToiRGFmZmEgRmFsaWgiO30=', 1780206497);
+('0MXmhjXIN1wrekgOvOZEcGsp1RWoMYADsrTvrmM5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiT2lLbDk0azczZ0FPVnp4Y2RhaGhSNUNDano1NDlNVjhYNlNsOE5mWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9NeVRpa2V0IjtzOjU6InJvdXRlIjtOO31zOjc6InVzZXJfaWQiO3M6NjoidXNyMDAzIjtzOjk6InVzZXJfbmFtZSI7czoxMzoiTml6YWwgTWF1bGFuYSI7fQ==', 1781984618),
+('16P3YzTpJlqDnn81kqeh6OPknKR40YsrIs9JMhhr', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVUFyVU1mY29hc2ZKVEszRDJCVnY1aTVQVVVXMk5RMkE4S3VyV2pYMiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODA6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9OYXR1cmUucG5nIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1780828230),
+('1qglNt8PWnVqNpMBaHCzmEg7yJFGVhaj2Zwj776Y', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 Edg/149.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUUh0VjVzVWJvNTlGR003UXhKUG9EQTA0cWdiQ2l4MDhoMHBrSUxCQiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9HYWxsZXJ5IjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjc6InVzZXJfaWQiO3M6NjoidXNyMDA2IjtzOjk6InVzZXJfbmFtZSI7czoxNDoiTmF1ZmFsIEdlcmFsZG8iO30=', 1780829466),
+('2i8SEaxyo0pFHs0hY2CzhWPDLmKRZKjA7VsdXzoW', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidzFrUUlmbDBsVlJvV0VVeGZETFMwNUpRbE1lVmpCeGxMWmR4eDNKVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODA6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9OYXR1cmUucG5nIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1780828009),
+('2yPg4sjCjrcVYcX8etJjKjqiCcrsdKWt78PAulSX', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWG4zWjZzZm0wYjIxSndKMDFVbjduSDkyWGVMcUxIaG5mdGhYZnhkNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODE6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9IaXN0b3J5LmpwZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828007),
+('30Py8LvCAqAg1VaX1v7uSbGMbULhLKNksGxXuqgC', NULL, '127.0.0.1', 'WhatsApp/2.2620.102 W', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN1MwN3hXejhjQUlkNDI5cUQxSnd0OXR1a0hjUUZpSUNqTUV1THh2byI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldiI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828204),
+('54Lk74hbwjhWeGmd3GaEVQujeNBI8EkcLOOSj3X6', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSnVvbVZvYlRPUzBzYzMxajkyTElvUVB0NkdXdEFKUmRxdWM4a1ZzZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9FdmVudCI7czo1OiJyb3V0ZSI7Tjt9czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwMSI7czo5OiJ1c2VyX25hbWUiO3M6MTM6IkRoaW1hcyBIYWZpemgiO30=', 1780846569),
+('8FiRhRzfNkYmVRHbSdVrMWwdayiVZGBXejwC7PFv', NULL, '127.0.0.1', 'python-requests/2.32.5', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOXRONUh1RGZOTnhpSXFON0hPRmxnQ2s1SFZYRlVxUnZRbzkxQzJKTCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldiI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780831997),
+('ceCVjSVYHXOtvIRmF5fGPTCbqB4fZcBsiSV2u0Tm', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS3RqbmRscmFoczYxaFN2aWJIVWpCemt0YXF5ZkNpYnZoV0ZhZmdBTCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODE6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9DdWx0dXJlLmpwZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828009),
+('dnXLkPvYNy6sjGuAAI7yCkooMKAZ02v06VhkQXR9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTWVFVzBZbG9jYkc2N01mS2dtS3hVeDIzaGNZbHAyODBOZHlxQkIzeCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9NeVRpa2V0IjtzOjU6InJvdXRlIjtOO31zOjc6InVzZXJfaWQiO3M6NjoidXNyMDAzIjtzOjk6InVzZXJfbmFtZSI7czoxMzoiTml6YWwgTWF1bGFuYSI7fQ==', 1781869635),
+('hIwwl4zfu20l1hIgNY1Vq3QKNSa3hOfx49IRCbyK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiN0lRS1owYXFCMHk0OHUwc1liU2YxQWdaR3U3Wkw5S1VOYmVlWXhGMSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMToicmVzZXRfZW1haWwiO3M6MjQ6ImRoaW1hcy5oZnpoMzc1QGdtYWlsLmNvbSI7czo5OiJyZXNldF9vdHAiO2k6NjQyMTU3O3M6MTI6Im90cF92ZXJpZmllZCI7YjoxO30=', 1781618221),
+('IHsRHJdVv0glPFq5iiTNidWEhoSfi9LOZz1zTxGu', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiSWVnVXBGT0dNcFlRTlBhbDJYbmZ5eE5WbGt3RkdTeEI4UDVRV3AzOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9Ib21lcGFnZSI7czo1OiJyb3V0ZSI7Tjt9czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwNSI7czo5OiJ1c2VyX25hbWUiO3M6MTI6IklyZmFuIFRob3JpcSI7fQ==', 1780910310),
+('J7YJ5ruEXz4CoLGRnyBBAKm92jb6dn4BXshb4eZd', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieVBxUGhMcFFwamNkQzNqOTN3NkhaMDgyNkFmbDFmUGF0NDNEUEpmdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9EZXN0aW5hdGlvbj9zZWFyY2g9Y2FuZGkiO3M6NToicm91dGUiO047fXM6NzoidXNlcl9pZCI7czo2OiJ1c3IwMDMiO3M6OToidXNlcl9uYW1lIjtzOjEzOiJOaXphbCBNYXVsYW5hIjt9', 1780825237),
+('jTLk76KOeUefCpF8gsMFjjDSR5ga1Rc4nOyuKXEY', NULL, '127.0.0.1', 'WhatsApp/2.2620.102 W', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNkRtZFJ3SkpScEtreVVxZzlTVW1JOXdKU2pUMzJyUUxtV2tVZjBaeSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldiI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1781864665),
+('JwSymLgYvqDX1l88ircpqyBM9CRkFpYnFh8N9gH2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaHY0VjU4OXNPYmV6cUoxZjlFQUdmelhwdmJnTzRNc29vTkg4d2k4cCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9FdmVudC9EZXRhaWwvZXZ0MDAyIjtzOjU6InJvdXRlIjtOO31zOjc6InVzZXJfaWQiO3M6NjoidXNyMDAxIjtzOjk6InVzZXJfbmFtZSI7czoxMzoiRGhpbWFzIEhhZml6aCI7fQ==', 1780856196),
+('k875jPLs09uE0A4pmvbzhcE1y2USozqudjFgxSUp', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV3ZsQ1Q3NUpQRHhkOU1nTHEwb3Y4NnhsaHdPSlNBclAyekNlSnlzaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9NeVRpa2V0IjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjc6InVzZXJfaWQiO3M6NjoidXNyMDAzIjtzOjk6InVzZXJfbmFtZSI7czoxMzoiTml6YWwgTWF1bGFuYSI7fQ==', 1781954871),
+('kgSlSFjwpWLdnYB5mgS1h6HJ3OENblXiUyTQRovv', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ1paUlc1OEZGOWR3SFpSbDJtcWhqb3dWcDFGOFNGRnlvYlFCWUFmaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9FZHVjYXRpb24uanBnIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1780828008),
+('KyCPh80sRBHbBdDg0ZpEhweB9HgGS74ffBurXYQp', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZGpSdDNEZmZOU3JER29vMG11c3drWTN4YTI4dkZZeDdWWFh1cFp6MSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODE6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9IaXN0b3J5LmpwZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828228),
+('mlDGMpqP2bTlwFM1zwZinNJJPNv8yOl5jP4HQITo', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRUJHbEpWN3pDWkNyTXFNWlZQdW1aSnVtSjdRejlKWnhZYTNhUlNGYSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODE6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9DdWx0dXJlLmpwZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828229),
+('Nzo05skcrarcIWnhdAeWGEDxqmJH39IfEHA166TW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNDVCRlRRNmlkdnZHakkyNXkzT0VGcjhvemMwSjVTeUlKbmZnd1l1ayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1781869604),
+('octVnU9INarNQwFubzUGazfz1VFmf5673k8ErbOQ', NULL, '192.168.1.40', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQTBBRjNXY1Bzc3I5ZXpNWm5MNGxXd0ltdGpMTnl5dE9vWlpWRkhsTCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjQ6Imh0dHA6Ly8xOTIuMTY4LjEuNDA6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780821436),
+('oEjnH1ox2KOM8cBwAU4H91TQ0ehsDU8G6qLrfOjX', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVHlCc3VNYW05aVBCUENFYWlPUFBRV1BHT3EzZnVncnRnSFVPUkd1MSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Nzk6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9CZWFjaC5qcGciO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1780828007),
+('pLqj0Rcrz3SIDCqRafPcjZzet8JnFzvqgVGCfjkj', NULL, '127.0.0.1', 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQVVzZ0xUWmkzeXlodDdFOWxWVFRHbllUZzZyNFh3MjdaNkpRSFpaSSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NjQ6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi90aWtldC9wcmludC9US1VRWUMiO3M6NToicm91dGUiO3M6MTE6InRpa2V0LnByaW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwMSI7czo5OiJ1c2VyX25hbWUiO3M6MTM6IkRoaW1hcyBIYWZpemgiO30=', 1780828321),
+('PTPtorPp9GjQmIYHnWGs6KmEShuwqVy0FoNbjLID', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSkR6b1JlYnJMcDRGZUFLTmxZTjM0WmFPNHUzNHV3NkJzRmpMcWp3ZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780827845),
+('q9Qcp6qOrCLm4naQo8YlYgPH0e2HNNAtq3XbsPnj', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRWxCczRrRUhqVFUxTDh1eTZrSGxXMHN3eW9iU3dybW01SmJxN1ZwSyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODQ6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9FY290b3VyaXNtLnBuZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828229),
+('QEFngAlt2X9XPCska5PPgBkXPJEgb224VJD2zAnh', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVnhFNVVYU1dmaTlFNUpjWm9NQlZleUNEcWtkRG5wNHduTjc0aHViMyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9Ib21lcGFnZSI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwNCI7czo5OiJ1c2VyX25hbWUiO3M6MTE6IkRhZmZhIEZhbGloIjt9', 1780828746),
+('REHMRlVhtt0kMQplmyybCaNRVqZAZB9o0U64oM8F', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVWVjd25LTjhJR21RMGxRd3Frak5HVzNzYThDQU1Lak16UFl1V05pYyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9FZHVjYXRpb24uanBnIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1780828229),
+('rJ18LAhGKCFm2qHEqJSVBBL4wtB0dnUcz0zlOutK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoid1hJZ3RwMFlqS3Z2ajBRRnRqRHh3R3hmdVVqaGRPbkY2MGNtblNQaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODI6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9EZXN0aW5hdGlvbi9DYXRlZ29yeT9DYXRlZ29yeT1jdGcwMDEiO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NzoidXNlcl9pZCI7czo2OiJ1c3IwMDEiO3M6OToidXNlcl9uYW1lIjtzOjEzOiJEaGltYXMgSGFmaXpoIjt9', 1780829308),
+('rw4mN9p98l39eGh3txYXd3PmnOPwanAP9DuU9YY9', NULL, '127.0.0.1', 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRlRuQjFkVVpxNGl5Mk9NZjY3TEJ0RUNyenp6cFgyb2ZZemhoZW1sNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldiI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780831864),
+('s8pdiQVRaWBu1ZqY6JEC5fuemrMBlmiSO0yuGsUZ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTjlzSGhscVdTSmhRM2ZGbjhoQTg4SHlBemxBTW9MMW1QZDY3Y0JkaiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9BY2NvdW50IjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjc6InVzZXJfaWQiO3M6NjoidXNyMDA4IjtzOjk6InVzZXJfbmFtZSI7czo4OiJha3VuIHRlcyI7fQ==', 1781861206),
+('UBPFNDGvgl6Pq8rWyXYIqf1OZuA5ncDa2HfVmogW', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQjNSVHRzMk5vWlhtemlqMnZQRW05M21GMWRvQ2tTYkoyNlA0QlBkZSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTc6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9EZXN0aW5hdGlvbiI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo3OiJ1c2VyX2lkIjtzOjY6InVzcjAwNSI7czo5OiJ1c2VyX25hbWUiO3M6MTI6IklyZmFuIFRob3JpcSI7fQ==', 1780828740),
+('us7Sva6OxVifmnp86mZp7eF8EsxrTXNmnapJWZKd', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiODBkRTlKcExGSDFyb2JxTFNJUnBZVk1OaTNEb1hIRjZhNE1hQkZWeSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1781861085),
+('UwB0fyr8LZSmfZVJwnOVTheisJTPwH0Nqxm45j4z', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibG1HbjNXdzVTUjBRcjJScHhTSDZSTHBmNm5LY2drOThXVEIxMDVhbiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6ODQ6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9FY290b3VyaXNtLnBuZyI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1780828008),
+('x0myozDzbXJbpmSBOcqpvKf8LrT7YBD9EajLKWU0', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVWhuem0xWnE3MVZmM3B2MlZwYWR2YUVOekg4bEk5Z2FlQXoydkZDdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi9HYWxsZXJ5IjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjc6InVzZXJfaWQiO3M6NjoidXNyMDAxIjtzOjk6InVzZXJfbmFtZSI7czoxMzoiRGhpbWFzIEhhZml6aCI7fQ==', 1780906357),
+('ylMEoushMTPsVsgUaMED4tHPdlIYNWFrfHZo9kOD', NULL, '127.0.0.1', 'Dart/3.11 (dart:io)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicmdxQXJFUGFXME5oTldRTlZVZmh2RHN5OTFOZmxlbEhtNE85dVNtOSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Nzk6Imh0dHA6Ly9sZWdhbC1zaXR0aW5nLXdvbWFuaG9vZC5uZ3Jvay1mcmVlLmRldi8vc3RvcmFnZS9kZXN0Y2F0ZWdvcmllcy9CZWFjaC5qcGciO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1780828228);
 
 -- --------------------------------------------------------
 
@@ -279,6 +443,10 @@ CREATE TABLE `tiket` (
 --
 
 INSERT INTO `tiket` (`tiketID`, `price`, `tiketStatus`, `eventID`, `orderID`) VALUES
+('TK4VO4', 100.00, 1, 'evt001', 'ODDABM'),
+('TKB2VA', 150000.00, 0, 'evt002', 'OD85LH'),
+('TKCUB2', 150000.00, 0, 'evt002', 'OD5SFG'),
+('TKF4YQ', 100.00, 2, 'evt001', 'ODDAAX'),
 ('TKGHAD', 100000.00, 1, 'evt003', 'OD2QZP'),
 ('TKHFUR', 150000.00, 0, 'evt002', 'ODZPYR'),
 ('TKHMXE', 100.00, 0, 'evt001', 'ODAIMH'),
@@ -286,10 +454,13 @@ INSERT INTO `tiket` (`tiketID`, `price`, `tiketStatus`, `eventID`, `orderID`) VA
 ('TKMPWD', 150000.00, 0, 'evt002', 'ODZ969'),
 ('TKOAGI', 150000.00, 1, 'evt002', 'OD2RLE'),
 ('TKQW4U', 150000.00, 0, 'evt002', 'ODQDQK'),
+('TKRSBR', 100000.00, 0, 'evt003', 'ODCXVQ'),
+('TKS9WJ', 100000.00, 1, 'evt003', 'ODMRL8'),
 ('TKSXEM', 100.00, 1, 'evt001', 'ODGRZU'),
 ('TKUQYC', 100000.00, 1, 'evt003', 'ODUSLP'),
 ('TKVNA4', 100000.00, 0, 'evt003', 'ODVMJL'),
 ('TKWVKN', 150000.00, 0, 'evt002', 'ODZPYR'),
+('TKY53B', 100000.00, 0, 'evt003', 'ODLNXP'),
 ('TKY5QK', 100000.00, 1, 'evt003', 'ODVVMK'),
 ('TKYXJ8', 100.00, 0, 'evt001', 'ODAIMH');
 
@@ -318,13 +489,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `nameUser`, `email`, `phone`, `gender`, `birthDate`, `username`, `password`, `deleted_at`, `created_at`, `updated_at`) VALUES
-('usr001', 'Dhimas Hafizh', 'dhimas.hfzh375@gmail.com', '081290071606', 1, '2005-07-03', 'UserDhimas', '$2y$12$gFzLME27zZvmuwbnRszDRed.OSRQCDTPoD38FpzPnshsnrL7bO7Du', NULL, '2026-01-01 14:38:08', NULL),
+('usr001', 'Dhimas Hafizh', 'dhimas.hfzh375@gmail.com', '081290071606', 1, '2005-07-02', 'UserDhimas', '$2y$12$rHpvXQ/iyOdu6e0T7LxqPu.V0w1vt57y.38ygf8ru9JvwDvI5iEOC', NULL, '2026-01-01 14:38:08', '2026-06-08 08:41:27'),
 ('usr002', 'Christoba Joshua', 'Akunkhusustugas51@gmail.com', '085348455669', 1, '2005-09-27', 'UserJoshua', '$2y$12$nngpJXs269lQTAx1PdfNAu7dfZq5R5aSK2Vz0pNdzVDb.hKuq0aEG', NULL, '2026-01-10 14:38:08', NULL),
-('usr003', 'Nizal Maulana', 'roniiinaldo601@gmail.com', '081476626723', 1, '2005-04-26', 'UserNizal', '$2y$12$PG0kQ9z.pdDX4FrwBSo6yunvG5Uz0y7Ss37IIe6hGMGEt0whTmkjm', NULL, '2026-02-05 14:38:08', NULL),
+('usr003', 'Nizal Maulana', 'roniiinaldo601@gmail.com', '081476626723', 1, '2005-04-26', 'UserNizal', '$2y$12$PG0kQ9z.pdDX4FrwBSo6yunvG5Uz0y7Ss37IIe6hGMGEt0whTmkjm', NULL, '2026-02-05 14:38:08', '2026-06-18 13:35:46'),
 ('usr004', 'Daffa Falih', 'daffalih75@gmail.com', '085174235775', 1, '2005-06-13', 'UserDaffa', '$2y$12$3M43bbpkkyHLDjLs4hI.quBdgeGxtGJVRoa1Lxzoj34ozP2F07u/W', NULL, '2026-02-26 14:38:08', NULL),
 ('usr005', 'Irfan Thoriq', 'Nnfaff59@gmail.com', '081337195915', 1, '2005-03-12', 'UserIrfan', '$2y$12$V6p/v8qyPSg2BPbnWbLi/OdSMvtCxc8S1cvE66l/Hbyd4wsJW1Un2', NULL, '2026-03-04 14:38:08', NULL),
-('usr006', 'Naufal Geraldo', 'naufal.geraldo30@gmail.com', '081289492745', 1, '2005-05-30', 'UserNaufal', '$2y$12$iF7PrXG5pHMPWk9W/1lquOsa0eJYTeZ8.E7E4R3qoFHKNOBV.4iMq', NULL, '2026-05-07 14:38:08', NULL),
-('usr007', 'Arsyad Zaidan', '2311102058@ittelkom-pwt.ac.id', '081574166613', 1, '2005-03-03', 'UserZaidan', '$2y$12$vwwhMXmuyVEgpTGiPttltufde4oM6nf6rjFQ8otdidXi2.p760T1O', NULL, '2026-05-15 14:38:08', NULL);
+('usr006', 'Naufal Geraldo', 'naufal.geraldo30@gmail.com', '081289492745', 0, '2005-05-30', 'UserNaufal', '$2y$12$tLr22l6fHSStp3svM559.e872uh9Nrix0UU7OqBpcavSlcy.999wC', NULL, '2026-05-07 14:38:08', '2026-06-05 16:01:18'),
+('usr007', 'Arsyad Zaidan', '2311102058@ittelkom-pwt.ac.id', '081574166613', 1, '2005-03-03', 'UserZaidan', '$2y$12$vwwhMXmuyVEgpTGiPttltufde4oM6nf6rjFQ8otdidXi2.p760T1O', NULL, '2026-05-15 14:38:08', NULL),
+('usr008', 'akun tes', 'tes@gmail.com', '081290071606', 1, '2026-06-01', 'testing', '$2y$12$MnYq1Gz/M/EvmcyUi4PIa.lXfUvuiWxmu.sE3wEkd0FnMUmX6CVVG', '2026-06-19 10:28:43', '2026-06-19 09:16:49', '2026-06-19 10:28:43');
 
 --
 -- Indexes for dumped tables
@@ -379,6 +551,15 @@ ALTER TABLE `payment`
   ADD KEY `userID` (`orderID`);
 
 --
+-- Indeks untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`),
+  ADD KEY `personal_access_tokens_expires_at_index` (`expires_at`);
+
+--
 -- Indeks untuk tabel `sessions`
 --
 ALTER TABLE `sessions`
@@ -408,7 +589,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
