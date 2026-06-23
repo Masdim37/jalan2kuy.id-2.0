@@ -36,4 +36,23 @@ class TiketMobileController extends Controller
             'data'    => $tikets
         ], 200);
     }
+    public function scanTiket($tiketID)
+    {
+        $tiket = \App\Models\tiket::where('tiketID', $tiketID)->first();
+
+        if ($tiket && $tiket->tiketStatus == 1) {
+            $tiket->tiketStatus = 0; // Sesuai logika web kamu
+            $tiket->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Tiket Valid! Selamat Datang.'
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Tiket Tidak Valid atau Sudah Pernah Digunakan!'
+        ], 400);
+    }
 }

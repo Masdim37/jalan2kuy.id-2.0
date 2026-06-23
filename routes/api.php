@@ -33,6 +33,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/event/detail', [EventMobileController::class, 'tampilDetailEvent']);
 
     Route::get('/MyTicket', [TiketMobileController::class, 'showMyTicket']);
+
+    // --- API PEMBAYARAN ---
+    Route::post('/event/checkout/{id}', [\App\Http\Controllers\Api\PaymentMobileController::class, 'checkout']);
+    Route::post('/payment/continue/{orderID}', [\App\Http\Controllers\Api\PaymentMobileController::class, 'continuePayment']);
+    Route::post('/payment/cancel/{orderID}', [\App\Http\Controllers\Api\PaymentMobileController::class, 'cancelPayment']);
+    
+    // --- API SCAN TIKET ---
+    Route::post('/ticket/scan/{tiketID}', [\App\Http\Controllers\Api\TiketMobileController::class, 'scanTiket']);
     
     
 });
