@@ -11,6 +11,9 @@ use App\Http\Controllers\Api\TiketMobileController;
 Route::post('/', [UserMobileController::class, 'login']);
 Route::post('/register', [UserMobileController::class, 'register']); 
 
+// Route buat update status tiket
+Route::post('/midtrans/callback', [\App\Http\Controllers\Api\PaymentMobileController::class, 'midtransCallback']);
+
 // Route yang WAJIB menyertakan Token (Harus Login)
 Route::middleware('auth:sanctum')->group(function () {
 

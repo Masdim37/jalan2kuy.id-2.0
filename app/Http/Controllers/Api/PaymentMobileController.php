@@ -15,6 +15,7 @@ class PaymentMobileController extends Controller
 {
     public function __construct()
     {
+        // Set konfigurasi Midtrans
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         \Midtrans\Config::$isProduction = false;
         \Midtrans\Config::$isSanitized = true;
@@ -35,6 +36,7 @@ class PaymentMobileController extends Controller
         try {
             $orderID = $this->generateID('order', 'orderID', 'OD');
             $total = $qty * $event->entranceFee;
+            
             order::create(['orderID' => $orderID, 'orderDate' => now(), 'userID' => $user->userID, 'totalPrice' => $total]);
             payment::create(['paymentID' => $this->generateID('payment', 'paymentID', 'PY'), 'paymentDate' => now(), 'paymentStatus' => 'pending', 'orderID' => $orderID]);
 
@@ -44,7 +46,6 @@ class PaymentMobileController extends Controller
 
             $event->decrement('quota', $qty);
 
-            // 💡 TRIK BYPASS: Sama persis dengan web
             $midtransOrderID = $orderID . '-' . time();
             $snapToken = \Midtrans\Snap::getSnapToken([
                 'transaction_details' => ['order_id' => $midtransOrderID, 'gross_amount' => (int)$total],
@@ -94,7 +95,8 @@ class PaymentMobileController extends Controller
             $tikets = tiket::where('orderID', $orderID)->get();
             
             if ($tikets->count() > 0) {
-                Event::find($tikets->first()->eventID)->increment('quota', $tikets->count());
+                $eventID = $tikets->first()->eventID;
+                Event::find($eventID)->increment('quota', $tikets->count());
             }
             tiket::where('orderID', $orderID)->update(['tiketStatus' => 2]);
 
@@ -106,8 +108,63 @@ class PaymentMobileController extends Controller
         }
     }
 
+    public function midtransCallback(Request $request)
+    {
+        $serverKey = env('MIDTRANS_SERVER_KEY');
+        
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed !== $request->signature_key) {
+            return response()->json(['success' => false, 'message' => 'Signature Key tidak valid!'], 403);
+        }
+
+        $midtransOrderID = $request->order_id;
+        $orderID = explode('-', $midtransOrderID)[0];
+
+        $payment = \App\Models\payment::where('orderID', $orderID)->first();
+        if (!$payment) {
+            return response()->json(['success' => false, 'message' => 'Data pembayaran tidak ditemukan'], 444);
+        }
+
+        $transactionStatus = $request->transaction_status;
+
+        DB::beginTransaction();
+        try {
+            if ($transactionStatus == 'settlement' || $transactionStatus == 'capture') {
+                // STATUS LUNAS
+                $payment->update(['paymentStatus' => 'success']);
+                \App\Models\tiket::where('orderID', $orderID)->update(['tiketStatus' => 1]);
+
+            } elseif ($transactionStatus == 'pending') {
+                // STATUS PENDING
+                $payment->update(['paymentStatus' => 'pending']);
+                \App\Models\tiket::where('orderID', $orderID)->update(['tiketStatus' => 0]);
+
+            } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
+                // STATUS BATAL / EXPIRED
+                $payment->update(['paymentStatus' => 'cancelled']);
+                
+                $tikets = \App\Models\tiket::where('orderID', $orderID)->get();
+                if ($tikets->count() > 0) {
+                    $eventID = $tikets->first()->eventID;
+                    \App\Models\Event::find($eventID)->increment('quota', $tikets->count());
+                }
+                
+                \App\Models\tiket::where('orderID', $orderID)->update(['tiketStatus' => 2]);
+            }
+
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Status database berhasil diperbarui']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+
     private function generateID($table, $column, $prefix) {
-        do { $id = $prefix . strtoupper(Str::random(4)); } while (DB::table($table)->where($column, $id)->exists());
+        do { 
+            $id = $prefix . strtoupper(Str::random(4)); 
+        } while (DB::table($table)->where($column, $id)->exists());
         return $id;
     }
 }
